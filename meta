@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heading 1: Division of Ancient History & Sources</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; line-height: 1.7; }
+  header { background: linear-gradient(135deg, #2563eb, #7c3aed); padding: 32px 20px; text-align: center; position: sticky; top: 0; z-index: 10; }
+  h1 { margin: 0; font-size: 24px; }
+
+ .container { max-width: 880px; margin: 0 auto; padding: 24px 16px; }
+ .chapter { background: #1e293b; border-radius: 16px; padding: 28px; margin: 24px 0; border: 1px solid #334155; }
+
+ .timeline { display: flex; overflow-x: auto; gap: 12px; padding: 16px 0; scroll-snap-type: x mandatory; }
+ .timeline-item { min-width: 220px; background: #334155; padding: 16px; border-radius: 12px; border-left: 4px solid #3b82f6; scroll-snap-align: start; }
+ .timeline-item b { color: #60a5fa; }
+
+ .flip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 20px 0; }
+ .flip-card { background: transparent; height: 140px; perspective: 1000px; cursor: pointer; }
+ .flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+ .flip-card:hover.flip-inner { transform: rotateY(180deg); }
+ .flip-front,.flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 12px; text-align: center; font-weight: 600; }
+ .flip-front { background: #334155; border: 2px solid #475569; }
+ .flip-back { background: linear-gradient(135deg, #2563eb, #1d4ed8); transform: rotateY(180deg); font-weight: 400; }
+
+  details { background: #334155; padding: 14px; border-radius: 8px; margin: 10px 0; cursor: pointer; }
+  summary { font-weight: 600; color: #60a5fa; font-size: 16px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; overflow-x: auto; display: block; }
+  th { background: #2563eb; color: white; padding: 12px; text-align: left; }
+  td { padding: 12px; border-bottom: 1px solid #475569; background: #1e293b; }
+
+ .fact-box { background: #1e3a8a; border-left: 4px solid #3b82f6; padding: 16px; margin: 16px 0; border-radius: 8px; }
+ .key-term { font-weight: 700; color: #38bdf8; }
+
+ .quiz { background: #1e293b; padding: 20px; border-radius: 12px; margin-top: 24px; border: 1px solid #475569; }
+ .option { background: #334155; padding: 12px; margin: 8px 0; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+ .option:hover { background: #475569; }
+
+  @media (max-width: 650px) { table { font-size: 13px; } h1 { font-size: 20px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>1. Division of Ancient History and Sources</h1>
+</header>
+
+<div class="container">
+<div class="chapter">
+
+<h2>📅 3 Divisions of History</h2>
+<div class="timeline">
+  <div class="timeline-item">
+    <b>History</b><br>
+    Written evidences available<br>
+    From Vedic Phase till present
+  </div>
+  <div class="timeline-item">
+    <b>Prehistory</b><br>
+    No written evidence<br>
+    Archaeological evidences available<br>
+    Stone age
+  </div>
+  <div class="timeline-item">
+    <b>Proto-history</b><br>
+    Written evidences available<br>
+    But could not be deciphered<br>
+    Eg. Harappan Period
+  </div>
+</div>
+
+<div class="fact-box">
+<b>Key Idea:</b> History is all about understanding the past. Sources are crucial to unravel and understand the past.
+</div>
+
+<h2>📚 Sources of History - Tap to Flip</h2>
+<div class="flip-grid">
+  <div class="flip-card">
+    <div class="flip-inner">
+      <div class="flip-front">Archaeological Evidence</div>
+      <div class="flip-back">Artefacts - materials used by ancient people found at sites. Tools, pottery, burials, settlements, architectural remains.</div>
+    </div>
+  </div>
+  <div class="flip-card">
+    <div class="flip-inner">
+      <div class="flip-front">Inscriptions</div>
+      <div class="flip-back">Engravings on stone or metal objects. Rock edicts, pillar edicts. Study = Epigraphy【260126083628465904245†L17-L19】</div>
+    </div>
+  </div>
+  <div class="flip-card">
+    <div class="flip-inner">
+      <div class="flip-front">Coins</div>
+      <div class="flip-back">Study of coins = Numismatics【260126083628465904245†L20-L21】. First to issue gold coins: Indo-Greek king Menander【163414863101167980797†L19-L22】</div>
+    </div>
+  </div>
+  <div class="flip-card">
+    <div class="flip-inner">
+      <div class="flip-front">Literature</div>
+      <div class="flip-back">Indian + Foreign literature. Vedas, Puranas, Epics, Sangam literature, plays【260126083628465904245†L24-L36】</div>
+    </div>
+  </div>
+  <div class="flip-card">
+    <div class="flip-inner">
+      <div class="flip-front">Foreign Accounts</div>
+      <div class="flip-back">Magasthenes, Ptolemy, Pliny, Fa-Hien, Hiuen Tsang etc. Records of admin, trade, society【260126083628465904245†L38-L88】</div>
+    </div>
+  </div>
+</div>
+
+<details open>
+<summary>Literature Sources - All Facts</summary>
+
+<b>A. Indian Literature:</b>
+<ul>
+<li><span class="key-term">Vedic Literature:</span> Vedas, Brahmanas, Aranyakas, Upanishads, Vedangas and Upvedas【260126083628465904245†L26-L28】</li>
+<li><span class="key-term">Puranas:</span> Stories of kings and gives genealogies of dynasties. Important source for political history【260126083628465904245†L29-L31】</li>
+<li><span class="key-term">Epics:</span> Ramayana, Mahabharata【260126083628465904245†L32-L33】</li>
+<li><span class="key-term">Sangam Literature:</span> Tolkappiyam, Ettuogai, Pattupattu, Pathinenkilkanakku, Silpadikarm and Manimekkalai【260126083628465904245†L33-L35】</li>
+<li><span class="key-term">Plays:</span> by Kalidas; Navaratnas in court of Guptas【260126083628465904245†L36-L37】</li>
+</ul>
+
+<b>B. Foreign Literature:</b>
+<table>
+<tr><th>Author</th><th>Book</th><th>Subject</th></tr>
+<tr><td>Magasthenes (Greek)</td><td>Indica</td><td>Admin + socio-economic conditions of Mauryas【260126083628465904245†L40-L45】</td></tr>
+<tr><td>Ptolemy (Greek)</td><td>Geography of India</td><td>Geographical treatise on India in 2nd Century AD【260126083628465904245†L47-L52】</td></tr>
+<tr><td>Pliny (Greek)</td><td>Naturakus Historia</td><td>Trade relations between Rome and India in 1st Century AD【260126083628465904245†L54-L59】</td></tr>
+<tr><td>Anonymous (Greek)</td><td>Periplus of Erythrean Sea</td><td>Records personal voyage of Indian coasts in 80 A.D【260126083628465904245†L60-L66】</td></tr>
+<tr><td>Fa-Hien (Chinese)</td><td>Record of Buddhist Countries (Fo-Kuoki)</td><td>Records Gupta Empire in 5th Century AD【260126083628465904245†L69-L76】</td></tr>
+<tr><td>Hiuen Tsang (Chinese)</td><td>Si-Yu-Ki</td><td>Social, economic, religious conditions of India 5th-7th Century AD, Harshvardhan【260126083628465904245†L78-L88】</td></tr>
+<tr><td>I-tsing (Chinese)</td><td>Record of Buddhist religion</td><td>Studies Gupta period under Sri Gupta in 7th Century AD【260126083628465904245†L90-L102】</td></tr>
+<tr><td>Hwuili (Chinese)</td><td>Life of Hiuen Tsang</td><td>Accounts Hiuen Tsang's travel in India【260126083628465904245†L104-L109】</td></tr>
+</table>
+
+<b>C. Other:</b>
+<ul>
+<li>Visakha Datta: Mudra Rakshas - Gupta period, Chanakya-Chandragupta story【260126083628465904245†L112-L113】</li>
+</ul>
+</details>
+
+<details>
+<summary>Archaeological Evidences - Details</summary>
+<ul>
+<li><b>Artefacts:</b> materials used by ancient people found at sites, useful to understand pre-historic Period【250304738559741122874†L9-L11】</li>
+<li><b>Tools:</b> stone and bone tools and tools made up of metals like Bronze and Iron【250304738559741122874†L12-L13】</li>
+<li><b>Pottery:</b> Black and Red Ware, Northern Black polished ware, Polished Grey Ware etc【250304738559741122874†L14-L15】</li>
+<li><b>Inscriptions:</b> Engravings on stone or other metal objects. Rock edicts- Major and Minor and Pillar edicts【250304738559741122874†L19-L21】</li>
+<li><b>Important Sites:</b> Bhimbetka - 500 painted Rock Shelters, Mehargarh - Earliest evidence of agriculture, Koldihawa - Earliest evidence of rice【250304738559741122874†L25-L36】</li>
+</ul>
+</details>
+
+<div class="quiz">
+<h4>Quick Check</h4>
+<p>Which period has written evidence but it could not be deciphered?</p>
+<div class="option">A) History</div>
+<div class="option">B) Prehistory</div>
+<div class="option">C) Proto-history ← Correct: Eg. Harappan Period【260126083628465904245†L10-L12】</div>
+</div>
+
+</div>
+</div>
+</body>
+</html>
