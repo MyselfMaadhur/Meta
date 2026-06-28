@@ -3583,3 +3583,435 @@ ji<!DOCTYPE html>
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Chapter 5: Mahajanapadas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        .header {
+            background: #16213e;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header .subtitle { color: #a0aec0; font-size: 1.1rem; }
+        .header .badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .section-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .section-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .section-header:hover { background: #f8fafc; }
+        .section-card.active .section-header { border-left-color: #e94560; background: #fff5f5; }
+
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .icon-intro { background: #dbeafe; }
+        .icon-texts { background: #d1fae5; }
+        .icon-list { background: #ede9fe; }
+        .icon-types { background: #cffafe; }
+
+        .section-title { flex: 1; }
+        .section-title h3 { font-size: 1.15rem; color: #1e293b; }
+        .section-title p { font-size: 0.9rem; color: #64748b; margin-top: 2px; }
+
+        .toggle-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); background: #e94560; color: white; }
+
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .section-card.active .section-body {
+            max-height: 3000px;
+            padding: 0 24px 24px 24px;
+        }
+
+        .content-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid #e94560;
+        }
+        .content-box h4 { color: #e94560; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .content-box ul { list-style: none; }
+        .content-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-weight: bold;
+        }
+        .content-box li.sub-item {
+            padding-left: 40px;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+        .content-box li.sub-item::before {
+            content: "•";
+            left: 24px;
+            color: #94a3b8;
+        }
+
+        .highlight-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .data-table thead { background: #16213e; color: white; }
+        .data-table th { padding: 14px 16px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background: #f8fafc; }
+        .data-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .fact-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .fact-card:hover { transform: translateY(-3px); border-color: #e94560; }
+        .fact-card .fact-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .fact-card .fact-term { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .fact-card .fact-def { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
+
+        .progress-track {
+            position: fixed;
+            top: 0; left: 0;
+            height: 4px;
+            background: #e94560;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .section-header { padding: 16px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-track" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ Mahajanapadas</h1>
+            <p class="subtitle">Chapter 5 — Ancient Indian History Ready Reckoner</p>
+            <span class="badge">UPSC Foundation</span>
+        </div>
+
+        <!-- SECTION 1: Introduction -->
+        <div class="section-card active" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-intro">📜</div>
+                <div class="section-title">
+                    <h3>1. Introduction to Mahajanapadas</h3>
+                    <p>Transition from tribes to territorial states</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏙️ Second Urbanization</h4>
+                    <ul>
+                        <li>Period marked <strong>second stage of urbanization</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔄 Transition from Tribe to State</h4>
+                    <ul>
+                        <li>In the later Vedic period, the tribal organizations changed its identity</li>
+                        <li>Gradually shifted to the <strong>territorial identity</strong></li>
+                        <li>The areas of settlements were now regarded as <strong>Janapadas</strong> or states</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚖️ Loss of Democratic Pattern</h4>
+                    <ul>
+                        <li>In transition from tribe to monarchy, they lost the <strong>essential democratic pattern of the tribe</strong></li>
+                        <li>But retained the idea of government through an <strong>assembly representing the tribes</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👥 Composition of States</h4>
+                    <ul>
+                        <li>These states consisted of either a <strong>single tribe</strong> such as <strong>Shakyas, Kolias, Malas</strong> etc.</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Rise to Mahajanapadas</h4>
+                    <ul>
+                        <li>Each Janapada tried to <strong>dominate and subjugate</strong> other Janapadas</li>
+                        <li>To become <strong>Mahajanapadas</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Sources -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-texts">📚</div>
+                <div class="section-title">
+                    <h3>2. Sources Mentioning 16 Mahajanapadas</h3>
+                    <p>Buddhist and Jain texts</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>📖 Buddhist Texts</h4>
+                    <ul>
+                        <li><strong>Anguttara Nikaya</strong></li>
+                        <li><strong>Mahavastu</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🙏 Jain Text</h4>
+                    <ul>
+                        <li>Jain text mentions <strong>sixteen</strong> Mahajanapadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: The 16 Mahajanapadas -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-list">🗺️</div>
+                <div class="section-title">
+                    <h3>3. The 16 Mahajanapadas</h3>
+                    <p>Capitals and locations</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Mahajanapada</th><th>Capital</th><th>Location</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gandhara</strong></td>
+                            <td><strong>Taxila</strong></td>
+                            <td>Covering the region between <strong>Kabul and Rawalpindi</strong> in North Western Province</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kamboja</strong></td>
+                            <td><strong>Rajpur</strong></td>
+                            <td>Covering the area around <strong>Punch area in Kashmir</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asmaka</strong></td>
+                            <td><strong>Potana / Potali</strong></td>
+                            <td>Covering modern <strong>Paithan in Maharashtra</strong>; on the bank of River <strong>Godavari</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vatsa</strong></td>
+                            <td><strong>Kaushambi</strong></td>
+                            <td>Covering districts of <strong>Allahabad and Mirzapur</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Avanti</strong></td>
+                            <td><strong>Ujjain</strong></td>
+                            <td>Covering modern <strong>Malwa (Ujjain) region of MP</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Surasena</strong></td>
+                            <td><strong>Mathura</strong></td>
+                            <td>Located in the Mathura region at the junction of the <strong>Uttarpatha & Dakshinpatha</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chedi</strong></td>
+                            <td><strong>Suktimati</strong></td>
+                            <td>Covering the modern <strong>Bundelkhand area</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Malla</strong></td>
+                            <td><strong>Kushinara, Pawa</strong></td>
+                            <td>Modern districts of <strong>Deoria, Basti, Gorakhapur in eastern Uttar Pradesh</strong>. Later merged into <strong>Magadha Kingdom</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kurus</strong></td>
+                            <td><strong>Hastinapur / Indraprastha</strong></td>
+                            <td>Covering the modern <strong>Haryana and Delhi area</strong> to the west of River Yamuna</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Matsya</strong></td>
+                            <td><strong>Virat Nagari</strong></td>
+                            <td>Covering the area of <strong>Alwar, Bharatpur and Jaipur in Rajasthan</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vajji's</strong></td>
+                            <td><strong>Vaishali</strong></td>
+                            <td>Located to the north of the River Ganga in <strong>Bihar</strong>. It was the seat of united republic of eight smaller kingdoms of which <strong>Lichhavis, Janatriks and Videhas</strong> were also members</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anga</strong></td>
+                            <td><strong>Champa</strong></td>
+                            <td>Covering the modern districts of <strong>Munger and Bhagalpur in Bihar</strong>. The Kingdoms were later merged by <strong>Bindusara</strong> into Magadha</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kashi</strong></td>
+                            <td><strong>Banaras</strong></td>
+                            <td>Located in and around present-day <strong>Varanasi in Uttar Pradesh</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kosala</strong></td>
+                            <td><strong>Shravasti</strong></td>
+                            <td>Covering the present districts of <strong>Faizabad, Gonda, Bahraich</strong>, etc.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Magadha</strong></td>
+                            <td><strong>Girivraja / Rajgriha</strong></td>
+                            <td>Covering modern districts of <strong>Patna, Gaya and parts of Shahabad</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Panchala</strong></td>
+                            <td><strong>Ahichhatra</strong> (W. Panchala)<br><strong>Kampilya</strong> (S. Panchala)</td>
+                            <td>Present day <strong>Rohilkhand</strong> and part of <strong>Central Doab in Uttar Pradesh</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Two Types of States -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-types">⚖️</div>
+                <div class="section-title">
+                    <h3>4. Two Types of States</h3>
+                    <p>Monarchial and Republican</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Type</th><th>Mahajanapadas</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Monarchial</strong></td>
+                            <td><strong>Anga, Magadha, Kashi, Kosala, Vatsa, Chedi, Surasena, Matsya, Avanti</strong> and <strong>Gandhara</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Republican</strong></td>
+                            <td><strong>Vajji, Malla, Kuru, Panchal, Kamboja, Shakya, Koliyas</strong> and <strong>Muriyas</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(card) {
+            card.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
