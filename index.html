@@ -4535,3 +4535,991 @@ ji<!DOCTYPE html>
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Chapter 7: Mauryan Era</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        .header {
+            background: #16213e;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header .subtitle { color: #a0aec0; font-size: 1.1rem; }
+        .header .badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .section-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .section-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .section-header:hover { background: #f8fafc; }
+        .section-card.active .section-header { border-left-color: #e94560; background: #fff5f5; }
+
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .icon-sources { background: #dbeafe; }
+        .icon-edicts { background: #d1fae5; }
+        .icon-chandra { background: #ede9fe; }
+        .icon-bindu { background: #cffafe; }
+        .icon-ashoka { background: #fef3c7; }
+        .icon-later { background: #fce7f3; }
+        .icon-admin { background: #ffedd5; }
+        .icon-economy { background: #f3e8ff; }
+        .icon-army { background: #ecfdf5; }
+        .icon-comm { background: #e0e7ff; }
+        .icon-decline { background: #fee2e2; }
+        .icon-post { background: #dbeafe; }
+
+        .section-title { flex: 1; }
+        .section-title h3 { font-size: 1.15rem; color: #1e293b; }
+        .section-title p { font-size: 0.9rem; color: #64748b; margin-top: 2px; }
+
+        .toggle-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); background: #e94560; color: white; }
+
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .section-card.active .section-body {
+            max-height: 4000px;
+            padding: 0 24px 24px 24px;
+        }
+
+        .content-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid #e94560;
+        }
+        .content-box h4 { color: #e94560; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .content-box ul { list-style: none; }
+        .content-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-weight: bold;
+        }
+        .content-box li.sub-item {
+            padding-left: 40px;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+        .content-box li.sub-item::before {
+            content: "•";
+            left: 24px;
+            color: #94a3b8;
+        }
+
+        .highlight-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .data-table thead { background: #16213e; color: white; }
+        .data-table th { padding: 14px 16px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background: #f8fafc; }
+        .data-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .fact-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .fact-card:hover { transform: translateY(-3px); border-color: #e94560; }
+        .fact-card .fact-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .fact-card .fact-term { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .fact-card .fact-def { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
+
+        .progress-track {
+            position: fixed;
+            top: 0; left: 0;
+            height: 4px;
+            background: #e94560;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .section-header { padding: 16px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-track" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ Mauryan Era</h1>
+            <p class="subtitle">Chapter 7 — Ancient Indian History Ready Reckoner</p>
+            <span class="badge">UPSC Foundation</span>
+        </div>
+
+        <!-- SECTION 1: Sources -->
+        <div class="section-card active" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-sources">📚</div>
+                <div class="section-title">
+                    <h3>1. Sources of Information about Mauryas</h3>
+                    <p>Literary and archaeological sources</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="highlight-box">
+                    <span class="label">Literary Sources</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>Kautilya's Arthashastra</strong></li>
+                        <li><strong>Megasthenese's Indica</strong></li>
+                        <li><strong>Visakha Datta's Mudra Rakshasa</strong> — although written during Gupta Period, it describes how Chandragupta Maurya got Chanakya's assistance to overthrow Nandas</li>
+                        <li><strong>Puranas</strong></li>
+                        <li><strong>Buddhist text Jatakas</strong> — portrays a general picture of socio-economic conditions of Mauryan Period</li>
+                        <li><strong>Buddhist chronicles Dipavamsa and Mahavamsa</strong> — describe the part played by Ashoka in spread of Buddhism to Sri Lanka</li>
+                        <li><strong>Tibetan Buddhist text Divyavadana</strong> — gives information about Ashoka and his efforts to spread Buddhism</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Archaeological Sources</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>Punch marked coins</strong></li>
+                        <li><strong>Wooden palace of Chandragupta Maurya</strong> in Pataliputra</li>
+                        <li><strong>Northern Black Polished Ware (NBPW)</strong></li>
+                        <li><strong>Ashokan Edicts and Inscriptions</strong> — Rock Edicts, Pillar Edicts, and Cave inscriptions located at several places in the Indian sub-continent</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Ashokan Edicts -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-edicts">🪨</div>
+                <div class="section-title">
+                    <h3>2. Ashokan Edicts</h3>
+                    <p>Types, language, script, and locations</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>📝 Medium</h4>
+                    <ul>
+                        <li>Edicts were written on <strong>rocks & pillars</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⛏️ Pillar Edicts</h4>
+                    <ul>
+                        <li>All pillar edicts are carved out of <strong>Chunar hills</strong></li>
+                        <li>From there they were <strong>dispatched at different places</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗣️ Language & Script</h4>
+                    <ul>
+                        <li>The inscriptions are mostly in <strong>Prakrit language and Brahmi script</strong></li>
+                        <li>In North-western region: written in <strong>Prakrit language & Kharoshti and Aramaic script</strong></li>
+                        <li>In <strong>Afghanistan</strong>: written in <strong>Aramaic script and Greek language</strong></li>
+                        <li>At <strong>Sabhazgarhi and Manshera</strong>: the script is <strong>Kharoshti</strong></li>
+                        <li>At <strong>Kandhar</strong>: the edicts found are in <strong>Greek</strong></li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Types of Edicts</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>Major rock edicts</strong> — various principles of dhamma</li>
+                        <li><strong>Minor rock edicts</strong> — personal history of Ashoka & summary of his dhamma</li>
+                        <li><strong>Pillar edicts</strong> — appendix to rock edicts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Chandragupta Maurya -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-chandra">👑</div>
+                <div class="section-title">
+                    <h3>3. Chandragupta Maurya (322–298 BC)</h3>
+                    <p>Conquests, Seleucus, and Jainism</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>⚔️ Overthrow of Nandas</h4>
+                    <ul>
+                        <li>Chandragupta <strong>dethroned the last Nanda ruler Dhananand</strong></li>
+                        <li>He first captured the region of <strong>North West</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏹 War with Seleucus Nicator</h4>
+                    <ul>
+                        <li><strong>Appianus</strong> tells us that in <strong>305 BC</strong>, Chandragupta Maurya <strong>defeated Selecus Nicator</strong> at the bank of river <strong>Indus</strong></li>
+                        <li>Seleucus surrendered a vast territory including:</li>
+                        <li class="sub-item"><strong>Aria</strong> (Herat)</li>
+                        <li class="sub-item"><strong>Arachosia</strong> (Kandhar)</li>
+                        <li class="sub-item"><strong>Gedrosia</strong> (Baluchistan)</li>
+                        <li class="sub-item"><strong>Paropanisade</strong> (Kabul)</li>
+                        <li>In return for <strong>500 elephants</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗺️ Boundary of Empire</h4>
+                    <ul>
+                        <li>After the treaty with Selecus Nikator, the boundary of empire reached up to <strong>Afghanistan</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🤝 Megasthenese</h4>
+                    <ul>
+                        <li><strong>Megasthenese</strong> was a <strong>Greek ambassador</strong> sent to the court of Chandragupta Maurya by <strong>Seleucus</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🙏 Jainism & Death</h4>
+                    <ul>
+                        <li>Chandragupta <strong>adopted Jainism</strong></li>
+                        <li>Went to <strong>Chandragiri Hill, Sravanbelgola</strong> (famous for Statue of Gomateshwar, son of Rishabnath in Kayotsurg Mudra)</li>
+                        <li>With <strong>Bhadrabahu</strong></li>
+                        <li>Where he <strong>died by slow starvation (Sallekhana)</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌍 Empire Extent</h4>
+                    <ul>
+                        <li>Under Chandragupta Maurya, for the first time, <strong>the whole of Northern India was united</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Bindusara -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-bindu">👑</div>
+                <div class="section-title">
+                    <h3>4. Bindusara (298–272 BC)</h3>
+                    <p>Names, ambassadors, and Ajivika sect</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>📛 Alternative Names</h4>
+                    <ul>
+                        <li>Known by different names: <strong>Madrasar, Simhasena, and Amitrochates</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🤝 Ambassador from Syria</h4>
+                    <ul>
+                        <li>King of Syria <strong>Antiochus I</strong> sent his ambassador <strong>Diamakus</strong> to the court of Bindusara</li>
+                        <li>Antiochus I asked for <strong>sweet wine, dried figs, and a sophist</strong></li>
+                        <li>Wine and figs were sent but <strong>sophists were not sent</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🙏 Patronage</h4>
+                    <ul>
+                        <li>Bindusara patronized <strong>Ajivika</strong> sect</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Ashoka -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-ashoka">🦁</div>
+                <div class="section-title">
+                    <h3>5. Ashoka</h3>
+                    <p>Names, accession, Kalinga war, and Dhamma</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="highlight-box">
+                    <span class="label">Names of Ashoka from Different Sources</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Name</th><th>Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ashoka</strong></td>
+                            <td>Maski minor rock edict</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Devanampriyas Ashoka Rajas</strong></td>
+                            <td>Gurjara minor rock edict</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Piyadassi Raja</strong></td>
+                            <td>Barabar cave inscription</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Piyadassi</strong></td>
+                            <td>Kandhar major rock edict</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ashoka Maurya</strong></td>
+                            <td>Rudradaman's Junagarh rock edict</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="content-box">
+                    <h4>⚔️ Accession to Throne</h4>
+                    <ul>
+                        <li>According to Buddhist tradition, Ashoka <strong>usurped the throne after killing his 99 brothers</strong></li>
+                        <li>And spared <strong>Tissa</strong>, the youngest</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⏳ Interregnum</h4>
+                    <ul>
+                        <li>This war of succession accounts for <strong>interregnum of four years (273–269 BC)</strong></li>
+                        <li>Only after securing his position on the throne, Ashoka had himself <strong>formally crowned in 269 BC</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👤 Minister's Help</h4>
+                    <ul>
+                        <li><strong>Radhagupta</strong> — a minister of Bindusara — helped him in fratricidal struggle and capture throne</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👸 Queens</h4>
+                    <ul>
+                        <li>The queens of Ashoka were: <strong>Assandhimitta, Kaurvaki, and Padmavati</strong></li>
+                        <li><strong>Devi</strong> was his first love but she never got the status of chief queen</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌍 Empire at Climax</h4>
+                    <ul>
+                        <li>Under Ashoka, the Mauryan Empire reached its <strong>climax</strong></li>
+                        <li>For the first time, <strong>the whole of the sub-continent, leaving out the extreme south, was under imperial control</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Kalinga War</h4>
+                    <ul>
+                        <li>Ashoka fought the <strong>Kalinga war in 261 BC</strong></li>
+                        <li>In <strong>9th year of his coronation</strong></li>
+                        <li>The King was <strong>moved by massacre in this war</strong></li>
+                        <li>And therefore <strong>abandoned the policy of physical occupation</strong> in favor of <strong>policy of cultural conquest</strong></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <span class="label">Ashokan Dhamma</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li>Ashoka's <strong>Dhamma was different from Buddhism</strong></li>
+                        <li>Dhamma propagated the tenets of <strong>tolerance as well as moral and ethical conducts</strong></li>
+                        <li>Its broad objective was to <strong>preserve the social order</strong> as with the expansion of Mauryan Empire the population had become heterogeneous, diverse and multi-racial</li>
+                        <li>It ordained that people should:</li>
+                        <li class="sub-item">Obey their <strong>parents</strong></li>
+                        <li class="sub-item">Pay respect to <strong>Brahmanas and Buddhist monks</strong></li>
+                        <li class="sub-item">Show mercy to <strong>slaves and servants</strong></li>
+                        <li>He held that if people behaved well, they would attain <strong>Swarga</strong> (heaven)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Later Mauryas -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-later">📉</div>
+                <div class="section-title">
+                    <h3>6. Later Mauryas (232–185 BC)</h3>
+                    <p>Decline, division, and assassination</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>⏳ Dynasty Duration</h4>
+                    <ul>
+                        <li>The Mauryan dynasty lasted for about <strong>137 years</strong></li>
+                        <li>The three Mauryan rulers ruled for <strong>90 years</strong> and later Mauryas for only <strong>47 years</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗺️ Division of Empire</h4>
+                    <ul>
+                        <li>Ashoka's death was followed by the <strong>division of the Mauryan Empire into two parts</strong> — Western and Eastern</li>
+                        <li>The <strong>Western part</strong> came to be ruled by <strong>Kunala</strong> and then by <strong>Samprati</strong> for a short while</li>
+                        <li>The <strong>Eastern part</strong> came to be ruled by <strong>Dasaratha</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Assassination of Last Ruler</h4>
+                    <ul>
+                        <li>The last Mauryan ruler, <strong>Brihadratha</strong>, was <strong>assassinated in 185 BC</strong></li>
+                        <li>By his <strong>commander-in-chief, Pushyamitra Sunga</strong></li>
+                        <li>Who established his own <strong>Sunga dynasty</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: Administration -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-admin">⚖️</div>
+                <div class="section-title">
+                    <h3>7. Mauryan Administration</h3>
+                    <p>Centralized bureaucracy, provinces, and officials</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏛️ Centralized Bureaucracy</h4>
+                    <ul>
+                        <li>The Mauryan government was a <strong>centralized bureaucracy</strong> with king as <strong>fountainhead of all the powers</strong></li>
+                        <li>However, he was assisted by the <strong>council of ministers</strong> i.e. <strong>mantri parishad</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📜 Saptanga Theory (7 Elements of State)</h4>
+                    <ul>
+                        <li>According to <strong>Kautilya / Chanakya</strong>, there are <strong>7 elements of states</strong>:</li>
+                        <li class="sub-item"><strong>1. Raja</strong> — the king</li>
+                        <li class="sub-item"><strong>2. Mitra</strong> — Friend</li>
+                        <li class="sub-item"><strong>3. Durg</strong> — fort</li>
+                        <li class="sub-item"><strong>4. Amatya</strong> — the secretaries</li>
+                        <li class="sub-item"><strong>5. Janapada</strong> — territory</li>
+                        <li class="sub-item"><strong>6. Kosha</strong> — the treasure</li>
+                        <li class="sub-item"><strong>7. Sena</strong> — Army</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <span class="label">Provinces & Capitals</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Province</th><th>Capital</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Uttarpatha</strong> / Northern Province</td>
+                            <td><strong>Taxila</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Avantirashtra</strong> / Western</td>
+                            <td><strong>Ujjain</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Prachi</strong> / Central</td>
+                            <td><strong>Pataliputra</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kalinga</strong> / Eastern</td>
+                            <td><strong>Toshali</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dakshinpatha</strong> / Southern</td>
+                            <td><strong>Suvarnagiri</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <span class="label">Administrative Hierarchy</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Level</th><th>Title</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Empire</strong></td>
+                            <td>King</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Provinces</strong></td>
+                            <td><strong>Kumara</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>District</strong></td>
+                            <td><strong>Pradeshika, Rajuka, Yukta</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sub division</strong></td>
+                            <td><strong>Gopa, Sthanik</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Village</strong></td>
+                            <td><strong>Gramika</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="content-box">
+                    <h4>🏙️ Local and Municipal Administration</h4>
+                    <ul>
+                        <li>The provinces were divided into districts which were known as <strong>Vish or Ahara</strong></li>
+                        <li>The three officials mentioned in Ashokan edicts i.e. <strong>Yukta, Rajjuka and Pradeshika</strong> were associated with the district administration</li>
+                        <li>The <strong>Gramika</strong> was the head of village</li>
+                        <li><strong>Nagaraka</strong> was the chief officer responsible for the law and order in the city</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏛️ Municipal Administration</h4>
+                    <ul>
+                        <li>The municipal administration of the cities was <strong>excellent during Mauryan period</strong></li>
+                        <li><strong>Megasthenese</strong> gives an account of the <strong>committee system of administering the municipalities</strong> in the cities</li>
+                        <li>There were <strong>6 committees of five members each</strong></li>
+                        <li>The functions of these six committees were:</li>
+                        <li class="sub-item"><strong>1. Industrial Arts</strong></li>
+                        <li class="sub-item"><strong>2. Entertainment of Foreigners</strong></li>
+                        <li class="sub-item"><strong>3. Registration of Births & Deaths</strong></li>
+                        <li class="sub-item"><strong>4. Trade & Commerce</strong></li>
+                        <li class="sub-item"><strong>5. Public sale of manufactured goods</strong></li>
+                        <li class="sub-item"><strong>6. Collection of taxes on the articles sold</strong></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <span class="label">Important Officials in Mauryan Bureaucracy</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Official</th><th>Role</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sannidhata</strong></td>
+                            <td>Chief treasury officer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Samaharta</strong></td>
+                            <td>Chief tax collector</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vyavharika / Dharmastha</strong></td>
+                            <td>Chief justice of civil court</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pradeshta</strong></td>
+                            <td>Chief justice of criminal court</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pradesika</strong></td>
+                            <td>Chief revenue officer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rajuka</strong></td>
+                            <td>Revenue settlement officer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Yukta</strong></td>
+                            <td>Tax collector</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sthanika</strong></td>
+                            <td>Head of local administration</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gopa</strong></td>
+                            <td>Responsible for accounts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nagaraka</strong></td>
+                            <td>Incharge of city administration</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Akshapala</strong></td>
+                            <td>Account general</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sitadhyaksha</strong></td>
+                            <td>Supervised Agriculture</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Panyadhyaksha</strong></td>
+                            <td>Superintendent of commerce</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Samsthadhyaksha</strong></td>
+                            <td>Superintendent of market</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Potwadhyaksha</strong></td>
+                            <td>Superintendent of weights and measures</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Navaadhyaksha</strong></td>
+                            <td>Superintendent of ships</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sulkaadhyaksha</strong></td>
+                            <td>Collector of tolls</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Akaradhyaksha</strong></td>
+                            <td>Superintendent of mines</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lohadhyaksha</strong></td>
+                            <td>Superintendent of iron</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 8: Economy -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-economy">💰</div>
+                <div class="section-title">
+                    <h3>8. Economy</h3>
+                    <p>State participation, taxation, and monopoly</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏛️ State Participation</h4>
+                    <ul>
+                        <li>State took <strong>active participation in economy</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👷 Shudras in Agriculture</h4>
+                    <ul>
+                        <li><strong>Shudras were involved in agriculture for the first time</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌾 Crown Land</h4>
+                    <ul>
+                        <li>Crown land was called <strong>Sita</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💧 Irrigation</h4>
+                    <ul>
+                        <li>There were <strong>provisions for irrigation by the state</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚖️ Taxation</h4>
+                    <ul>
+                        <li>The normal taxation rate was <strong>one sixth of the produce</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📏 Weights & Measures</h4>
+                    <ul>
+                        <li>The weight and measures were <strong>regulated by the states</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🚪 Tolls</h4>
+                    <ul>
+                        <li>Tolls were also levied on commodities brought to town for sale</li>
+                        <li>They were collected at <strong>gate</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏭 State Monopoly</h4>
+                    <ul>
+                        <li>The state enjoyed monopoly in:</li>
+                        <li class="sub-item"><strong>Mining</strong></li>
+                        <li class="sub-item"><strong>Forest</strong></li>
+                        <li class="sub-item"><strong>Salt</strong></li>
+                        <li class="sub-item"><strong>Sale of liquor</strong></li>
+                        <li class="sub-item"><strong>Manufacture of arms</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🆘 Famine Relief</h4>
+                    <ul>
+                        <li><strong>Sohgaura</strong> (Gorakhpur district, U.P.) <strong>copper plate inscription</strong> & <strong>Mahasthana</strong> (Bogara district, Bangladesh) inscription</li>
+                        <li>Deal with the <strong>relief measures to be adopted during a famine</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 9: Army -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-army">⚔️</div>
+                <div class="section-title">
+                    <h3>9. Army</h3>
+                    <p>Size, composition, and navy</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🎖️ Huge Army</h4>
+                    <ul>
+                        <li>The most striking feature of Mauryan administration was <strong>maintenance of a huge army</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👥 Varna Composition</h4>
+                    <ul>
+                        <li><strong>Kautilya permitted all the four varnas to serve in the army</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📊 Army Size</h4>
+                    <ul>
+                        <li>According to <strong>Pliny</strong>, Mauryas maintained an army of <strong>six lakh soldiers</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚓ Navy</h4>
+                    <ul>
+                        <li>Mauryan also maintained a <strong>Navy</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 10: Communication -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-comm">🛣️</div>
+                <div class="section-title">
+                    <h3>10. Communication</h3>
+                    <p>Roads, highways, and ports</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🛤️ Royal Highways</h4>
+                    <ul>
+                        <li>Royal highways were <strong>well developed</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗺️ Ujjain as Nodal Point</h4>
+                    <ul>
+                        <li><strong>Ujjain</strong> was nodal point of all communication and transport</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🛣️ Major Highways</h4>
+                    <ul>
+                        <li><strong>Dakshinavarta marga</strong> — Highway from Ujjain to Kanyakumari</li>
+                        <li><strong>Uttarapatha</strong> — Highway from Taxila to Kanyakumari</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚓ Important Ports</h4>
+                    <ul>
+                        <li><strong>Broach / Berigaza</strong> in west</li>
+                        <li><strong>Tamralipti</strong> in east</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 11: Causes for Decline -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-decline">📉</div>
+                <div class="section-title">
+                    <h3>11. Causes for Decline</h3>
+                    <p>Factors leading to Mauryan decline</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <ul>
+                        <li><strong>Highly centralized administration</strong></li>
+                        <li><strong>Pacific policy of Ashoka</strong></li>
+                        <li><strong>Financial crisis</strong> — Bureaucracy expanded but the income remained constant</li>
+                        <li><strong>Neglect of North-West frontier</strong></li>
+                        <li><strong>Negation of folk and State Oppression</strong> and <strong>Sunga Revolt</strong> represent People's revolt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 12: Post Mauryan Period -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-post">🏛️</div>
+                <div class="section-title">
+                    <h3>12. Post Mauryan Period</h3>
+                    <p>Regional kingdoms and important dynasties</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🗺️ Regional Kingdoms</h4>
+                    <ul>
+                        <li>After the decline of Mauryas, the <strong>regional kingdoms were formed</strong></li>
+                        <li>Unlike Mauryas, none of these regional kingdoms could extend their political authority over the large area equivalent to that of Mauryan Empire</li>
+                        <li>Thus, with the downfall of Mauryas their great empire witnessed <strong>rise of multiple regional kingdoms</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🧭 Native Rulers</h4>
+                    <ul>
+                        <li>In eastern India, central India and the Deccan, this period saw number of native rulers such as <strong>Shungas, the Kanvas</strong> and the <strong>Satavahanas</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗺️ North-Western Rulers</h4>
+                    <ul>
+                        <li>In north-western India, this period witnessed a number of ruling dynasties from central Asia</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">The Important Regional Kingdoms</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>1. Shungas</strong></li>
+                        <li><strong>2. Satavahanas</strong></li>
+                        <li><strong>3. The Kanvas</strong></li>
+                        <li><strong>4. Indo-Greeks or Bactrians</strong></li>
+                        <li><strong>5. Sakas</strong></li>
+                        <li><strong>6. The Parthians</strong></li>
+                        <li><strong>7. The Kushans</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(card) {
+            card.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
