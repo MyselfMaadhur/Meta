@@ -5523,3 +5523,568 @@ ji<!DOCTYPE html>
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Chapter 8: Foreigner Ruling Group of Post Mauryan Period</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        .header {
+            background: #16213e;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header .subtitle { color: #a0aec0; font-size: 1.1rem; }
+        .header .badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .section-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .section-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .section-header:hover { background: #f8fafc; }
+        .section-card.active .section-header { border-left-color: #e94560; background: #fff5f5; }
+
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .icon-intro { background: #dbeafe; }
+        .icon-indo-greek { background: #d1fae5; }
+        .icon-sakas { background: #ede9fe; }
+        .icon-parthian { background: #cffafe; }
+        .icon-kushan { background: #fef3c7; }
+
+        .section-title { flex: 1; }
+        .section-title h3 { font-size: 1.15rem; color: #1e293b; }
+        .section-title p { font-size: 0.9rem; color: #64748b; margin-top: 2px; }
+
+        .toggle-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); background: #e94560; color: white; }
+
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .section-card.active .section-body {
+            max-height: 4000px;
+            padding: 0 24px 24px 24px;
+        }
+
+        .content-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid #e94560;
+        }
+        .content-box h4 { color: #e94560; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .content-box ul { list-style: none; }
+        .content-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-weight: bold;
+        }
+        .content-box li.sub-item {
+            padding-left: 40px;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+        .content-box li.sub-item::before {
+            content: "•";
+            left: 24px;
+            color: #94a3b8;
+        }
+
+        .highlight-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .data-table thead { background: #16213e; color: white; }
+        .data-table th { padding: 14px 16px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background: #f8fafc; }
+        .data-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .fact-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .fact-card:hover { transform: translateY(-3px); border-color: #e94560; }
+        .fact-card .fact-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .fact-card .fact-term { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .fact-card .fact-def { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
+
+        .progress-track {
+            position: fixed;
+            top: 0; left: 0;
+            height: 4px;
+            background: #e94560;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .section-header { padding: 16px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-track" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🗡️ Foreigner Ruling Group of Post Mauryan Period</h1>
+            <p class="subtitle">Chapter 8 — Ancient Indian History Ready Reckoner</p>
+            <span class="badge">UPSC Foundation</span>
+        </div>
+
+        <!-- SECTION 1: Introduction -->
+        <div class="section-card active" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-intro">📜</div>
+                <div class="section-title">
+                    <h3>1. Introduction</h3>
+                    <p>Regional kingdoms and foreign dynasties</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🗺️ Regional Kingdoms</h4>
+                    <ul>
+                        <li>After the decline of Mauryas, the <strong>regional kingdoms were formed</strong></li>
+                        <li>Unlike Mauryas, none of these regional kingdoms could extend their political authority over the large area equivalent to that of Mauryan Empire</li>
+                        <li>Thus, with the downfall of Mauryas their great empire witnessed <strong>rise of multiple regional kingdoms</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🧭 Native Rulers</h4>
+                    <ul>
+                        <li>In eastern India, central India and the Deccan, this period saw number of native rulers such as <strong>Shungas, the Kanvas and the Satavahanas</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗺️ North-Western Rulers</h4>
+                    <ul>
+                        <li>In north-western India, this period witnessed a number of ruling dynasties from <strong>central Asia</strong></li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">The Important Regional Kingdoms</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>1. Shungas</strong></li>
+                        <li><strong>2. Satavahanas</strong></li>
+                        <li><strong>3. The Kanvas</strong></li>
+                        <li><strong>4. Indo-Greeks or Bactrians</strong></li>
+                        <li><strong>5. Sakas</strong></li>
+                        <li><strong>6. The Parthians</strong></li>
+                        <li><strong>7. The Kushans</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Indo-Greeks (Bactrians) -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-indo-greek">🏛️</div>
+                <div class="section-title">
+                    <h3>2. Indo-Greeks (Bactrians)</h3>
+                    <p>Political, socio-economic, and cultural contributions</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>⚔️ Political & Administration</h4>
+                    <ul>
+                        <li><strong>Second century BC</strong></li>
+                        <li><strong>First to cross Hindukush</strong></li>
+                        <li>Pushed towards India by the advancing <strong>Scythians tribes</strong></li>
+                        <li>Ruled large part of <strong>north-western India</strong></li>
+                        <li>Famous Indo-Greek King was <strong>Menander (165–145 BC)</strong></li>
+                        <li>He had his capital at <strong>Sakala (Punjab)</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💰 Socio-Economic</h4>
+                    <ul>
+                        <li><strong>First to issue gold coins in India</strong></li>
+                        <li>And can be definitely attributed to a king</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🎨 Art and Culture</h4>
+                    <ul>
+                        <li>Introduced <strong>Hellenistic art features</strong> in the region, giving rise to <strong>Gandhara art</strong> of Buddhism</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Gandhara School of Art</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>Greek-Roman art with Indigenous elements</strong></li>
+                        <li><strong>Grey sandstone</strong> is used</li>
+                        <li>Images of this art are known for:</li>
+                        <li class="sub-item"><strong>Anatomical accuracy</strong></li>
+                        <li class="sub-item"><strong>Spatial depth</strong></li>
+                        <li class="sub-item"><strong>Foreshortening</strong></li>
+                        <li><strong>Roman influences</strong> — outer robe like Kaaya, human form representation, etc.</li>
+                        <li><strong>Greek influences</strong> — facial images, man-god form etc.</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📜 Religion & Literature</h4>
+                    <ul>
+                        <li>King <strong>Menander</strong>, earlier known as <strong>Milinda</strong>, was <strong>converted to Buddhism</strong></li>
+                        <li>The questions of Milinda to <strong>Nagasena</strong>, Buddhist monk, was recorded in form of book known as <strong>Milinda Panho</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔬 Technology</h4>
+                    <ul>
+                        <li>Use of <strong>curtain, known as yavani</strong>, got from Greeks</li>
+                        <li>Greek term <strong>horoscope</strong> was derived from the term <strong>horasastra</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗣️ Language</h4>
+                    <ul>
+                        <li><strong>First ever long inscription was issued in Sanskrit</strong></li>
+                        <li>Earlier inscriptions were issued in <strong>Prakrit</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💧 Irrigation</h4>
+                    <ul>
+                        <li>They emphasized on <strong>proper irrigation to the region</strong></li>
+                        <li>Which was manifested through the <strong>repair of Sudarshan lake</strong>, by <strong>Rudradaman</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: The Sakas -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-sakas">⚔️</div>
+                <div class="section-title">
+                    <h3>3. The Sakas</h3>
+                    <p>Branches, Vikramaditya, and Rudradaman</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏛️ Five Branches</h4>
+                    <ul>
+                        <li>They were <strong>five branches of the Sakas</strong> with their capitals at different regions</li>
+                        <li>One branch is located in <strong>Afghanistan</strong></li>
+                        <li>Other branches:</li>
+                        <li class="sub-item"><strong>1. Punjab</strong> — Taxila</li>
+                        <li class="sub-item"><strong>2. Mathura</strong> — Western India</li>
+                        <li class="sub-item"><strong>4. Upper Deccan</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Powerful Branch</h4>
+                    <ul>
+                        <li>Out of all the branches, the branch that ruled <strong>western India was powerful</strong> and existed for <strong>four centuries</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👑 Vikramaditya</h4>
+                    <ul>
+                        <li>In <strong>58 BC</strong>, King of <strong>Ujjain defeated Sakas</strong></li>
+                        <li>And he took title <strong>'Vikramaditya'</strong></li>
+                        <li>An <strong>era started with 58 BC</strong> by Vikramaditya</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👑 Most Famous Saka Ruler</h4>
+                    <ul>
+                        <li>The most famous Saka ruler was <strong>Rudradaman I (130–150 AD)</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🤝 Integration</h4>
+                    <ul>
+                        <li>Like the Sakas they became <strong>integral part of Indian polity and society</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>✝️ Christianity</h4>
+                    <ul>
+                        <li>In the reign of <strong>Gondophernes</strong>, <strong>St. Thomas</strong> is said to have come to India for the propagation of <strong>Christianity</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: The Parthians -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-parthian">🏹</div>
+                <div class="section-title">
+                    <h3>4. The Parthians</h3>
+                    <p>Origin, territory, and Gondophernes</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🗺️ Origin</h4>
+                    <ul>
+                        <li>They <strong>moved from Parthia, Iran, to India</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏛️ Territory</h4>
+                    <ul>
+                        <li>Occupied <strong>small territory in north-western India</strong> when compared to the Indo-Greeks and Sakas</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👑 Famous Ruler</h4>
+                    <ul>
+                        <li><strong>Gondophernes</strong>, most famous Parthian King</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: The Kushans -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-kushan">👑</div>
+                <div class="section-title">
+                    <h3>5. The Kushans (Yuechis or Tocharians)</h3>
+                    <p>Empire, administration, religion, and culture</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>📅 Time Period</h4>
+                    <ul>
+                        <li><strong>50 AD to 230 AD</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗺️ Origin</h4>
+                    <ul>
+                        <li>They are the <strong>nomadic tribes of north-central Asia</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌍 Empire Extent</h4>
+                    <ul>
+                        <li>Their empire extended from the <strong>Oxus to the Ganga</strong></li>
+                        <li>From <strong>Khorasan in Central Asia to Varanasi in Uttar Pradesh</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👑 Two Successive Dynasties</h4>
+                    <ul>
+                        <li><strong>1. Kadphises</strong></li>
+                        <li><strong>2. Kanishka</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💰 Kadphises</h4>
+                    <ul>
+                        <li><strong>Kadphises issued Gold coins in India</strong></li>
+                        <li>Kushans extended their power over <strong>upper India and the lower Indus</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏛️ Capitals</h4>
+                    <ul>
+                        <li><strong>Peshawar</strong> and <strong>Mathura</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👑 Kanishka</h4>
+                    <ul>
+                        <li><strong>Kanishka is the most popular Kushan King</strong></li>
+                        <li>He started an era called <strong>Saka era, 78 AD</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚖️ Administration</h4>
+                    <ul>
+                        <li><strong>Strengthened the idea of divine origin of Kingship</strong></li>
+                        <li>Introduced <strong>Satrap system</strong></li>
+                        <li><strong>Military governorship</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🙏 Religion</h4>
+                    <ul>
+                        <li>They got <strong>assimilated into Indian tradition</strong></li>
+                        <li>The Kushan rulers <strong>worshipped both Shiva and the Buddha</strong></li>
+                        <li>Several Kushan rulers <strong>worshipped Vishnu</strong></li>
+                        <li><strong>Kanishka convened fourth Buddhist council</strong></li>
+                        <li>Became a <strong>great patron of Mahayana Buddhism</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🎨 Mathura School of Art</h4>
+                    <ul>
+                        <li><strong>It is an indigenous art</strong> developed in Mathura, Sarnath and Kausambi</li>
+                        <li>Material used was <strong>spotted red stone</strong></li>
+                        <li>It covers <strong>Buddhism, Jainism and Brahmanism</strong></li>
+                        <li><strong>Jina image and Buddha's image</strong> are masterpieces of the art</li>
+                        <li>It also had <strong>secular element</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👗 Dress & Technology</h4>
+                    <ul>
+                        <li>Introduced <strong>turban, tunic, trousers and heavy long coat</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Military Technology</h4>
+                    <ul>
+                        <li>Introduced <strong>better cavalry and the use of the riding horse</strong></li>
+                        <li>Made common the use of <strong>reins and saddles</strong></li>
+                        <li>Used <strong>toe-stirrup made up of rope</strong> to facilitate their movement</li>
+                        <li>Introduced <strong>cap, helmet and boots</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📚 Literature</h4>
+                    <ul>
+                        <li><strong>Avaghosha</strong> wrote <strong>Buddhacharita</strong> and <strong>Saundarananda</strong></li>
+                        <li><strong>Avadanas</strong> — compositions of Mahayana Buddhism</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏗️ Architecture</h4>
+                    <ul>
+                        <li>Use of <strong>burnt bricks for flooring and tiles for both roofing and flooring</strong></li>
+                        <li>Construction of <strong>brick-wells</strong></li>
+                        <li><strong>Red ware</strong> — plain and polished</li>
+                        <li><strong>Sprinklers and spouted channels</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(card) {
+            card.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
