@@ -4015,3 +4015,523 @@ ji<!DOCTYPE html>
     </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Chapter 6: Rise of Magadha</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        .header {
+            background: #16213e;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header .subtitle { color: #a0aec0; font-size: 1.1rem; }
+        .header .badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .section-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .section-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .section-header:hover { background: #f8fafc; }
+        .section-card.active .section-header { border-left-color: #e94560; background: #fff5f5; }
+
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .icon-causes { background: #dbeafe; }
+        .icon-haryanka { background: #d1fae5; }
+        .icon-ajatasatru { background: #ede9fe; }
+        .icon-udayin { background: #cffafe; }
+        .icon-shisunaga { background: #fef3c7; }
+        .icon-nanda { background: #fce7f3; }
+        .icon-iranian { background: #ffedd5; }
+        .icon-alexander { background: #f3e8ff; }
+
+        .section-title { flex: 1; }
+        .section-title h3 { font-size: 1.15rem; color: #1e293b; }
+        .section-title p { font-size: 0.9rem; color: #64748b; margin-top: 2px; }
+
+        .toggle-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); background: #e94560; color: white; }
+
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .section-card.active .section-body {
+            max-height: 3000px;
+            padding: 0 24px 24px 24px;
+        }
+
+        .content-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid #e94560;
+        }
+        .content-box h4 { color: #e94560; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .content-box ul { list-style: none; }
+        .content-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-weight: bold;
+        }
+        .content-box li.sub-item {
+            padding-left: 40px;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+        .content-box li.sub-item::before {
+            content: "•";
+            left: 24px;
+            color: #94a3b8;
+        }
+
+        .highlight-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .data-table thead { background: #16213e; color: white; }
+        .data-table th { padding: 14px 16px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background: #f8fafc; }
+        .data-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .fact-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .fact-card:hover { transform: translateY(-3px); border-color: #e94560; }
+        .fact-card .fact-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .fact-card .fact-term { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .fact-card .fact-def { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
+
+        .progress-track {
+            position: fixed;
+            top: 0; left: 0;
+            height: 4px;
+            background: #e94560;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .section-header { padding: 16px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-track" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>⚔️ Rise of Magadha</h1>
+            <p class="subtitle">Chapter 6 — Ancient Indian History Ready Reckoner</p>
+            <span class="badge">UPSC Foundation</span>
+        </div>
+
+        <!-- SECTION 1: Causes for Rise -->
+        <div class="section-card active" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-causes">📈</div>
+                <div class="section-title">
+                    <h3>1. Causes for the Rise of Magadha</h3>
+                    <p>Geographical, economic, military, and social factors</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🗺️ Geographical Location</h4>
+                    <ul>
+                        <li>Advantages geographical location with both <strong>Rajgir and Pataliputra</strong> situated at strategic locations</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⛏️ Natural Resources</h4>
+                    <ul>
+                        <li>Abundance of natural resources, such as <strong>iron</strong>, enabled Magadhan rulers to equip with effective weapons</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌾 Agriculture</h4>
+                    <ul>
+                        <li>The <strong>alluvial soil of the Gangetic plains</strong> and sufficient rainfall were conducive for agriculture</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💰 Trade & Commerce</h4>
+                    <ul>
+                        <li>Rise of town and use of <strong>metallic money</strong> boosted trade and commerce</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💵 Wealth for Army</h4>
+                    <ul>
+                        <li>The princess could levy tolls and accumulate wealth to pay and maintain their army</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🐘 Elephants in War</h4>
+                    <ul>
+                        <li>Use of <strong>elephants on a large scale in wars</strong> with its proximity to ancient <strong>Kalinga</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🧑‍🤝‍🧑 Unorthodox Society</h4>
+                    <ul>
+                        <li><strong>Unorthodox character</strong> of Magadhan society</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👑 Enterprising Rulers</h4>
+                    <ul>
+                        <li>Contribution of several <strong>enterprising and ambitious rulers</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Dynasties Before Mauryas -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-haryanka">👑</div>
+                <div class="section-title">
+                    <h3>2. Dynasties Before Mauryas</h3>
+                    <p>Four main dynasties that ruled Magadha</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏛️ Four Main Dynasties</h4>
+                    <ul>
+                        <li><strong>1. Haryankas</strong></li>
+                        <li><strong>2. Shisunagas</strong></li>
+                        <li><strong>3. Nandas</strong></li>
+                        <li><strong>4. Mauryas</strong></li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Context</span>
+                    <p>Between the <strong>6th and the 4th centuries BCE</strong>, Magadha (in present day <strong>Bihar</strong>) became the most powerful</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: The Haryankas -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-haryanka">🏰</div>
+                <div class="section-title">
+                    <h3>3. The Haryankas</h3>
+                    <p>Bimbisara, Ajatasatru, and Udayin</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="highlight-box">
+                    <span class="label">Bimbisara (542–493 BC)</span>
+                </div>
+                <div class="content-box">
+                    <h4>💍 Marriage Alliances</h4>
+                    <ul>
+                        <li>He strengthened his position by <strong>marriage alliances</strong></li>
+                        <li>He took <strong>three wives</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🤝 Diplomatic Prestige</h4>
+                    <ul>
+                        <li>Marriage relations with the different princely families gave enormous <strong>diplomatic prestige</strong></li>
+                        <li>Paved the way for the <strong>expansion of Magadha westward and northward</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏛️ Capital at Rajgir</h4>
+                    <ul>
+                        <li>The earliest capital of Magadha was at <strong>Rajgir</strong></li>
+                        <li>Which was called <strong>Girivraja</strong> at that time</li>
+                        <li>It was surrounded by <strong>five hills</strong>, the openings in which were closed by stone walls on all sides</li>
+                        <li>This made Rajgir <strong>impregnable</strong></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <span class="label">Ajatasatru (492–460 BC)</span>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Aggressive Policy</h4>
+                    <ul>
+                        <li>Ajatasatru <strong>killed his father</strong> and seized the throne for himself</li>
+                        <li>Throughout his reign, he pursued an <strong>aggressive policy of expansion</strong></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <span class="label">Udayin (460–444 BC)</span>
+                </div>
+                <div class="content-box">
+                    <h4>🏗️ Fort at Pataliputra</h4>
+                    <ul>
+                        <li>His reign is important because he <strong>built the fort upon the confluence of the Ganga and Son at Patna</strong></li>
+                        <li>This was done because Patna lay in the <strong>centre of the Magadhan kingdom</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Shisunagas -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-shisunaga">🏹</div>
+                <div class="section-title">
+                    <h3>4. The Shisunagas</h3>
+                    <p>Capital shift and destruction of Avanti</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏛️ Capital Shift</h4>
+                    <ul>
+                        <li>Udayin was succeeded by the dynasty of <strong>Shisunagas</strong></li>
+                        <li>Who <strong>temporarily shifted the capital to Vaishali</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Greatest Achievement</h4>
+                    <ul>
+                        <li>Their greatest achievement was the <strong>destruction of the power of the Avanti</strong> with its capital at <strong>Ujjain</strong></li>
+                        <li>This brought to an end the <strong>100 years old rivalry</strong> between Magadha and Avanti</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: The Nandas -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-nanda">👑</div>
+                <div class="section-title">
+                    <h3>5. The Nandas</h3>
+                    <p>Most powerful rulers before Mauryas</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>⚔️ Power & Alexander</h4>
+                    <ul>
+                        <li>The Shisunagas were succeeded by the <strong>Nandas</strong></li>
+                        <li>Who proved to be the <strong>most powerful rulers of Magadha</strong></li>
+                        <li>So great was their power that <strong>Alexander</strong>, who invaded Punjab at that time, <strong>did not dare to move towards the east</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏆 Conquests of Mahapadma Nanda</h4>
+                    <ul>
+                        <li>The Nandas added to the Magadhan power by <strong>conquering Kalinga</strong></li>
+                        <li>From where they brought an <strong>image of the Jina as a victory trophy</strong></li>
+                        <li>All this took place in the reign of <strong>Mahapadma Nanda</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👑 Title Claimed</h4>
+                    <ul>
+                        <li>He claimed to be the <strong>Ekarat</strong> — the <strong>sole sovereign who destroyed all the other ruling princes</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Iranian & Macedonian Invasions -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-iranian">🗡️</div>
+                <div class="section-title">
+                    <h3>6. Iranian and Macedonian Invasions</h3>
+                    <p>Persian invasion and its effects</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>👑 Persian Rulers</h4>
+                    <ul>
+                        <li><strong>Cyrus</strong> (558–530 BC)</li>
+                        <li><strong>Darius I</strong> (522–486 BC)</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Effects of Persian Invasion</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>Impetus to Indo-Iranian Trade</strong></li>
+                        <li>Provided impetus to <strong>Alexander's invasion</strong></li>
+                        <li>Introduced <strong>Kharosthi script</strong></li>
+                        <li><strong>Mauryan sculpture was influenced by Persian style</strong></li>
+                        <li class="sub-item">Especially <strong>bell-shaped capital</strong> and <strong>Ashokan pillars</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: Alexander's Invasion -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-alexander">⚔️</div>
+                <div class="section-title">
+                    <h3>7. Alexander's Invasion (326 BC)</h3>
+                    <p>Battle of Hydaspes and its effects</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="highlight-box">
+                    <span class="label">Battle of Hydaspes</span>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Battle Details</h4>
+                    <ul>
+                        <li>Between <strong>Porus</strong> and <strong>Alexander</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🤝 Outcome</h4>
+                    <ul>
+                        <li>Alexander was <strong>impressed by Porus' courage and strength</strong></li>
+                        <li>And <strong>reinstated him on the throne</strong></li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Effects of Alexander's Invasion</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>Opening of land and sea route</strong> between India and Europe</li>
+                        <li><strong>Gandhara school of Architecture</strong> was introduced</li>
+                        <li>Ground for establishment of <strong>Indo-Bactrian and Parthian kingdoms</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(card) {
+            card.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
