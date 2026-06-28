@@ -1507,3 +1507,873 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Chapter 3: Vedic Age</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        .header {
+            background: #16213e;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header .subtitle { color: #a0aec0; font-size: 1.1rem; }
+        .header .badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .section-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .section-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .section-header:hover { background: #f8fafc; }
+        .section-card.active .section-header { border-left-color: #e94560; background: #fff5f5; }
+
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .icon-intro { background: #dbeafe; }
+        .icon-aryan { background: #d1fae5; }
+        .icon-polity { background: #ede9fe; }
+        .icon-economy { background: #cffafe; }
+        .icon-society { background: #fef3c7; }
+        .icon-religion { background: #fce7f3; }
+        .icon-lit { background: #ffedd5; }
+        .icon-terms { background: #f3e8ff; }
+        .icon-officials { background: #ecfdf5; }
+
+        .section-title { flex: 1; }
+        .section-title h3 { font-size: 1.15rem; color: #1e293b; }
+        .section-title p { font-size: 0.9rem; color: #64748b; margin-top: 2px; }
+
+        .toggle-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); background: #e94560; color: white; }
+
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .section-card.active .section-body {
+            max-height: 3000px;
+            padding: 0 24px 24px 24px;
+        }
+
+        .content-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid #e94560;
+        }
+        .content-box h4 { color: #e94560; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .content-box ul { list-style: none; }
+        .content-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-weight: bold;
+        }
+        .content-box li.sub-item {
+            padding-left: 40px;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+        .content-box li.sub-item::before {
+            content: "•";
+            left: 24px;
+            color: #94a3b8;
+        }
+
+        .highlight-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .data-table thead { background: #16213e; color: white; }
+        .data-table th { padding: 14px 16px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background: #f8fafc; }
+        .data-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .fact-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .fact-card:hover { transform: translateY(-3px); border-color: #e94560; }
+        .fact-card .fact-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .fact-card .fact-term { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .fact-card .fact-def { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
+
+        .progress-track {
+            position: fixed;
+            top: 0; left: 0;
+            height: 4px;
+            background: #e94560;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .section-header { padding: 16px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-track" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🕉️ Vedic Age</h1>
+            <p class="subtitle">Chapter 3 — Ancient Indian History Ready Reckoner</p>
+            <span class="badge">UPSC Foundation</span>
+        </div>
+
+        <!-- SECTION 1: Introduction -->
+        <div class="section-card active" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-intro">📜</div>
+                <div class="section-title">
+                    <h3>1. Evidence of Aryans</h3>
+                    <p>External sources confirming Aryan presence</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>📖 Zend Avesta</h4>
+                    <ul>
+                        <li>An Iranian text</li>
+                        <li>Records names of Aryan Gods like <strong>Indra, Varuna</strong> etc.</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗿 Inscriptions</h4>
+                    <ul>
+                        <li><strong>Hittite inscription</strong> in Anatolia</li>
+                        <li><strong>Kassite inscription</strong> in Iraq</li>
+                        <li><strong>Mittani inscription</strong> in Syria</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: About Aryans -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-aryan">🏹</div>
+                <div class="section-title">
+                    <h3>2. About Aryans</h3>
+                    <p>Arrival, settlement, and time periods</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="quick-facts">
+                    <div class="fact-card">
+                        <div class="fact-icon">📅</div>
+                        <div class="fact-term">Arrival</div>
+                        <div class="fact-def">They arrived in India around <strong>1500 BC</strong></div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🌊</div>
+                        <div class="fact-term">Sapta Sindhu</div>
+                        <div class="fact-def">Region where Aryans settled: <strong>Indus + 5 + Ghaggar</strong></div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">⚔️</div>
+                        <div class="fact-term">Iron</div>
+                        <div class="fact-def">The Aryans were the <strong>first people in India to know the use of Iron</strong></div>
+                    </div>
+                </div>
+                <div class="content-box">
+                    <h4>⏳ Early Vedic Period (Rigvedic Period)</h4>
+                    <ul>
+                        <li><strong>1500 BC to 1000 BC</strong></li>
+                        <li>Period when the Aryans first settled in India</li>
+                        <li>Also called <strong>Rigvedic period</strong> as it is believed to be related to this period</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⏳ Later Vedic Period</h4>
+                    <ul>
+                        <li><strong>1000 BC to 600 BC</strong></li>
+                        <li>The Aryans spread to Indo-Gangetic plains</li>
+                        <li>This region came to be known as <strong>Aryavarta</strong></li>
+                        <li>Later Vedas like <strong>Yajurveda, Samaveda, and Atharvaveda</strong> were composed during this period</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Polity Comparison -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-polity">⚖️</div>
+                <div class="section-title">
+                    <h3>3. Polity: Early vs Later Vedic Period</h3>
+                    <p>Government, assemblies, and kingship</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Aspect</th><th>Early Vedic Period (1500–1000 BC)</th><th>Later Vedic Period (1000–600 BC)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tribal Chief</strong></td>
+                            <td>The chief was the protector of the tribe or <strong>Jana</strong></td>
+                            <td>Formation of wider kingdoms made the king more powerful</td>
+                        </tr>
+                        <tr>
+                            <td><strong>King's Power</strong></td>
+                            <td>Did not possess unlimited powers; had to reckon with tribal assemblies</td>
+                            <td>King performed <strong>Rajasuya, Asvamedha, Vajapeya</strong> sacrifices; assumed titles like <strong>Samrat, Ekrat, Sarvbhumi, Virat</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tribal Assemblies</strong></td>
+                            <td><strong>Sabha, Samiti, Vidhata, Gana</strong> were tribal assemblies. <strong>Vidhata</strong> was the oldest. Women attended <strong>Sabha and Vidhata</strong></td>
+                            <td><strong>Vidhata completely disappeared</strong>. Sabha and Samiti continued but character changed. <strong>Women no longer permitted in Sabha</strong>; dominated by nobles and Brahmanas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Non-monarchical States</strong></td>
+                            <td>A few non-monarchical states (<strong>ganas</strong>) described; head was <strong>Ganapati</strong> or <strong>Jyeshta</strong></td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Territorial Authority</strong></td>
+                            <td>Tribal authority</td>
+                            <td>Tribal authority tended to become territorial. Term <strong>Rashtra</strong> (territory) first appears</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sacrifices</strong></td>
+                            <td>—</td>
+                            <td><strong>Rajasuya</strong> — supposed to confer supreme power<br><strong>Asvamedha</strong> — unquestioned control over area<br><strong>Vajapeya</strong> — chariot race</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taxation</strong></td>
+                            <td>—</td>
+                            <td>Collection of taxes and tributes; king's officer called <strong>Sangrihitri</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Army</strong></td>
+                            <td>Did not possess a standing army; tribal units mustered in times of war</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ritual for War</strong></td>
+                            <td>King had to eat along with his people from the same plate for success in war</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Economy Comparison -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-economy">💰</div>
+                <div class="section-title">
+                    <h3>4. Economy: Early vs Later Vedic Period</h3>
+                    <p>Agriculture, crafts, and trade</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Aspect</th><th>Early Vedic Period (1500–1000 BC)</th><th>Later Vedic Period (1000–600 BC)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Main Occupation</strong></td>
+                            <td>Mainly <strong>pastoral</strong>; agriculture was secondary</td>
+                            <td>Sedentary life; domesticated animals and cultivated on greater scale</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Settled Life</strong></td>
+                            <td>The Aryans <strong>did not lead a settled life</strong></td>
+                            <td>The Aryans now <strong>lived a sedentary life</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Horse</strong></td>
+                            <td>Horse played the most significant role in their life</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cattle</strong></td>
+                            <td>Used several animals; term for war was <strong>gavisthi</strong> or "search for cows"</td>
+                            <td>Cattle still constituted the <strong>principal form of movable property</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Agriculture</strong></td>
+                            <td>Possessed better knowledge of agriculture; <strong>ploughshare</strong> mentioned (though some consider it interpolation)</td>
+                            <td><strong>Wheat</strong> cultivated; <strong>barley</strong>; <strong>sugarcane</strong>; <strong>rice</strong> mentioned but not important; <strong>beans, sesame, pulses</strong> (Moong, Urad etc.)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Artisans</strong></td>
+                            <td>Carpenter, chariot-maker, weaver, leather-worker, potter etc.</td>
+                            <td>New arts emerged: <strong>smelters, ironsmiths, carpenters, weavers, leatherworkers, jewelers, dyers, potters</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Metal Working</strong></td>
+                            <td>Term <strong>ayas</strong> used for copper or bronze; metal-working was known</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trade</strong></td>
+                            <td>Trade was scarce; mostly through <strong>barter</strong></td>
+                            <td>Trade also boosted; however, <strong>Barter System persisted</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pottery</strong></td>
+                            <td><strong>Painted Grey Ware</strong></td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Society Comparison -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-society">👥</div>
+                <div class="section-title">
+                    <h3>5. Society: Early vs Later Vedic Period</h3>
+                    <p>Social structure, women, and varna system</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏛️ Early Vedic Society</h4>
+                    <ul>
+                        <li><strong>Kinship</strong> was the basis of social structure</li>
+                        <li>People gave primary loyalty to the <strong>tribe (Jana)</strong></li>
+                        <li>Another important term for tribe: <strong>Vis</strong></li>
+                        <li>Term for family (<strong>kula</strong>) mentioned rarely</li>
+                        <li>Family in early Vedic phase indicated by term <strong>griha</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👩 Women in Early Vedic Period</h4>
+                    <ul>
+                        <li>Institution of <strong>marriage</strong> was established</li>
+                        <li>Practice of <strong>levirate</strong> and <strong>widow remarriage</strong> in the Rig Veda</li>
+                        <li>Status of women was <strong>equal to men</strong></li>
+                        <li>They received <strong>Upanayana</strong> and education</li>
+                        <li>Studied Vedas; some rose to rank of <strong>seers composing Vedic hymns</strong></li>
+                        <li><strong>Monogamy</strong> established, though <strong>polygamy and polyandry</strong> were also known</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🎨 Varna System — Early Vedic</h4>
+                    <ul>
+                        <li><strong>Varna</strong> was the term used for color</li>
+                        <li>Aryans were fair; indigenous inhabitants were dark</li>
+                        <li>The <strong>dasas and Dasyus</strong>, conquered by Aryans, were treated as <strong>slaves and sudras</strong></li>
+                        <li>Tribal society divided into 3 groups: <strong>warriors (Kshatriya), priests (Brahmins), Vaishyas</strong></li>
+                        <li>The fourth division called <strong>Shudras</strong> appeared towards the end of the Rig Veda period</li>
+                        <li>Divisions based on occupations had started but not very sharp</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏛️ Later Vedic Society</h4>
+                    <ul>
+                        <li>Society came to be divided into <strong>4 varnas</strong>: <strong>Brahmanas, Rajanyas/Kshatriyas, Vaisyas, Shudras</strong></li>
+                        <li>Each Varna was assigned with its duty</li>
+                        <li>All 3 higher varnas shared one common feature: known as <strong>Dvijas (twice born)</strong></li>
+                        <li>Entitled to <strong>upanayana</strong> or investiture with the sacred thread</li>
+                        <li>The fourth Varna was <strong>deprived of the sacred thread ceremony</strong></li>
+                        <li>With it began the <strong>imposition of disabilities on the shudras</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔗 Gotra System — Later Vedic</h4>
+                    <ul>
+                        <li>Institution of <strong>gotra</strong> appeared in later Vedic times</li>
+                        <li>Literally means the <strong>cow-pen</strong> or place where cattle belonging to the whole clan are kept</li>
+                        <li>People began to practice <strong>gotra exogamy</strong></li>
+                        <li><strong>No marriage</strong> could take place between persons belonging to the same gotra or having the same ancestor</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🧘 Ashrama System — Later Vedic</h4>
+                    <ul>
+                        <li>Ashramas or four stages of life were <strong>not well established</strong> in early Vedic times</li>
+                        <li>In post-Vedic texts, four ashramas:</li>
+                        <li class="sub-item"><strong>Brahmachari</strong> — student</li>
+                        <li class="sub-item"><strong>Grihastha</strong> — householder</li>
+                        <li class="sub-item"><strong>Vanaprastha</strong> — partial retirement</li>
+                        <li class="sub-item"><strong>Sanyasa</strong> — complete retirement from the world</li>
+                        <li>Only three mentioned in later Vedic texts</li>
+                        <li>The <strong>4th Ashrama</strong> only mentioned in <strong>Jabala Upanishad</strong>; not well-established in Later Vedic times</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Religion Comparison -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-religion">🙏</div>
+                <div class="section-title">
+                    <h3>6. Religion: Early vs Later Vedic Period</h3>
+                    <p>Gods, worship, and rituals</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Aspect</th><th>Early Vedic Period</th><th>Later Vedic Period</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Idol Worship</strong></td>
+                            <td>Did <strong>not believe in idol worship</strong></td>
+                            <td>Some <strong>signs of idolatry</strong> are noticed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nature Worship</strong></td>
+                            <td>Worshipped forces of nature as manifestation of one Supreme God</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gods Classification</strong></td>
+                            <td>Vedic Gods classified into 3 categories: <strong>Terrestrial, Atmospheric, Celestial</strong></td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Important Gods</strong></td>
+                            <td><strong>Indra, Agni, Varuna</strong> were important Gods</td>
+                            <td><strong>Indra and Agni</strong> lost their former importance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supreme God</strong></td>
+                            <td>—</td>
+                            <td><strong>Prajapati</strong>, the creator, came to occupy supreme position</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Other Gods</strong></td>
+                            <td><strong>Prithvi, Saraswati, Usha, Aditi</strong> were female deities; not given same position as male Gods</td>
+                            <td><strong>Rudra</strong> became important; <strong>Vishnu</strong> conceived as preserver and protector</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Female Deities (Later)</strong></td>
+                            <td>—</td>
+                            <td><strong>Usha</strong> (goddess of Dawn), <strong>Aditi</strong> (Mother of Gods), <strong>Prithvi</strong> (Earth Goddess), <strong>Aryani</strong> (Forest Goddess), <strong>Saraswati</strong> (River deity)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Purpose of Worship</strong></td>
+                            <td>Not for spiritual reasons but for welfare of <strong>Praja & Pashu</strong></td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mode of Worship</strong></td>
+                            <td>Recitation of prayers, chanting of Vedic hymns, sacrifices or <strong>yajnas</strong></td>
+                            <td>Prayers continued but ceased to be dominant mode; <strong>sacrifices became far more important</strong>; assumed both public and domestic character</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Guests</strong></td>
+                            <td>—</td>
+                            <td>Guests known as <strong>Goghna</strong> — one who was fed on cattle</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Priests</strong></td>
+                            <td>—</td>
+                            <td>Priests who officiated at sacrifices regarded generously; given <strong>dakshinas</strong> or gifts</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 7: Vedic Literature -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-lit">📚</div>
+                <div class="section-title">
+                    <h3>7. Vedic Literature</h3>
+                    <p>Vedas, Brahmanas, Aranyakas, Upanishads, Vedangas, Upvedas</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>📖 Sruti (Revealed Texts)</h4>
+                    <ul>
+                        <li>All four Vedas/Samhitas</li>
+                        <li>Commentaries on 4 Vedas — Brahmanas, Aranyakas, Upanishads</li>
+                        <li>6 Vedangas and 4 Upvedas</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">The Four Vedas</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Veda</th><th>Key Facts</th><th>Reciter</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Rig Veda</strong></td>
+                            <td>First text in world literature; theme is prayer addressed to gods; <strong>Gayatri mantra</strong> part of it; <strong>1017 hymns</strong> into <strong>10 mandalas</strong></td>
+                            <td><strong>Hotri</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sama Veda</strong></td>
+                            <td>First text to deal with Indian music; main theme is <strong>Chchedus</strong>; deals with rhythm and sound of each hymn</td>
+                            <td><strong>Udgatar</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Yajur Veda</strong></td>
+                            <td>Deals with <strong>rituals and ceremonies</strong></td>
+                            <td><strong>Adhvaryu</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Atharva Veda</strong></td>
+                            <td>By non-Aryans; themes: <strong>witchcraft, sorcery</strong>; deals with <strong>Ayurveda, Ganitashastra, Rekhaganita</strong>; Brahmin never recites this; <strong>most secular of all Vedas</strong></td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="content-box">
+                    <h4>📜 Brahmanas</h4>
+                    <ul>
+                        <li>Related to conduct of various ceremonies</li>
+                        <li>Prose version of the Vedas</li>
+                        <li><strong>108 in number</strong></li>
+                        <li><strong>Satapatha Brahmana</strong> — most famous; deals with rituals connected with agricultural production</li>
+                        <li><strong>Gopada Brahmana</strong> — most voluminous</li>
+                        <li><strong>Aithreya Brahmana</strong> — about Viswamitra and non-Aryan</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌲 Aranyakas</h4>
+                    <ul>
+                        <li>"Forest texts" written mainly for <strong>hermits and students living in forests</strong></li>
+                        <li>Concluding portions of Brahmanas</li>
+                        <li>Considered as the <strong>link between Brahmana and Upanishad</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🧠 Upanishads</h4>
+                    <ul>
+                        <li><strong>108 in number</strong>; also known as <strong>Vedantas</strong></li>
+                        <li>Deal with <strong>metaphysics</strong></li>
+                    </ul>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Upanishad</th><th>Key Content</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Katho Upanishad</strong></td>
+                            <td>Dialogue between Nachiketa and Yama on concept of death</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Eso Upanishad</strong></td>
+                            <td>Deals with creation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jabala Upanishad</strong></td>
+                            <td>Varnaashramadharmas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Brihadaranyaka Upanishad</strong></td>
+                            <td>Yannavalkya author; deals with transmigration of souls</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mundaka Upanishad</strong></td>
+                            <td><strong>Satyameva Jayate</strong> adopted from this</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chandogya Upanishad</strong></td>
+                            <td>Childhood of Krishna in detail</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Keno Upanishad</strong></td>
+                            <td>Talks about Uma or Parvati</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Swetaswatara Upanishad</strong></td>
+                            <td>Defines Shiva for first time</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="content-box">
+                    <h4>📐 Vedangas (6 Limbs)</h4>
+                    <ul>
+                        <li><strong>Nirukta</strong> — Etymology; study of origin of words</li>
+                        <li><strong>Shiksha</strong> — Phonetics; oldest; deals with pronunciation</li>
+                        <li><strong>Chehendus (Chandas)</strong> — Metre; related to recitation</li>
+                        <li><strong>Vyakarana</strong> — Grammar; written by <strong>Panini</strong></li>
+                        <li><strong>Kalpa</strong> — Rituals; basis of Indian law</li>
+                        <li class="sub-item">Dharmashastras — deals with household ceremonies</li>
+                        <li class="sub-item">Sulvasutras — deals with rekhaganita (Geometry)</li>
+                        <li class="sub-item">Srutasutras — deals with social ceremonies (marriage, birth)</li>
+                        <li><strong>Jyotisha</strong> — Astronomy; study of movement of planets and understanding events in life</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📖 Upvedas (4 Applied Sciences)</h4>
+                    <ul>
+                        <li><strong>Dhanurveda</strong> (Warfare) — associated with Rig Veda</li>
+                        <li><strong>Gandharva Veda</strong> (Music) — associated with Sama Veda</li>
+                        <li><strong>Sthapatyaveda</strong> (Architecture) — associated with Yajur Veda</li>
+                        <li><strong>Ayurveda</strong> (Medicine) — associated with Atharva Veda</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 8: Terms & Units -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-terms">📋</div>
+                <div class="section-title">
+                    <h3>8. Terms & Administrative Units</h3>
+                    <p>Assemblies, units, and their heads</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="highlight-box">
+                    <span class="label">Tribal Assemblies</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Term</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sabha</strong></td>
+                            <td>Assembly of Brahmans and elders</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Samiti</strong></td>
+                            <td>Assembly of Commoners</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vidhata</strong></td>
+                            <td>For war booty distribution</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gana</strong></td>
+                            <td>Highest Advisory body</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <span class="label">Administrative Units & Heads</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Unit</th><th>Head</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kula</strong> (Family)</td>
+                            <td>Kulapa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grama</strong> (Village)</td>
+                            <td>Gramani</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vis</strong> (Clan)</td>
+                            <td>Vispati</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jana</strong> (People)</td>
+                            <td>Gopa / Gopati</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rashtra</strong> (The Country)</td>
+                            <td>Rajan</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 9: Officials -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-officials">👔</div>
+                <div class="section-title">
+                    <h3>9. Officials in Later Vedic Period</h3>
+                    <p>Key functionaries and their roles</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Official</th><th>Role</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Purohita</strong></td>
+                            <td>Chief Priest; also sometimes referred to as <strong>Rashtragopa</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Senani</strong></td>
+                            <td>Supreme Commander of army</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vrajapati</strong></td>
+                            <td>Officer-in-Charge of pasture land</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jivagribha</strong></td>
+                            <td>Police Officer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Spasas / Dutas</strong></td>
+                            <td>Spies who also sometimes worked as messengers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Madhyamasi</strong></td>
+                            <td>Mediator on disputes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bhagadugha</strong></td>
+                            <td>Revenue collector</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sangrahitri</strong></td>
+                            <td>Treasurer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mahishi</strong></td>
+                            <td>Chief Queen</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Suta</strong></td>
+                            <td>Charioteer and court minstrel</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(card) {
+            card.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
