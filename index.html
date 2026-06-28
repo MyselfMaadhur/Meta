@@ -631,3 +631,879 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Chapter 2: Indus Valley Civilization</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        .header {
+            background: #16213e;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header .subtitle { color: #a0aec0; font-size: 1.1rem; }
+        .header .badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .section-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .section-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .section-header:hover { background: #f8fafc; }
+        .section-card.active .section-header { border-left-color: #e94560; background: #fff5f5; }
+
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .icon-intro { background: #dbeafe; }
+        .icon-geo { background: #d1fae5; }
+        .icon-planning { background: #ede9fe; }
+        .icon-agri { background: #cffafe; }
+        .icon-animals { background: #fef3c7; }
+        .icon-society { background: #fce7f3; }
+        .icon-religion { background: #ffedd5; }
+        .icon-script { background: #f3e8ff; }
+        .icon-tech { background: #ecfdf5; }
+        .icon-decline { background: #fee2e2; }
+        .icon-sites { background: #e0e7ff; }
+
+        .section-title { flex: 1; }
+        .section-title h3 { font-size: 1.15rem; color: #1e293b; }
+        .section-title p { font-size: 0.9rem; color: #64748b; margin-top: 2px; }
+
+        .toggle-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); background: #e94560; color: white; }
+
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .section-card.active .section-body {
+            max-height: 3000px;
+            padding: 0 24px 24px 24px;
+        }
+
+        .content-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid #e94560;
+        }
+        .content-box h4 { color: #e94560; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .content-box ul { list-style: none; }
+        .content-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-weight: bold;
+        }
+        .content-box li.sub-item {
+            padding-left: 40px;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+        .content-box li.sub-item::before {
+            content: "•";
+            left: 24px;
+            color: #94a3b8;
+        }
+
+        .highlight-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .data-table thead { background: #16213e; color: white; }
+        .data-table th { padding: 14px 16px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background: #f8fafc; }
+        .data-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .fact-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .fact-card:hover { transform: translateY(-3px); border-color: #e94560; }
+        .fact-card .fact-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .fact-card .fact-term { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .fact-card .fact-def { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
+
+        .progress-track {
+            position: fixed;
+            top: 0; left: 0;
+            height: 4px;
+            background: #e94560;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .section-header { padding: 16px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-track" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ Indus Valley Civilization</h1>
+            <p class="subtitle">Chapter 2 — Ancient Indian History Ready Reckoner</p>
+            <span class="badge">UPSC Foundation</span>
+        </div>
+
+        <!-- SECTION 1: Introduction -->
+        <div class="section-card active" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-intro">📜</div>
+                <div class="section-title">
+                    <h3>1. Introduction & Naming</h3>
+                    <p>Discovery, names, and basic facts</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🔍 Discovery</h4>
+                    <ul>
+                        <li>First site excavated — <strong>Harappa</strong> by <strong>Dayaram Sahni</strong> in <strong>1921</strong></li>
+                        <li>Name of the culture goes by the name of the first site excavated</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📛 Alternative Names</h4>
+                    <ul>
+                        <li>Also called <strong>Indus Valley Civilization</strong> because most sites are found in the valley of River Indus</li>
+                        <li>Also called <strong>Harappan Civilization</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⏳ Age Comparison</h4>
+                    <ul>
+                        <li>Harappan Civilization is <strong>older to chalcolithic cultures</strong> but <strong>advanced when compared</strong> to them</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Geographical Area -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-geo">🗺️</div>
+                <div class="section-title">
+                    <h3>2. Geographical Area & Time Period</h3>
+                    <p>Extent, dates, and coverage</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="quick-facts">
+                    <div class="fact-card">
+                        <div class="fact-icon">📅</div>
+                        <div class="fact-term">Time Period</div>
+                        <div class="fact-def">Flourished between <strong>2500–1500 BC</strong></div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">⭐</div>
+                        <div class="fact-term">Mature Period</div>
+                        <div class="fact-def"><strong>2200–1800 BC</strong> was its mature period</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🌏</div>
+                        <div class="fact-term">Coverage</div>
+                        <div class="fact-def">Present Pakistan & North-western and western part of India</div>
+                    </div>
+                </div>
+                <div class="content-box">
+                    <h4>🗺️ Extent</h4>
+                    <ul>
+                        <li>Extended from <strong>Jammu in the North</strong> to the <strong>Narmada estuary in the South</strong></li>
+                        <li>Covers western part of <strong>UP</strong> and extends to <strong>Baluchistan</strong></li>
+                        <li>Forms the western boundary</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Town Planning -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-planning">🏙️</div>
+                <div class="section-title">
+                    <h3>3. Town Planning & Structures</h3>
+                    <p>City layout, buildings, and remarkable features</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏗️ City Division</h4>
+                    <ul>
+                        <li>City divided into two parts:</li>
+                        <li class="sub-item"><strong>Upper Citadel</strong> — city on raised platform</li>
+                        <li class="sub-item"><strong>Lower Citadel</strong> — lower town</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📐 Grid System</h4>
+                    <ul>
+                        <li><strong>Grid system</strong> followed in arrangement of houses and roads</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🧱 Burnt Bricks</h4>
+                    <ul>
+                        <li>Usage of <strong>burnt bricks</strong> — a remarkable feature of Harappan</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏊 Great Bath</h4>
+                    <ul>
+                        <li><strong>Great Bath</strong> served as ritual bathing</li>
+                        <li>Found in upper citadel of <strong>Mohenjo-Daro</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌾 Granaries</h4>
+                    <ul>
+                        <li>A <strong>large granary</strong> in Mohenjo-Daro</li>
+                        <li><strong>Six granaries</strong> in Harappa</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏠 Barracks</h4>
+                    <ul>
+                        <li><strong>Two-roomed barracks</strong> in Harappa</li>
+                        <li>Possibly accommodated labourers</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🚰 Drainage System</h4>
+                    <ul>
+                        <li><strong>Drainage system</strong> was another remarkable feature of the civilization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Agriculture & Trade -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-agri">🌾</div>
+                <div class="section-title">
+                    <h3>4. Agriculture & Trade</h3>
+                    <p>Crops, irrigation, commerce, and weights</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🌱 Fertility</h4>
+                    <ul>
+                        <li>The Indus region was <strong>fertile in ancient times</strong></li>
+                        <li>Otherwise it would not have supported towns and villages</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌾 Crops Grown</h4>
+                    <ul>
+                        <li><strong>Wheat</strong></li>
+                        <li><strong>Barley</strong></li>
+                        <li><strong>Peas</strong></li>
+                        <li><strong>Sesame</strong></li>
+                        <li><strong>Mustard</strong></li>
+                        <li>In <strong>Lothal</strong>, people started producing <strong>rice</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👕 Cotton</h4>
+                    <ul>
+                        <li>Indus people were the <strong>first to produce cotton</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💧 Irrigation</h4>
+                    <ul>
+                        <li>Structures used to store water — <strong>Gabarbands</strong> or <strong>Nalas</strong></li>
+                        <li>But <strong>channel or canal irrigation</strong> seems to have been <strong>absent</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🚢 Trade</h4>
+                    <ul>
+                        <li>Indus valley people had both <strong>short and long-distance trade</strong></li>
+                        <li>Also <strong>foreign trade</strong></li>
+                        <li>Used <strong>boats and bullock-carts</strong> for transportation</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💰 Currency & Exchange</h4>
+                    <ul>
+                        <li><strong>No use of metallic currency</strong></li>
+                        <li>Practised <strong>barter system</strong> of exchange</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚖️ Weights & Measures</h4>
+                    <ul>
+                        <li>Developed <strong>uniform system of weights and measures</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔖 Seals & Sealings</h4>
+                    <ul>
+                        <li>Seals and sealings were used in trade</li>
+                        <li>As marks of ownership meant to guarantee the quality of the product</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Domestication of Animals -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-animals">🐂</div>
+                <div class="section-title">
+                    <h3>5. Domestication of Animals</h3>
+                    <p>Mixed farming and animal husbandry</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🌾 Mixed Farming</h4>
+                    <ul>
+                        <li>Some form of <strong>mixed farming</strong> was practised in Harappan Civilization</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🐄 Domesticated Animals</h4>
+                    <ul>
+                        <li>Domestication of animals on <strong>large scale</strong>:</li>
+                        <li class="sub-item"><strong>Oxen</strong></li>
+                        <li class="sub-item"><strong>Buffaloes</strong></li>
+                        <li class="sub-item"><strong>Goats</strong></li>
+                        <li class="sub-item"><strong>Sheep</strong></li>
+                        <li class="sub-item"><strong>Pigs</strong></li>
+                        <li class="sub-item"><strong>Dogs</strong> and <strong>Cats</strong> were domesticated</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🐪 Beasts of Burden</h4>
+                    <ul>
+                        <li><strong>Humped bulls</strong> were favoured and kept</li>
+                        <li><strong>Asses</strong> and <strong>Camels</strong> — used as beasts of burden</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🐴 Horse</h4>
+                    <ul>
+                        <li>There was an <strong>ambiguous evidence of Horse</strong></li>
+                        <li>Reported from <strong>Surkotada</strong>, <strong>Mohenjo-Daro</strong>, and <strong>Lothal</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🐘 Other Animals</h4>
+                    <ul>
+                        <li>Harappans were well known of <strong>Elephants</strong> and <strong>Rhinoceros</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Society -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-society">👥</div>
+                <div class="section-title">
+                    <h3>6. Society</h3>
+                    <p>Social stratification, beauty, and class structure</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏛️ Social Stratification</h4>
+                    <ul>
+                        <li>The society seems to be <strong>stratified based on class</strong></li>
+                        <li>Based on settlement patterns, location of granaries, objects found in burials</li>
+                        <li>One can say strongly there <strong>existed social inequalities</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💄 Beauty Consciousness</h4>
+                    <ul>
+                        <li>People of Indus were <strong>beauty conscious</strong></li>
+                        <li>Reflected in the <strong>dressing styles</strong> and <strong>ornaments</strong> used</li>
+                        <li>Different <strong>hair styles</strong> were practised by men and women</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💎 Ornaments</h4>
+                    <ul>
+                        <li>Ornamentation made up of <strong>precious and semi-precious stones</strong></li>
+                        <li>Used by <strong>men and women</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👔 Important Classes</h4>
+                    <ul>
+                        <li><strong>Merchants</strong> and <strong>Priests</strong> were important class of this period</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👩 Mother Goddess</h4>
+                    <ul>
+                        <li>Though there was worship of <strong>mother goddess</strong></li>
+                        <li>It is not so clear whether the society is <strong>matriarchal or not</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: Religion -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-religion">🙏</div>
+                <div class="section-title">
+                    <h3>7. Religion & Religious Practices</h3>
+                    <p>Deities, worship, burials, and beliefs</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏛️ Collective Worship</h4>
+                    <ul>
+                        <li>Presence of some structures with ritual significance indicate existence of <strong>collective worship</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏊 Great Bath</h4>
+                    <ul>
+                        <li><strong>Great Bath, Mohenjo-Daro</strong> had a great ritual significance</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌱 Fertility Cult & Mother Goddess</h4>
+                    <ul>
+                        <li>Prevalence of <strong>cults of fertility</strong> and <strong>mother goddess worship</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌳 Tree Spirits</h4>
+                    <ul>
+                        <li>They worshipped <strong>tree spirits</strong></li>
+                        <li><strong>Pipal tree</strong> was worshipped</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🕉️ Proto-Shiva (Pashupati)</h4>
+                    <ul>
+                        <li>On the seals, a famous deity identified as <strong>proto-Shiva</strong> was found</li>
+                        <li>The deity is surrounded by animals like <strong>goats, elephant, tiger, and antelope</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔱 Phallic Worship</h4>
+                    <ul>
+                        <li>There is sufficient evidence for the prevalence of <strong>phallic worship</strong></li>
+                        <li>Numerous stone symbols of <strong>female sex organs (yoni worship)</strong></li>
+                        <li>Besides those of <strong>phallus</strong>, have been discovered</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔥 Fire Worship</h4>
+                    <ul>
+                        <li>The worship of <strong>fire</strong> is proved by the discovery of <strong>fire altars</strong></li>
+                        <li>At <strong>Lothal</strong>, <strong>Kalibangan</strong>, and <strong>Harappa</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👻 Beliefs</h4>
+                    <ul>
+                        <li>They believed in <strong>ghosts and evil forces</strong></li>
+                        <li>Used <strong>amulets</strong> as protection against them</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚰️ Disposal of the Dead</h4>
+                    <ul>
+                        <li>Disposal of the dead has been an <strong>important religious activity</strong></li>
+                        <li>Dead bodies were generally placed in the <strong>north-south direction</strong></li>
+                        <li>Nearby the dead body the <strong>ornaments and other objects</strong> were also buried</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Key Feature</span>
+                    <p><strong>Fertility cult</strong> was the main feature of Harappan religion</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 8: Script -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-script">✍️</div>
+                <div class="section-title">
+                    <h3>8. Harappan Script</h3>
+                    <p>Writing system and characteristics</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>📝 Writing</h4>
+                    <ul>
+                        <li>They <strong>invented the art of writing</strong></li>
+                        <li>But the script is <strong>not yet deciphered</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔤 Nature of Script</h4>
+                    <ul>
+                        <li>The script is <strong>not alphabetical</strong> but mainly <strong>pictographic</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>➡️ Direction</h4>
+                    <ul>
+                        <li>It is written from <strong>right to left</strong></li>
+                        <li>A practice very common to that region in the later times</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 9: Technology & Crafts -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-tech">⚒️</div>
+                <div class="section-title">
+                    <h3>9. Technology & Crafts</h3>
+                    <p>Metallurgy, weaving, and artisan skills</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🔶 Bronze Age</h4>
+                    <ul>
+                        <li>The Harappan culture belongs to the <strong>Bronze age</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔨 Bronze</h4>
+                    <ul>
+                        <li>They are acquainted with <strong>Bronze</strong></li>
+                        <li>Bronze is an <strong>alloy of copper and tin</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⛏️ Copper Source</h4>
+                    <ul>
+                        <li>They got copper from <strong>Khetri mines in Rajasthan</strong></li>
+                        <li>Although it could also be brought from <strong>Baluchistan</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔩 Tin Source</h4>
+                    <ul>
+                        <li>Tin, they got from <strong>Afghanistan</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚒️ Bronze Smiths</h4>
+                    <ul>
+                        <li><strong>Bronze smiths</strong> constituted an important group of artisans in the Harappan society</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🧵 Weavers</h4>
+                    <ul>
+                        <li>Weavers wove cloth of <strong>wool and cotton</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🧱 Brick-laying</h4>
+                    <ul>
+                        <li><strong>Brick-laying</strong> was an important craft</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🛠️ Other Important Crafts</h4>
+                    <ul>
+                        <li><strong>Boat making</strong></li>
+                        <li><strong>Bead-making</strong></li>
+                        <li><strong>Seal making</strong></li>
+                        <li><strong>Terracotta manufacture</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏺 Pottery</h4>
+                    <ul>
+                        <li><strong>Pottery wheel</strong> was in full use</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💎 Goldsmiths</h4>
+                    <ul>
+                        <li>Goldsmiths made jewellery</li>
+                        <li>Made up of <strong>silver, gold, and precious stones</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 10: Decline -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-decline">📉</div>
+                <div class="section-title">
+                    <h3>10. Decline of Indus Valley Civilization</h3>
+                    <p>Theories and evidence</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>⚔️ Aryan Invasion Theory</h4>
+                    <ul>
+                        <li>Supporting evidence from Mohenjo-Daro: multiple wounded dead bodies at one place</li>
+                        <li><strong>Theory refuted</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌊 Floods</h4>
+                    <ul>
+                        <li>Destruction of sites due to floods</li>
+                        <li><strong>Mohenjo-Daro was destroyed by floods not less than 7 times</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌍 Tectonic Forces & Earthquakes</h4>
+                    <ul>
+                        <li>Evidence from <strong>Kalibangan</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🔥 Fire</h4>
+                    <ul>
+                        <li>Evidence from <strong>Rakhigarhi</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🦟 Malaria</h4>
+                    <ul>
+                        <li>Evidence from <strong>Mohenjo-Daro</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌵 Ecological Changes</h4>
+                    <ul>
+                        <li>Due to <strong>deforestation, desert expansion</strong> etc.</li>
+                        <li><strong>Most accepted theory</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 11: Important Sites -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-sites">🏛️</div>
+                <div class="section-title">
+                    <h3>11. Important Harappan Sites</h3>
+                    <p>Site-wise excavator and archaeological finds</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Site</th><th>Excavator</th><th>Archaeological Finds</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Harappa</strong></td>
+                            <td>Dayaram Sahni</td>
+                            <td>12 granaries — <strong>city of granaries</strong>; clay figurines of Mother Goddess</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mohenjo-Daro</strong></td>
+                            <td>R.D. Banerjee</td>
+                            <td>Great Granary, <strong>Great Bath</strong>, bronze image of women dancer, image of bearded man, <strong>seal of Pasupathi</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chanhudaro</strong></td>
+                            <td>M.G. Majumdar</td>
+                            <td>City with <strong>no citadel</strong>, no bricks only stones, <strong>Ink pot</strong>, terracotta model of bullock cart</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kalibangan</strong></td>
+                            <td>Dr. A. Ghosh</td>
+                            <td><strong>Fire altars</strong>, decorated bricks, <strong>ploughed field</strong>, Mesopotamian cylindrical seal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lothal</strong></td>
+                            <td>S.R. Rau</td>
+                            <td><strong>Dockyard</strong>, rice husk, terracotta horse, <strong>double burial</strong>, bead making centre</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Banawali</strong></td>
+                            <td>Dr. Bist</td>
+                            <td><strong>No grid planning</strong> and drainage system, <strong>toy plough</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Surkotada</strong></td>
+                            <td>Jagapati Joshi</td>
+                            <td><strong>Bones of horse</strong>, pot burials</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dholavira</strong></td>
+                            <td>Dr. Bist</td>
+                            <td><strong>Stadium</strong>, longest inscription, <strong>water harvesting system</strong> with unique features, city divided into <strong>3 parts</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rangapur</strong></td>
+                            <td>Arul Stein</td>
+                            <td><strong>Rice cultivation</strong> and rice husk</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Daimadabad</strong></td>
+                            <td>—</td>
+                            <td>Bronze images of chariot, ox etc.; <strong>Southern most Harappan Site</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Manda</strong></td>
+                            <td>—</td>
+                            <td><strong>Northern most site</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alamgirpur</strong></td>
+                            <td>—</td>
+                            <td><strong>Eastern most site</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sukagendor</strong></td>
+                            <td>—</td>
+                            <td><strong>Western most site</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(card) {
+            card.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
