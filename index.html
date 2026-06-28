@@ -1,976 +1,1738 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Maadhur</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Chapter 1: Division & Sources</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-  :root {
-    --deep-void: #0A0B0E;
-    --surface: #131316;
-    --border: #1A1A1E;
-    --text: #F0F0F5;
-    --muted: #8A8B96;
-    --pink: #FF4D8B;
-    --blue: #00D4FF;
-    --violet: #8B5CF6;
-    --green: #22C55E;
-    --orange: #F59E0B;
-    --red: #EF4444;
-    --cyan: #06B6D4;
-  }
+        /* Header */
+        .header {
+            background: #16213e;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 400px; height: 400px;
+            background: #e94560;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header .subtitle { color: #a0aec0; font-size: 1.1rem; }
+        .header .badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+        /* Accordion Cards */
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .section-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--deep-void);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    user-select: none;
-    -webkit-user-select: none;
-  }
+        .section-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .section-header:hover { background: #f8fafc; }
+        .section-card.active .section-header { border-left-color: #e94560; background: #fff5f5; }
 
-  .app {
-    max-width: 430px;
-    margin: 0 auto;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-  }
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .icon-history { background: #dbeafe; }
+        .icon-prehistory { background: #fef3c7; }
+        .icon-proto { background: #d1fae5; }
+        .icon-source { background: #fce7f3; }
+        .icon-lit { background: #ede9fe; }
+        .icon-foreign { background: #cffafe; }
+        .icon-arch { background: #ffedd5; }
+        .icon-insc { background: #f3e8ff; }
 
-  .bg-orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.12;
-    pointer-events: none;
-    z-index: 0;
-    animation: float 15s ease-in-out infinite;
-  }
-  .bg-orb-1 { width: 300px; height: 300px; background: var(--pink); top: -5%; left: -10%; }
-  .bg-orb-2 { width: 250px; height: 250px; background: var(--blue); top: 30%; right: -15%; animation-delay: -5s; animation-duration: 18s; }
-  .bg-orb-3 { width: 200px; height: 200px; background: var(--violet); bottom: 5%; left: 10%; animation-delay: -10s; animation-duration: 16s; }
+        .section-title { flex: 1; }
+        .section-title h3 { font-size: 1.15rem; color: #1e293b; }
+        .section-title p { font-size: 0.9rem; color: #64748b; margin-top: 2px; }
 
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(20px, -20px) scale(1.08); }
-    66% { transform: translate(-15px, 15px) scale(0.95); }
-  }
+        .toggle-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); background: #e94560; color: white; }
 
-  .header {
-    padding: 16px 20px 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10;
-  }
-  .brand {
-    font-weight: 800; font-size: 18px;
-    background: linear-gradient(135deg, var(--text) 60%, var(--pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .header-tag {
-    font-size: 10px; color: var(--muted);
-    letter-spacing: 0.1em; text-transform: uppercase;
-    font-weight: 600;
-  }
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .section-card.active .section-body {
+            max-height: 2000px;
+            padding: 0 24px 24px 24px;
+        }
 
-  .hero {
-    padding: 8px 20px 16px;
-    text-align: center;
-    z-index: 10;
-  }
-  .hero-title {
-    font-weight: 900;
-    font-size: clamp(28px, 7vw, 42px);
-    line-height: 1.1;
-    margin-bottom: 6px;
-    background: linear-gradient(135deg, var(--text) 50%, var(--pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .hero-desc {
-    color: var(--muted); font-size: 13px;
-    line-height: 1.5; max-width: 320px;
-    margin: 0 auto 16px;
-  }
+        /* Content Styles */
+        .content-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid #e94560;
+        }
+        .content-box h4 { color: #e94560; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .content-box ul { list-style: none; }
+        .content-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-weight: bold;
+        }
 
-  .subjects-section {
-    flex: 1;
-    padding: 0 16px 20px;
-    overflow-y: auto;
-    z-index: 10;
-    scrollbar-width: none;
-  }
-  .subjects-section::-webkit-scrollbar { display: none; }
+        .highlight-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
 
-  .section-label {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 10px;
-    padding-left: 4px;
-  }
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .data-table thead { background: #16213e; color: white; }
+        .data-table th { padding: 14px 16px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background: #f8fafc; }
+        .data-table tbody tr:nth-child(even) { background: #f8fafc; }
 
-  .subjects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
+        /* Mnemonics */
+        .mnemonic {
+            background: #ecfdf5;
+            border: 2px dashed #10b981;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+        }
+        .mnemonic .emoji { font-size: 2rem; margin-bottom: 8px; }
+        .mnemonic h4 { color: #059669; margin-bottom: 8px; }
+        .mnemonic .acronym {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #1e293b;
+            letter-spacing: 2px;
+        }
+        .mnemonic .meaning { color: #64748b; font-size: 0.9rem; margin-top: 6px; }
 
-  .subject-card {
-    display: flex; align-items: center; gap: 10px;
-    padding: 14px 12px; border-radius: 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .subject-card:active { transform: scale(0.97); }
-  .subject-card:hover {
-    border-color: var(--glow);
-    box-shadow: 0 4px 20px var(--glow-shadow);
-  }
-  .subject-circle {
-    width: 40px; height: 40px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .subject-circle svg { width: 20px; height: 20px; color: white; }
-  .subject-info h3 {
-    font-weight: 700; font-size: 13px;
-    color: var(--text); margin-bottom: 2px;
-  }
-  .subject-info p {
-    font-size: 10px; color: var(--muted);
-    line-height: 1.3;
-  }
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .fact-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .fact-card:hover { transform: translateY(-3px); border-color: #e94560; }
+        .fact-card .fact-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .fact-card .fact-term { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .fact-card .fact-def { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
 
-  .detail-page {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    background: var(--deep-void);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .detail-page.active { display: flex; }
+        /* Progress Bar */
+        .progress-track {
+            position: fixed;
+            top: 0; left: 0;
+            height: 4px;
+            background: #e94560;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
 
-  .detail-header {
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(10,11,14,0.8);
-    backdrop-filter: blur(12px);
-    z-index: 10;
-  }
-  .back-btn {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; color: var(--text);
-    transition: all 0.2s ease;
-  }
-  .back-btn:active { transform: scale(0.95); }
-  .detail-title {
-    font-weight: 800; font-size: 18px;
-    background: linear-gradient(135deg, var(--text) 60%, var(--pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+        /* Quiz Section */
+        .quiz-container {
+            background: #1e293b;
+            color: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        .quiz-container h2 { text-align: center; margin-bottom: 24px; color: #fbbf24; }
+        .quiz-question {
+            background: #334155;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .quiz-question p { font-weight: 600; margin-bottom: 12px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-option {
+            background: #475569;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover { background: #64748b; }
+        .quiz-option.correct { background: #059669; border-color: #34d399; }
+        .quiz-option.wrong { background: #dc2626; border-color: #f87171; }
 
-  .detail-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px 16px;
-    scrollbar-width: none;
-  }
-  .detail-content::-webkit-scrollbar { display: none; }
+        .result-msg {
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-weight: 600;
+            display: none;
+        }
+        .result-msg.show { display: block; }
+        .result-msg.correct { background: #059669; }
+        .result-msg.wrong { background: #dc2626; }
 
-  .detail-section-label {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 12px;
-    padding-left: 4px;
-  }
+        /* Footer Summary */
+        .summary-card {
+            background: #16213e;
+            color: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .summary-card h2 { color: #fbbf24; margin-bottom: 16px; }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .summary-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .summary-item .num { font-size: 2rem; font-weight: 800; color: #e94560; }
+        .summary-item .label { font-size: 0.85rem; color: #94a3b8; }
 
-  .subtopic-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .subtopic-card {
-    display: flex; align-items: center; gap: 14px;
-    padding: 16px 14px; border-radius: 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .subtopic-card:active { transform: scale(0.98); }
-  .subtopic-card:hover {
-    border-color: var(--glow);
-    box-shadow: 0 4px 20px var(--glow-shadow);
-  }
-  .subtopic-circle {
-    width: 44px; height: 44px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .subtopic-circle svg { width: 22px; height: 22px; color: white; }
-  .subtopic-info h4 {
-    font-weight: 700; font-size: 14px;
-    color: var(--text); margin-bottom: 3px;
-  }
-  .subtopic-info p {
-    font-size: 11px; color: var(--muted);
-    line-height: 1.4;
-  }
-  .subtopic-arrow {
-    margin-left: auto;
-    color: var(--muted);
-    opacity: 0.5;
-  }
-
-  .video-page {
-    position: fixed;
-    inset: 0;
-    z-index: 300;
-    background: var(--deep-void);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .video-page.active { display: flex; }
-
-  .video-header {
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(10,11,14,0.8);
-    backdrop-filter: blur(12px);
-    z-index: 10;
-  }
-
-  .video-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-    scrollbar-width: none;
-  }
-  .video-content::-webkit-scrollbar { display: none; }
-
-  .video-section-label {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 14px;
-  }
-
-  .video-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 16px;
-    transition: all 0.3s ease;
-  }
-  .video-card:hover {
-    border-color: rgba(139,92,246,0.3);
-    box-shadow: 0 4px 24px rgba(139,92,246,0.1);
-  }
-
-  .video-wrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-    overflow: hidden;
-  }
-  .video-wrapper iframe {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border: none;
-    outline: none;
-  }
-
-  .video-info {
-    padding: 14px 16px;
-  }
-  .video-info h4 {
-    font-weight: 700; font-size: 14px;
-    color: var(--text); margin-bottom: 4px;
-  }
-  .video-info p {
-    font-size: 12px; color: var(--muted);
-    line-height: 1.5;
-  }
-  .video-meta {
-    display: flex; align-items: center; gap: 12px;
-    margin-top: 10px;
-  }
-  .video-tag {
-    font-size: 10px; font-weight: 600;
-    padding: 4px 10px; border-radius: 20px;
-    background: rgba(139,92,246,0.1);
-    color: var(--violet);
-    border: 1px solid rgba(139,92,246,0.2);
-  }
-  .video-duration {
-    font-size: 11px; color: var(--muted);
-    font-weight: 500;
-  }
-
-  .bottom-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 0 24px;
-    background: rgba(10,11,14,0.85);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(255,255,255,0.05);
-    z-index: 100;
-  }
-  .nav-item {
-    display: flex; flex-direction: column;
-    align-items: center; gap: 4px;
-    color: var(--muted); text-decoration: none;
-    font-size: 10px; font-weight: 500;
-    transition: color 0.3s ease;
-    padding: 4px 12px;
-  }
-  .nav-item.active, .nav-item:hover { color: var(--pink); }
-  .nav-item svg { width: 22px; height: 22px; }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .anim-in { animation: slideUp 0.5s ease-out both; }
-  .delay-1 { animation-delay: 0.1s; }
-  .delay-2 { animation-delay: 0.2s; }
-  .delay-3 { animation-delay: 0.3s; }
-
-  @keyframes slideInRight {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  .slide-in { animation: slideInRight 0.35s ease-out both; }
-</style>
-<base target="_blank">
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .section-header { padding: 16px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
 <base target="_blank">
 </head>
-<body oncontextmenu="return false;">
+<body>
+    <div class="progress-track" id="progressBar"></div>
 
-<div class="bg-orb bg-orb-1"></div>
-<div class="bg-orb bg-orb-2"></div>
-<div class="bg-orb bg-orb-3"></div>
-
-<div class="app" id="homePage">
-
-  <div class="header anim-in">
-    <div>
-      <div class="brand">Maadhur</div>
-      <div class="header-tag">UPSC Prep Hub</div>
-    </div>
-  </div>
-
-  <div class="hero anim-in delay-1">
-    <h1 class="hero-title">Maadhur</h1>
-    <p class="hero-desc">Your comprehensive UPSC preparation companion. All subjects, progress tracking & resources in one place.</p>
-  </div>
-
-  <div class="subjects-section anim-in delay-2" id="subjects">
-    <div class="section-label">All Subjects</div>
-    <div class="subjects-grid" id="subjectsGrid"></div>
-  </div>
-
-  <nav class="bottom-nav anim-in delay-3">
-    <a href="#subjects" class="nav-item active">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
-      Subjects
-    </a>
-    <a href="#" class="nav-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-      Tracker
-    </a>
-    <a href="#" class="nav-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-      Notes
-    </a>
-    <a href="#" class="nav-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      Settings
-    </a>
-  </nav>
-
-</div>
-
-<!-- Polity Detail Page -->
-<div class="detail-page" id="polityDetail">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goBack()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    </button>
-    <div class="detail-title">Polity</div>
-  </div>
-  <div class="detail-content">
-    <div class="detail-section-label">Sub Topics</div>
-    <div class="subtopic-grid" id="subtopicGrid"></div>
-  </div>
-</div>
-
-<!-- Constitution Videos Page -->
-<div class="video-page" id="constitutionVideos">
-  <div class="video-header">
-    <button class="back-btn" onclick="goBackFromVideos()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    </button>
-    <div class="detail-title">Constitution</div>
-  </div>
-  <div class="video-content" id="videoContent">
-  </div>
-</div>
-
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
-    e.preventDefault();
-  }
-});
-
-// ============================================================
-// ADD YOUR YOUTUBE VIDEOS HERE
-// 
-// Step 1: Go to YouTube and open any video
-// Step 2: Look at the URL in your browser address bar
-// Step 3: Copy the part after "v=" — that's your VIDEO_ID
-//
-// Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-//          VIDEO_ID = dQw4w9WgXcQ
-//
-// Step 4: Paste that ID below in the youtubeId field
-// Step 5: Write your own title and description
-// Step 6: Set the tag (Basics / Important / Advanced / Revision)
-// Step 7: Set the duration (e.g. "15 min", "1 hr 20 min")
-//
-// To add MORE videos, copy one block and paste below it.
-// To REMOVE a video, delete its entire block (from { to },).
-// ============================================================
-
-const constitutionClasses = [
-  {
-    title: 'Polity Marathon 1',
-    desc: 'Comprehensive lecture on the Indian Constitution covering all essential topics.',
-    youtubeId: 'K3kPdX7rnAM',
-    tag: 'Important',
-    duration: 'Live'
-  }
-];
-
-const subjects = [
-  { name: 'Geography', desc: 'Physical, Human & Indian', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>' },
-  { name: 'History', desc: 'Ancient, Medieval & Modern', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>' },
-  { name: 'Polity', desc: 'Constitution, Governance & Security', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9m16-5H4a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M10 2v4m4-4v4"/></svg>', hasSubtopics: true },
-  { name: 'Economics', desc: 'Indian Economy & Development', gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>' },
-  { name: 'Science & Tech', desc: 'General Science & Tech', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.04-2.04-7.36-.02-11.9 4.5"/></svg>' },
-  { name: 'Ethics', desc: 'Integrity & Aptitude', gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
-  { name: 'Essay', desc: 'Essay Writing Practice', gradient: 'linear-gradient(135deg,#F59E0B,#FBBF24)', glow: 'rgba(245,158,11,0.4)', glowShadow: 'rgba(245,158,11,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>' },
-  { name: 'Sociology', desc: 'Social Structure & Change', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
-  { name: 'Academic Writing', desc: 'Writing Skills & Techniques', gradient: 'linear-gradient(135deg,#06B6D4,#22D3EE)', glow: 'rgba(6,182,212,0.4)', glowShadow: 'rgba(6,182,212,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>' },
-  { name: 'Computer', desc: 'Basics & Applications', gradient: 'linear-gradient(135deg,#EF4444,#F87171)', glow: 'rgba(239,68,68,0.4)', glowShadow: 'rgba(239,68,68,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>' },
-  { name: 'Assamese', desc: 'Language & Literature', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>' },
-];
-
-const politySubtopics = [
-  { name: 'Constitution', desc: 'Preamble, Fundamental Rights, DPSP, Amendments', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>', hasVideos: true },
-  { name: 'Governance', desc: 'Parliament, Judiciary, Executive, Local Govt', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9m16-5H4a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M10 2v4m4-4v4"/></svg>' },
-  { name: 'International Relations', desc: "India's Foreign Policy, Bilateral & Multilateral", gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>' },
-  { name: 'Internal Security', desc: 'Terrorism, Cyber Security, Border Management', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
-];
-
-
-// ============================================================
-// MEDIEVAL INDIAN HISTORY - CHAPTER WISE INTERACTIVE NOTES
-// All facts retained from UPSC syllabus
-// ============================================================
-
-const medievalHistoryChapters = [
-  {
-    name: 'Early Medieval India (750-1200)',
-    desc: 'Tripartite Struggle, Rajputs, Regional Kingdoms & Indian Feudalism',
-    gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)',
-    glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)',
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
-    facts: [
-      'The Pratiharas (8th-10th Century) were founded by Nagabhata I; reached zenith under Mihira Bhoja who was titled Adivaraha.',
-      'The Palas (8th-11th Century) were founded by Gopala in 750 CE; Dharmapala founded Vikramshila University; Devapala extended empire to Assam and Deccan.',
-      'The Rashtrakutas were founded by Dantidurga who performed Hiranyagarbha ceremony; Krishna I built the Kailash temple at Ellora.',
-      'The Tripartite Struggle (8th-10th century) was fought between Palas, Pratiharas, and Rashtrakutas for control over Kannauj.',
-      'The Rajputs emerged as major powers: Chandellas built Khajuraho temples, Paramaras under Bhoja were patrons of learning, Chahamanas under Prithviraj Chauhan ruled Delhi and Ajmer.',
-      'Indian Feudalism: Grant of land (Brahmadeya to Brahmins, Agrahara to temples), decline of long-distance trade, rise of self-sufficient villages.',
-      'The Senas (11th-12th Century) were founded by Hemanta Sena in Bengal; Lakshmana Sena was the last great ruler defeated by Bakhtiyar Khalji (1204).',
-      'Society & Culture: Caste system became rigid; Kalhana wrote Rajatarangini; temple architecture evolved (Nagara, Dravida, Vesara styles).',
-      'The Arab conquest of Sindh (712 CE) by Muhammad bin Qasim; established first Muslim territory in India at Debal.',
-      'Mahmud of Ghazni (971-1030) invaded India 17 times; destroyed Somnath temple (1025); patron of Firdausi and Al-Biruni.',
-      'Muhammad Ghori defeated Prithviraj Chauhan in Second Battle of Tarain (1192); laid foundation of Muslim rule in India.',
-      'Key terms: Iqta (land assignment), Jizya (tax on non-Muslims), Zakat (tax on Muslims), Sharia (Islamic law).'
-    ],
-    summary: [
-      'Early Medieval period (750-1200 CE) saw rise of regional kingdoms after decline of Harsha's empire',
-      'Tripartite struggle between Palas, Pratiharas and Rashtrakutas for Kannauj',
-      'Rajput kingdoms emerged as major powers but failed to unite against Turkish invasions',
-      'Indian feudalism characterized by land grants, decline of trade, village self-sufficiency',
-      'Turkish invasions by Mahmud Ghazni and Muhammad Ghori ended early medieval period'
-    ]
-  },
-  {
-    name: 'Cholas & South Indian Kingdoms',
-    desc: 'Chola Administration, Vijayanagara & Bahmani Kingdoms',
-    gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)',
-    glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)',
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-    facts: [
-      'Vijayalaya Chola founded the Chola empire in 850 CE; capital at Thanjavur (Tanjore).',
-      'Rajaraja I (985-1014) built Brihadeeswara Temple at Thanjavur (UNESCO site); conquered Sri Lanka and Maldives.',
-      'Rajendra I (1014-1044) created a large artificial lake, invaded Srivijaya (Sumatra), took title "Gangaikondachola" (conqueror of Ganga).',
-      'Chola Administration: Centralized monarchy; Ur (village assembly for non-Brahmins), Sabha (Brahmin assembly), Nagaram (merchant assembly).',
-      'Local Self-Government: Ur, Sabha, Nagaram had elected members; land revenue was major source (1/6th of produce).',
-      'Chola Art: Dravidian architecture style; Brihadeeswara Temple (1004 CE), Gangaikondacholapuram Temple; bronze sculptures (Nataraja).',
-      'Vijayanagara Empire (1336-1646): Founded by Harihara and Bukka (Sangama brothers); capital at Hampi (UNESCO site).',
-      'Krishnadevaraya (1509-1529): Greatest Vijayanagara ruler; wrote Amuktamalyada; patron of Telugu literature; built Hazara Rama temple.',
-      'Battle of Talikota (1565): Combined forces of Ahmadnagar, Bijapur, Golconda and Bidar defeated Vijayanagara; Aliya Rama Raya killed.',
-      'Bahmani Kingdom (1347-1526): Founded by Hasan Gangu (Zafar Khan); capital at Gulbarga then Bidar; 5 sultanates broke away.',
-      'Amara-Nayaka System: Military governors assigned land (Amaram) for maintaining troops; collected revenue and paid tribute.',
-      'Ashtadiggajas: Eight Telugu poets at Krishnadevaraya's court including Allasani Peddana (Manucharitam), Nandi Thimmana.',
-      'Chola Navy: First Indian navy; dominated Bay of Bengal and Indian Ocean trade; Kadaram (Kedah) conquered.',
-      'Vesara Style: Mixture of Nagara and Dravida styles; developed under Chalukyas of Badami and later Vijayanagara.',
-      'Kakatiya Dynasty: Rudramadevi was famous female ruler; built Warangal fort; Motupalli was chief port visited by Marco Polo.'
-    ],
-    summary: [
-      'Cholas established one of greatest empires in South India with strong navy and local self-government',
-      'Vijayanagara Empire was last great Hindu empire; patronized art, literature and architecture',
-      'Bahmani Kingdom was major Deccan power; five Deccan Sultanates emerged from its breakup',
-      'Amara-Nayaka system was key administrative feature of Vijayanagara',
-      'Battle of Talikota (1565) marked decline of Vijayanagara Empire'
-    ]
-  },
-  {
-    name: 'Delhi Sultanate (1206-1526)',
-    desc: 'Slave Dynasty to Lodi Dynasty - Administration & Culture',
-    gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)',
-    glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)',
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9m16-5H4a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M10 2v4m4-4v4"/></svg>',
-    facts: [
-      'Slave Dynasty (1206-1290): Qutb-ud-din Aibak called "Lakh Baksh" (giver of lakhs); died playing Chaugan (polo).',
-      'Iltutmish (1211-1236): Real founder of Delhi Sultanate; introduced silver Tanka and copper Jital; organized Chalisa (group of 40 Turkish nobles).',
-      'Razia Sultan (1236-1240): First and only female ruler of Delhi; defeated by Turkish nobles who opposed female rule.',
-      'Balban (1266-1287): Theory of Kingship "Niyabat-i-Khudai" (Shadow of God); "Blood and Iron" policy; introduced Sijda and Paibos.',
-      'Khalji Dynasty (1290-1320): Jalaluddin Khalji was first ruler; Alauddin Khalji was greatest; Qutbuddin Mubarak Shah was last.',
-      'Alauddin Khalji (1296-1316): Market reforms, price control, land revenue measurement by Biswa; built Siri fort and Alai Darwaza.',
-      'Alauddin's Military Reforms: Dagh (branding of horses), Chehra (descriptive roll of soldiers), maintained large standing army.',
-      'Alauddin's Market Reforms: Three markets (grain, cloth, horses/cattle), Shahna-i-Mandi (market superintendent), price lists fixed.',
-      'Tughlaq Dynasty (1320-1414): Ghiyasuddin Tughlaq built Tughlaqabad; Muhammad bin Tughlaq was most controversial; Firoz Shah was most prolific builder.',
-      'Muhammad bin Tughlaq (1325-1351): Token currency (copper coins failed), transfer of capital to Daulatabad (Devagiri), increased taxation in Doab.',
-      'Muhammad bin Tughlaq's Experiments: Taxation in Doab (failed due to rebellion), agricultural loans (Sondhar), Diwan-i-Khairat (charity department).',
-      'Firoz Shah Tughlaq (1351-1388): Built Firozabad, 5 canals for irrigation, reimposed Jizya on Brahmins, Sharia-based rule, established hospitals.',
-      'Sayyid Dynasty (1414-1451): Founded by Khizr Khan who ruled as Timur's vassal; weak administration; last ruler Alam Shah.',
-      'Lodi Dynasty (1451-1526): Bahlul Lodi (first Afghan ruler), Sikandar Lodi (shifted capital to Agra), Ibrahim Lodi (last ruler).',
-      'First Battle of Panipat (1526): Babur defeated Ibrahim Lodi; used Tulugma tactics and artillery; marked end of Delhi Sultanate.',
-      'Administration: Sultan was head; Diwan-i-Wizarat (finance), Diwan-i-Arz (military), Diwan-i-Rasalat (foreign affairs), Diwan-i-Insha (correspondence).',
-      'Iqta System: Land assignment to nobles for military service; revenue collection rights; Diwan-i-Mustakhraj checked revenue.',
-      'Society & Culture: Sufi movement (Chishti order by Moinuddin Chishti, Nizamuddin Auliya); Amir Khusrau (Tuhlaq Nama, Khazain-ul-Futuh).'
-    ],
-    summary: [
-      'Delhi Sultanate lasted 320 years with 5 dynasties: Slave, Khalji, Tughlaq, Sayyid, Lodi',
-      'Iltutmish was real founder; Balban established strong monarchy; Alauddin Khalji had extensive reforms',
-      'Muhammad bin Tughlaq's experiments (token currency, capital transfer) largely failed',
-      'Iqta system was backbone of administration; military assignments in exchange for revenue',
-      'First Battle of Panipat (1526) ended Sultanate and began Mughal era'
-    ]
-  },
-  {
-    name: 'Mughal Empire (1526-1707)',
-    desc: 'Babur to Aurangzeb - Administration, Art & Culture',
-    gradient: 'linear-gradient(135deg,#F59E0B,#FBBF24)',
-    glow: 'rgba(245,158,11,0.4)', glowShadow: 'rgba(245,158,11,0.15)',
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
-    facts: [
-      'Babur (1526-1530): Defeated Ibrahim Lodi at First Panipat (1526), Rana Sanga at Khanwa (1527), Medini Rai at Chanderi; wrote Tuzuk-i-Baburi (Turkish).',
-      'Humayun (1530-1556): Defeated by Sher Shah at Chausa (1539) and Bilgram/Kanauj (1540); exiled to Persia for 15 years; died falling from library stairs.',
-      'Sher Shah Suri (1540-1545): Introduced Rupee (silver coin), built Grand Trunk Road (Sonargaon to Peshawar), revenue reforms.',
-      'Sher Shah's Administration: Centralized bureaucracy, Pargana system (each under Shiqdar and Munsif), land survey by Sikka/Sikandari jarib.',
-      'Akbar (1556-1605): Defeated Hemu at Second Battle of Panipat (1556); Bairam Khan was regent till 1560.',
-      'Akbar's Rajput Policy: Married Jodha Bai (daughter of Bharmal), appointed Rajputs in high offices, abolished Jizya (1564) and pilgrimage tax.',
-      'Mansabdari System: Rank system with Zat (personal rank) and Sawar (troop rank); Dakhil (central) and Jagir (provincial) assignments.',
-      'Akbar's Land Revenue: Dahsala system (1580) by Raja Todar Mal; measurement by bamboo jarib; land classified into Polaj, Parati, Chachar, Banjar.',
-      'Akbar's Religious Policy: Ibadat Khana (1575) for religious discussions, Mahzar (1579) declaring him Imam-i-Adil, Din-i-Ilahi (1582), Sulh-i-Kul (peace with all).',
-      'Navratnas: Birbal, Tansen, Raja Todar Mal, Abul Fazl (Akbarnama, Ain-i-Akbari), Faizi, Abdul Rahim Khan-i-Khana, Fagir Aziao Din, Mulla Do Piaza, Man Singh.',
-      'Jahangir (1605-1627): Nur Jahan's influence (20 coins in joint names); Captain Hawkins (1608) and Sir Thomas Roe (1615) visited.',
-      'Shah Jahan (1628-1658): Golden age of Mughal architecture; built Taj Mahal (1632-53), Red Fort, Jama Masjid, Shalimar Gardens.',
-      'Aurangzeb (1658-1707): Alamgir (world conqueror); reimposed Jizya (1679), destroyed temples including Kashi Vishwanath and Mathura.',
-      'Aurangzeb's Deccan Policy: Annexed Bijapur (1686) and Golconda (1687); fought Marathas for 26 years; died at Ahmadnagar.',
-      'Mughal Administration: Emperor (Padshah), Wazir/Diwan (finance), Mir Bakshi (military), Sadr-us-Sudur (religious affairs), Qazi-ul-Quzat (chief justice).',
-      'Jagirdari System: Assignment of land revenue; Tanka (cash salary) vs Jagir (land assignment); crisis developed under later Mughals.',
-      'Mughal Art: Indo-Persian style, pietra dura (stone inlay), miniature paintings (Mughal, Rajput, Deccan schools), Charbagh gardens.',
-      'Mughal Painting: Hamzanama (Akbar), Padshahnama (Shah Jahan), Jahangir promoted naturalistic style; Mansur was famous for animal paintings.',
-      'Shah Jahan's Revolts: Revolts by Jats (Gokla, Rajaram), Satnamis, Sikhs (Guru Tegh Bahadur executed 1675), Afghans.',
-      'Later Mughals: Bahadur Shah I (1707-12), Jahandar Shah, Farrukhsiyar (Sayyid brothers' puppet), Muhammad Shah "Rangeela" (1719-48).'
-    ],
-    summary: [
-      'Mughal Empire was greatest empire in Indian history; Babur founded it, Akbar consolidated it',
-      'Akbar's reign was golden age: Mansabdari, Dahsala system, Rajput policy, religious tolerance',
-      'Shah Jahan era marked peak of Mughal architecture: Taj Mahal, Red Fort, Jama Masjid',
-      'Aurangzeb's religious orthodoxy and Deccan campaigns led to empire's overextension',
-      'Jagirdari crisis and weak successors caused rapid decline after Aurangzeb's death'
-    ]
-  },
-  {
-    name: 'Bhakti & Sufi Movements',
-    desc: 'Religious Reform Movements in Medieval India',
-    gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)',
-    glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)',
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
-    facts: [
-      'Bhakti Movement: Emphasized devotional worship of personal God; opposed ritualism, caste system, and idol worship.',
-      'Ramanuja (11th century): Founder of Vishishtadvaita (qualified monism); preached salvation through devotion (prapatti); wrote Sribhashya.',
-      'Madhvacharya (13th century): Founder of Dvaita (dualism); emphasized devotion to Vishnu; eight monasteries (Mathas) at Udupi.',
-      'Basavanna (12th century): Founder of Lingayat/Virashaiva sect in Karnataka; opposed caste and rituals; wrote Vachanas.',
-      'Nathpanthis, Siddhas, Yogis: Emphasized meditation, yoga, and Hatha Yoga; criticized orthodox practices of both Hindus and Muslims.',
-      'Kabir (15th century): Weaver of Varanasi; disciple of Ramananda; preached unity of Ram and Rahim; dohas in Awadhi/Hindi.',
-      'Guru Nanak (1469-1539): Founded Sikhism in Punjab; emphasized Naam Japna (meditation), Kirat Karo (honest work), Vand Chhako (sharing).',
-      'Sikh Gurus: Angad (Gurmukhi script), Amar Das (Langar/community kitchen), Ram Das (Amritsar), Arjan (Golden Temple, compiled Adi Granth).',
-      'Guru Gobind Singh (1666-1708): Last human guru; founded Khalsa (1699) at Anandpur; introduced Five Ks (Kesh, Kangha, Kara, Kachcha, Kirpan).',
-      'Sufism: Mystical Islamic movement; emphasized love and devotion to God; rejected materialism and formalism.',
-      'Chishti Order: Founded in India by Khwaja Moinuddin Chishti (Ajmer); Nizamuddin Auliya (Delhi), Baba Farid (Punjab); emphasized poverty and service.',
-      'Suhrawardi Order: Founded by Bahauddin Zakariya (Multan); Shihabuddin Suhrawardi; emphasized external observances and close to rulers.',
-      'Naqshbandi Order: Founded by Khwaja Bahauddin Naqshband; orthodox; supported by Aurangzeb; Sheikh Ahmad Sirhindi (Mujaddid Alf-i-Sani).',
-      'Qadiri Order: Founded by Sheikh Abdul Qadir Gilani; Dara Shikoh was follower; emphasized liberal Sufism.',
-      'Impact of Bhakti-Sufi: Social equality, development of regional languages (Hindi, Bengali, Punjabi, Marathi), composite culture (Ganga-Jamuni tehzeeb).',
-      'Sant Tukaram (17th century): Marathi saint; wrote Abhangas; worshipped Vithoba of Pandharpur.',
-      'Mirabai (16th century): Rajasthani princess; devotee of Krishna; wrote padas in Rajasthani/Hindi; opposed sati and purdah.',
-      'Chaitanya Mahaprabhu (15th century): Bengal; Gaudiya Vaishnavism; popularized Sankirtan (congregational singing); emphasized love for Krishna.'
-    ],
-    summary: [
-      'Bhakti movement emphasized personal devotion and opposed caste and ritualism',
-      'Sufism brought mystical Islam to India; Chishti order was most popular and liberal',
-      'Guru Nanak founded Sikhism which synthesized Hindu and Islamic ideas',
-      'Bhakti-Sufi movements led to development of regional languages and composite culture',
-      'These movements promoted social equality and religious tolerance in medieval India'
-    ]
-  },
-  {
-    name: 'Marathas & 18th Century',
-    desc: 'Shivaji, Peshwas & Decline of Mughal Empire',
-    gradient: 'linear-gradient(135deg,#EF4444,#F87171)',
-    glow: 'rgba(239,68,68,0.4)', glowShadow: 'rgba(239,68,68,0.15)',
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
-    facts: [
-      'Shivaji (1627-1680): Founded Maratha kingdom; coronation at Raigad (1674) with title Chhatrapati; built navy under Kanhoji Angre.',
-      'Shivaji's Administration: Ashtapradhan (council of 8 ministers) including Peshwa (prime minister), Amatya (finance), Sachiv (home).',
-      'Chauth (25%): Tax on land revenue of neighboring states; Sardeshmukhi (10%): Additional tax claiming hereditary rights.',
-      'Shivaji's Military: Guerrilla warfare (Ganimi Kava), hill forts (Sinhagad, Rajgad, Raigad), navy with bases at Kolaba and Vijayadurg.',
-      'Treaty of Purandar (1665): Shivaji surrendered 23 forts to Aurangzeb's general Jai Singh; visited Agra (1666) but escaped.',
-      'Sambhaji (1680-1689): Son of Shivaji; captured and executed by Aurangzeb; wrote Sanskrit work Budhbhushanam.',
-      'Rajaram (1689-1700): Fled to Jinji (Tamil Nadu); continued resistance; Tara Bai administered from Panhala.',
-      'Shahu (1707-1749): Released by Bahadur Shah I; conflict with Tarabai; Balaji Vishwanath became first Peshwa (1713).',
-      'Peshwa Era: Balaji Vishwanath (1713-1720) got Chauth and Sardeshmukhi rights for Marathas from Mughals.',
-      'Baji Rao I (1720-1740): Greatest Peshwa; Maratha power at peak; expanded northward; Battle of Palkhed (1728) against Nizam.',
-      'Balaji Baji Rao (Nana Saheb) (1740-1761): Third Battle of Panipat (1761) against Ahmad Shah Abdali; heavy Maratha losses.',
-      'Third Battle of Panipat (1761): Ahmad Shah Abdali defeated Marathas; Sadashivrao Bhau and Vishwasrao killed; 40,000+ Maratha casualties.',
-      'Decline of Mughal Empire: Weak successors (Bahadur Shah I onwards), Jagirdari crisis (shortage of Jagirs), rise of regional powers.',
-      'Regional States: Hyderabad (Nizam-ul-Mulk Asaf Jah), Bengal (Murshid Quli Khan, Alivardi Khan), Awadh (Saadat Khan Burhan-ul-Mulk).',
-      'Sikh Confederacy: Banda Bahadur (Bahadur Shah I suppressed), 12 Misls (confederacies), Maharaja Ranjit Singh unified Punjab (1799).',
-      'Ranjit Singh (1799-1839): Lahore capital; modernized army with French generals; golden age of Punjab; treaty with British (1809).',
-      'Anglo-Maratha Wars: First (1775-1782), Second (1803-1805), Third (1817-1818); Maratha confederacy ended by 1818.',
-      'Maratha Confederacy: Peshwa (Pune), Gaikwad (Baroda), Bhonsle (Nagpur), Holkar (Indore), Scindia (Gwalior).'
-    ],
-    summary: [
-      'Shivaji founded Maratha kingdom with innovative administration and guerrilla warfare',
-      'Peshwas transformed Marathas into all-India power under Baji Rao I',
-      'Third Battle of Panipat (1761) was turning point; Maratha expansion halted',
-      'Decline of Mughals led to rise of regional states: Hyderabad, Bengal, Awadh',
-      'Sikhs under Ranjit Singh created powerful kingdom in Punjab before British annexation'
-    ]
-  }
-];
-
-// Track checked facts per chapter
-let historyProgress = {};
-
-try {
-  const saved = localStorage.getItem('historyProgress');
-  if (saved) historyProgress = JSON.parse(saved);
-} catch(e) {}
-
-function saveHistoryProgress() {
-  try { localStorage.setItem('historyProgress', JSON.stringify(historyProgress)); } catch(e) {}
-}
-
-function openHistoryDetail() {
-  document.getElementById('historyDetail').classList.add('active');
-  renderHistoryChapters();
-}
-
-function renderHistoryChapters() {
-  const grid = document.getElementById('historyChapterGrid');
-  grid.innerHTML = '';
-
-  medievalHistoryChapters.forEach((ch, i) => {
-    const checked = historyProgress[ch.name] || [];
-    const total = ch.facts.length;
-    const done = checked.length;
-    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-
-    const card = document.createElement('div');
-    card.className = 'subtopic-card slide-in';
-    card.style.setProperty('--glow', ch.glow);
-    card.style.setProperty('--glow-shadow', ch.glowShadow);
-    card.style.animationDelay = `${i * 0.08}s`;
-    card.innerHTML = `
-      <div class="subtopic-circle" style="background:${ch.gradient};">${ch.icon}</div>
-      <div class="subtopic-info">
-        <h4>${ch.name}</h4>
-        <p>${ch.desc}</p>
-        <div class="chapter-progress">
-          <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
-          <span class="progress-text">${done}/${total}</span>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📚 Division of Ancient History & Sources</h1>
+            <p class="subtitle">Chapter 1 — Ancient Indian History Ready Reckoner</p>
+            <span class="badge">UPSC Foundation</span>
         </div>
-      </div>
-      <div class="subtopic-arrow">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-      </div>
-    `;
-    card.addEventListener('click', () => openHistoryNotes(i));
-    grid.appendChild(card);
-  });
-}
 
-function openHistoryNotes(chapterIndex) {
-  const ch = medievalHistoryChapters[chapterIndex];
-  document.getElementById('historyNotesTitle').textContent = ch.name;
-  const content = document.getElementById('historyNotesContent');
-  content.innerHTML = '';
+        <!-- SECTION 1: Three Divisions -->
+        <div class="section-card active" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-history">📖</div>
+                <div class="section-title">
+                    <h3>Three Divisions of History</h3>
+                    <p>History vs Prehistory vs Proto-history</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="quick-facts">
+                    <div class="fact-card">
+                        <div class="fact-icon">📝</div>
+                        <div class="fact-term">History</div>
+                        <div class="fact-def">Written evidence available from Vedic phase till present</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🪨</div>
+                        <div class="fact-term">Prehistory</div>
+                        <div class="fact-def">No written evidence; only archaeological (Stone Age)</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">❓</div>
+                        <div class="fact-term">Proto-history</div>
+                        <div class="fact-def">Written evidence exists but not deciphered (e.g., Harappan)</div>
+                    </div>
+                </div>
 
-  const intro = document.createElement('div');
-  intro.className = 'chapter-intro slide-in';
-  intro.innerHTML = `
-    <h3>${ch.name}</h3>
-    <p>${ch.desc}</p>
-  `;
-  content.appendChild(intro);
-
-  const summary = document.createElement('div');
-  summary.className = 'summary-box slide-in';
-  summary.style.animationDelay = '0.1s';
-  summary.innerHTML = `
-    <h4>Quick Summary</h4>
-    <ul>${ch.summary.map(s => `<li>${s}</li>`).join('')}</ul>
-  `;
-  content.appendChild(summary);
-
-  const label = document.createElement('div');
-  label.className = 'video-section-label';
-  label.textContent = 'Key Facts & Points';
-  content.appendChild(label);
-
-  const checked = historyProgress[ch.name] || [];
-  ch.facts.forEach((fact, i) => {
-    const isChecked = checked.includes(i);
-    const card = document.createElement('div');
-    card.className = `fact-card slide-in ${isChecked ? 'completed' : ''}`;
-    card.style.animationDelay = `${0.15 + i * 0.05}s`;
-    card.innerHTML = `
-      <div class="fact-row">
-        <span class="fact-number">${i + 1}</span>
-        <span class="fact-text">${fact}</span>
-        <button class="check-btn ${isChecked ? 'checked' : ''}" onclick="toggleFact('${ch.name}', ${i}, this)" title="Mark as learned">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-        </button>
-      </div>
-    `;
-    content.appendChild(card);
-  });
-
-  document.getElementById('historyNotesPage').classList.add('active');
-}
-
-function toggleFact(chapterName, factIndex, btn) {
-  if (!historyProgress[chapterName]) historyProgress[chapterName] = [];
-  const idx = historyProgress[chapterName].indexOf(factIndex);
-
-  if (idx > -1) {
-    historyProgress[chapterName].splice(idx, 1);
-    btn.classList.remove('checked');
-    btn.closest('.fact-card').classList.remove('completed');
-  } else {
-    historyProgress[chapterName].push(factIndex);
-    btn.classList.add('checked');
-    btn.closest('.fact-card').classList.add('completed');
-  }
-
-  saveHistoryProgress();
-}
-
-function goBackHistory() {
-  document.getElementById('historyDetail').classList.remove('active');
-}
-
-function goBackFromNotes() {
-  document.getElementById('historyNotesPage').classList.remove('active');
-  renderHistoryChapters();
-}
-
-// Render subjects
-const grid = document.getElementById('subjectsGrid');
-subjects.forEach((s, i) => {
-  const card = document.createElement('div');
-  card.className = 'subject-card';
-  card.style.setProperty('--glow', s.glow);
-  card.style.setProperty('--glow-shadow', s.glowShadow);
-  card.style.animation = `slideUp 0.4s ease-out ${0.3 + i * 0.04}s both`;
-  card.innerHTML = `
-    <div class="subject-circle" style="background:${s.gradient};">${s.icon}</div>
-    <div class="subject-info">
-      <h3>${s.name}</h3>
-      <p>${s.desc}</p>
-    </div>
-  `;
-  if (s.name === 'Polity') {
-    card.addEventListener('click', openPolityDetail);
-  } else if (s.name === 'History') {
-    card.addEventListener('click', openHistoryDetail);
-  }
-  grid.appendChild(card);
-});
-
-// Render Polity subtopics
-const subtopicGrid = document.getElementById('subtopicGrid');
-politySubtopics.forEach((s, i) => {
-  const card = document.createElement('div');
-  card.className = 'subtopic-card slide-in';
-  card.style.setProperty('--glow', s.glow);
-  card.style.setProperty('--glow-shadow', s.glowShadow);
-  card.style.animationDelay = `${i * 0.08}s`;
-  card.innerHTML = `
-    <div class="subtopic-circle" style="background:${s.gradient};">${s.icon}</div>
-    <div class="subtopic-info">
-      <h4>${s.name}</h4>
-      <p>${s.desc}</p>
-    </div>
-    <div class="subtopic-arrow">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-    </div>
-  `;
-  if (s.hasVideos) {
-    card.addEventListener('click', openConstitutionVideos);
-  }
-  subtopicGrid.appendChild(card);
-});
-
-// Render Constitution videos with YouTube embed
-const videoContent = document.getElementById('videoContent');
-
-function renderVideos() {
-  const oldList = document.getElementById('videoList');
-  if (oldList) oldList.remove();
-
-  const videoContainer = document.createElement('div');
-  videoContainer.id = 'videoList';
-  videoContent.appendChild(videoContainer);
-
-  // Classes Section Label
-  const classesLabel = document.createElement('div');
-  classesLabel.className = 'video-section-label';
-  classesLabel.textContent = 'Classes';
-  classesLabel.style.marginTop = '20px';
-  videoContainer.appendChild(classesLabel);
-
-  constitutionClasses.forEach((v, i) => {
-    const card = document.createElement('div');
-    card.className = 'video-card slide-in';
-    card.style.animationDelay = `${i * 0.1}s`;
-
-    const embedUrl = `https://www.youtube.com/embed/${v.youtubeId}?rel=0&modestbranding=1`;
-
-    card.innerHTML = `
-      <div class="video-wrapper">
-        <iframe
-          src="${embedUrl}"
-          title="${v.title}"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
-      </div>
-      <div class="video-info">
-        <h4>${v.title}</h4>
-        <p>${v.desc}</p>
-        <div class="video-meta">
-          <span class="video-tag">${v.tag}</span>
-          <span class="video-duration">${v.duration}</span>
+                <div class="mnemonic">
+                    <div class="emoji">🧠</div>
+                    <h4>Memory Trick: "HPP"</h4>
+                    <div class="acronym">H = History (Has writing)<br>P = Prehistory (No writing)<br>P = Proto-history (Present but Puzzle)</div>
+                    <div class="meaning">History has readable writing → Prehistory has none → Proto-history has it but we can't read it!</div>
+                </div>
+            </div>
         </div>
-      </div>
-    `;
-    videoContainer.appendChild(card);
-  });
-}
 
-function openPolityDetail() {
-  document.getElementById('polityDetail').classList.add('active');
-}
+        <!-- SECTION 2: Sources -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-source">🔍</div>
+                <div class="section-title">
+                    <h3>Sources of Ancient Indian History</h3>
+                    <p>5 Major categories of evidence</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🔬 Archaeological Evidence (Artefacts)</h4>
+                    <ul>
+                        <li>Physical materials used by ancient people found at sites</li>
+                        <li>Crucial for understanding the <strong>Pre-historic Period</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📜 Inscriptions (Epigraphy)</h4>
+                    <ul>
+                        <li>Engravings on stone or metal objects</li>
+                        <li>Study of inscriptions = <strong>Epigraphy</strong></li>
+                        <li>Types: Rock edicts (Major & Minor), Pillar edicts</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🪙 Coins (Numismatics)</h4>
+                    <ul>
+                        <li>Study of coins = <strong>Numismatics</strong></li>
+                        <li>Reveals economic conditions, trade, and rulers</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📚 Literature</h4>
+                    <ul>
+                        <li>Indian Literature: Vedas, Puranas, Epics, Sangam texts</li>
+                        <li>Foreign Literature: Accounts by Greek, Chinese travelers</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌍 Accounts of Foreigners</h4>
+                    <ul>
+                        <li>Greek, Chinese, and other foreign travelers' records</li>
+                        <li>Provide external perspective on Indian conditions</li>
+                    </ul>
+                </div>
 
-function openConstitutionVideos() {
-  document.getElementById('constitutionVideos').classList.add('active');
-  renderVideos();
-}
+                <div class="mnemonic">
+                    <div class="emoji">💡</div>
+                    <h4>Memory Trick: "ALICF"</h4>
+                    <div class="acronym">A = Archaeology<br>L = Literature<br>I = Inscriptions<br>C = Coins<br>F = Foreigners</div>
+                    <div class="meaning">"<strong>A LICF</strong>ense to know the past" — All five sources give you permission to understand history!</div>
+                </div>
+            </div>
+        </div>
 
-function goBack() {
-  document.querySelectorAll('iframe').forEach(f => {
-    const src = f.src;
-    f.src = '';
-    f.src = src;
-  });
-  document.getElementById('polityDetail').classList.remove('active');
-}
+        <!-- SECTION 3: Indian Literature -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-lit">📖</div>
+                <div class="section-title">
+                    <h3>Indian Literature Sources</h3>
+                    <p>Vedic, Puranic, Epic & Sangam texts</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="highlight-box">
+                    <span class="label">Must Remember</span>
+                    <p><strong>Vedic Literature:</strong> Vedas, Brahmanas, Aranyakas, Upanishads, Vedangas, Upvedas</p>
+                </div>
 
-function goBackFromVideos() {
-  document.querySelectorAll('iframe').forEach(f => {
-    const src = f.src;
-    f.src = '';
-    f.src = src;
-  });
-  document.getElementById('constitutionVideos').classList.remove('active');
-}
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Category</th><th>Key Details</th><th>Importance</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Vedas</strong></td>
+                            <td>Rig, Yajur, Sama, Atharva</td>
+                            <td>Oldest religious texts; Rigveda = first world literature</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Brahmanas</strong></td>
+                            <td>Prose commentaries on Vedas</td>
+                            <td>Explain rituals and ceremonies</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aranyakas</strong></td>
+                            <td>"Forest texts" for hermits</td>
+                            <td>Bridge between Brahmanas & Upanishads</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Upanishads</strong></td>
+                            <td>108 in number; Vedantas</td>
+                            <td>Deal with metaphysics & philosophy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vedangas</strong></td>
+                            <td>6 limbs: Shiksha, Kalpa, Vyakarana, Nirukta, Chandas, Jyotisha</td>
+                            <td>Ancillary sciences to understand Vedas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Upvedas</strong></td>
+                            <td>Dhanurveda, Gandharvaveda, Sthapatyaveda, Ayurveda</td>
+                            <td>Applied knowledge: warfare, music, architecture, medicine</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-document.querySelectorAll('.nav-item').forEach(item => {
-  item.addEventListener('click', function(e) {
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-</script>
+                <div class="content-box">
+                    <h4>📜 Puranas</h4>
+                    <ul>
+                        <li>Stories of kings & genealogies of dynasties</li>
+                        <li>Important source for <strong>political history</strong> of Ancient India</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Epics</h4>
+                    <ul>
+                        <li>Ramayana & Mahabharata</li>
+                        <li>Reflect social, political & moral values of the time</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌴 Sangam Literature</h4>
+                    <ul>
+                        <li>Tolkappiyam (Tamil grammar)</li>
+                        <li>Ettutogai (8 anthologies)</li>
+                        <li>Pattupattu (10 poems)</li>
+                        <li>Pathinenkilkanakku (18 minor works)</li>
+                        <li>Silappadikaram & Manimekkalai (two epics)</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🎭 Plays & Drama</h4>
+                    <ul>
+                        <li>Kalidasa's works (Navaratna of Gupta court)</li>
+                        <li>Visakha Datta's <em>Mudra Rakshas</em> (Gupta period, Chanakya-Chandragupta story)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
+        <!-- SECTION 4: Foreign Literature -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-foreign">🌏</div>
+                <div class="section-title">
+                    <h3>Foreign Literature Sources</h3>
+                    <p>Greek & Chinese accounts</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Author</th><th>Book</th><th>Subject / Importance</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Megasthenes</strong> (Greek)</td>
+                            <td><em>Indica</em></td>
+                            <td>Administration & socio-economic conditions of <strong>Mauryas</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ptolemy</strong> (Greek)</td>
+                            <td><em>Geography of India</em></td>
+                            <td>Geographical treatise on India (2nd Century AD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pliny</strong> (Greek)</td>
+                            <td><em>Naturalis Historia</em></td>
+                            <td>Trade relations between <strong>Rome & India</strong> (1st Century AD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anonymous</strong> (Greek)</td>
+                            <td><em>Periplus of the Erythrean Sea</em></td>
+                            <td>Personal voyage of Indian coasts (80 AD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fa-Hien</strong> (Chinese)</td>
+                            <td><em>Fo-Kuo-Ki</em> (Record of Buddhist Countries)</td>
+                            <td><strong>Gupta Empire</strong> in 5th Century AD</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hiuen Tsang</strong> (Chinese)</td>
+                            <td><em>Si-Yu-Ki</em> (Buddhist Records of Western World)</td>
+                            <td>Social, economic, religious conditions (5th & 7th Century AD; <strong>Harshvardhan</strong>)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>I-tsing</strong> (Chinese)</td>
+                            <td>Record of Buddhism in India & Malay Archipelago</td>
+                            <td><strong>Gupta period</strong> under Sri Gupta (7th Century AD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hwuili</strong> (Chinese)</td>
+                            <td><em>Life of Hiuen Tsang</em></td>
+                            <td>Accounts of Hiuen Tsang's travels in India</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="mnemonic">
+                    <div class="emoji">🧭</div>
+                    <h4>Memory Trick: "MPPFHHI"</h4>
+                    <div class="acronym">M = Megasthenes (Mauryas)<br>P = Ptolemy (Geography)<br>P = Pliny (Rome trade)<br>F = Fa-Hien (Gupta)<br>H = Hiuen Tsang (Harsha)<br>H = Hwuili (Hiuen's life)<br>I = I-tsing (Sri Gupta)</div>
+                    <div class="meaning">"<strong>My Pal Pliny Found Harsha Happily In</strong> India" — Remember the order of foreign travelers!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Archaeological -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-arch">🏺</div>
+                <div class="section-title">
+                    <h3>Archaeological Evidences</h3>
+                    <p>Artefacts, tools, pottery & burials</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🔨 Tools</h4>
+                    <ul>
+                        <li>Stone & bone tools</li>
+                        <li>Metal tools: Bronze & Iron</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏺 Pottery Types</h4>
+                    <ul>
+                        <li><strong>Black & Red Ware</strong></li>
+                        <li><strong>Northern Black Polished Ware (NBPW)</strong> — Important for Mahajanapada & Mauryan period</li>
+                        <li><strong>Polished Grey Ware (PGW)</strong></li>
+                        <li><strong>Ochre Coloured Pottery (OCP)</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌸 Pollen Analysis</h4>
+                    <ul>
+                        <li>Analysis of floral remains to understand ancient climate & vegetation</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚰️ Burials</h4>
+                    <ul>
+                        <li>Burial sites with tools found nearby</li>
+                        <li>Reveals belief systems & social status</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏛️ Settlements & Architecture</h4>
+                    <ul>
+                        <li>Structural remains of houses, forts, public buildings</li>
+                        <li>Reveals town planning & social organization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Important Prehistoric Sites -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-arch">🗺️</div>
+                <div class="section-title">
+                    <h3>Important Prehistoric Sites</h3>
+                    <p>Key findings & their significance</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Site</th><th>Location</th><th>Key Finding / Significance</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Bhimbetka</strong></td>
+                            <td>Madhya Pradesh</td>
+                            <td>500+ painted rock shelters; Homo Sapiens' caves; <strong>Prominently Mesolithic</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mirzapur</strong></td>
+                            <td>Uttar Pradesh</td>
+                            <td>Goats & sheep exploited during <strong>Palaeolithic phase</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Atranjikhera</strong></td>
+                            <td>Uttar Pradesh</td>
+                            <td>Evidence of <strong>textile printing</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hastinapur</strong></td>
+                            <td>Uttar Pradesh</td>
+                            <td>Evidence of <strong>wild sugarcane</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inamgaon</strong></td>
+                            <td>Maharashtra</td>
+                            <td>Statue of <strong>Mother Goddess</strong>; largest Chalcolithic site</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mehrgarh</strong></td>
+                            <td>Baluchistan (Pakistan)</td>
+                            <td><strong>Earliest evidence of agriculture & settled life</strong>; evidence of dentistry (Neolithic)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Koldihawa</strong></td>
+                            <td>Belan Valley, UP</td>
+                            <td><strong>Earliest evidence of rice</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bagor & Adamgarh</strong></td>
+                            <td>Rajasthan</td>
+                            <td><strong>Earliest evidence of domestication of animals</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chirand</strong></td>
+                            <td>Bihar</td>
+                            <td><strong>Serpent cult</strong> evidence</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Burzahom</strong></td>
+                            <td>Jammu & Kashmir</td>
+                            <td><strong>Pit-dwelling</strong>; domestic dog buried with masters</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gufkral</strong></td>
+                            <td>Jammu & Kashmir</td>
+                            <td><strong>Pit-dwelling</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Neolithic Sites of South India</strong></td>
+                            <td>Karnataka, AP, etc.</td>
+                            <td>Unique feature: <strong>Ash mounds</strong> at Piklihal, Maski, Hallur, etc.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="mnemonic">
+                    <div class="emoji">🗺️</div>
+                    <h4>Memory Trick for "Firsts"</h4>
+                    <div class="acronym">Mehrgarh = Agriculture<br>Koldihawa = Rice<br>Bagor/Adamgarh = Animals<br>Burzahom = Pit-dwelling + Dog burial</div>
+                    <div class="meaning">"<strong>Make Rice, Bake Animals, Bury Dogs in Pits</strong>" — M-R-B-B for the four key "firsts"!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: Inscriptions -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-insc">🪨</div>
+                <div class="section-title">
+                    <h3>Inscriptions</h3>
+                    <p>Types & key examples</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>📝 Definition</h4>
+                    <ul>
+                        <li>Engravings on <strong>stone or metal objects</strong></li>
+                        <li>Study of inscriptions = <strong>Epigraphy</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📍 Types of Edicts</h4>
+                    <ul>
+                        <li><strong>Rock Edicts:</strong> Major and Minor — engraved on rocks</li>
+                        <li><strong>Pillar Edicts:</strong> Engraved on pillars (e.g., Ashokan pillars)</li>
+                        <li><strong>Cave Inscriptions:</strong> Found in caves (e.g., Barabar caves)</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Important Example</span>
+                    <p><strong>Allahabad Pillar Inscription</strong> — Famous for Samudragupta's prashasti (eulogy) by Harisena</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        <div class="quiz-container">
+            <h2>🎯 Quick Self-Test</h2>
+
+            <div class="quiz-question" data-answer="b">
+                <p>1. Which of the following is a Proto-historic civilization?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Vedic Civilization</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Harappan Civilization</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Mauryan Empire</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Gupta Empire</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+
+            <div class="quiz-question" data-answer="c">
+                <p>2. The study of coins is known as:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Epigraphy</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Archaeology</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Numismatics</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Paleography</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+
+            <div class="quiz-question" data-answer="a">
+                <p>3. Who wrote 'Indica' describing Mauryan administration?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Megasthenes</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Fa-Hien</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Hiuen Tsang</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Pliny</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+
+            <div class="quiz-question" data-answer="d">
+                <p>4. Which site provides the earliest evidence of agriculture and settled life?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Bhimbetka</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Inamgaon</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Koldihawa</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Mehrgarh</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+
+            <div class="quiz-question" data-answer="b">
+                <p>5. The term 'Puranas' is an important source for:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Economic history</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Political history</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Scientific history</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Foreign relations</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary-card">
+            <h2>📋 Chapter Summary</h2>
+            <p>Master these key points for your UPSC preparation</p>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="num">3</div>
+                    <div class="label">Divisions of History</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">5</div>
+                    <div class="label">Source Categories</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">4</div>
+                    <div class="label">Vedas</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">8</div>
+                    <div class="label">Foreign Authors</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">12</div>
+                    <div class="label">Key Prehistoric Sites</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">6</div>
+                    <div class="label">Vedangas</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sections
+        function toggleSection(card) {
+            card.classList.toggle('active');
+        }
+
+        // Quiz functionality
+        function checkAnswer(option, selected) {
+            const question = option.closest('.quiz-question');
+            const correctAnswer = question.dataset.answer;
+            const resultMsg = question.querySelector('.result-msg');
+            const options = question.querySelectorAll('.quiz-option');
+
+            // Reset all options
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'wrong');
+                opt.style.pointerEvents = 'none';
+            });
+
+            // Mark selected
+            if (selected === correctAnswer) {
+                option.classList.add('correct');
+                resultMsg.textContent = '✅ Correct! Well done!';
+                resultMsg.className = 'result-msg show correct';
+            } else {
+                option.classList.add('wrong');
+                // Highlight correct answer
+                options.forEach(opt => {
+                    if (opt.textContent.trim().startsWith(correctAnswer + ')')) {
+                        opt.classList.add('correct');
+                    }
+                });
+                resultMsg.textContent = '❌ Incorrect. The correct answer is ' + correctAnswer.toUpperCase() + '.';
+                resultMsg.className = 'result-msg show wrong';
+            }
+        }
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Chapter 1: Division & Sources</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        /* Header */
+        .header {
+            background: #16213e;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 400px; height: 400px;
+            background: #e94560;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header .subtitle { color: #a0aec0; font-size: 1.1rem; }
+        .header .badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        /* Accordion Cards */
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .section-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .section-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .section-header:hover { background: #f8fafc; }
+        .section-card.active .section-header { border-left-color: #e94560; background: #fff5f5; }
+
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .icon-history { background: #dbeafe; }
+        .icon-prehistory { background: #fef3c7; }
+        .icon-proto { background: #d1fae5; }
+        .icon-source { background: #fce7f3; }
+        .icon-lit { background: #ede9fe; }
+        .icon-foreign { background: #cffafe; }
+        .icon-arch { background: #ffedd5; }
+        .icon-insc { background: #f3e8ff; }
+
+        .section-title { flex: 1; }
+        .section-title h3 { font-size: 1.15rem; color: #1e293b; }
+        .section-title p { font-size: 0.9rem; color: #64748b; margin-top: 2px; }
+
+        .toggle-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); background: #e94560; color: white; }
+
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .section-card.active .section-body {
+            max-height: 2000px;
+            padding: 0 24px 24px 24px;
+        }
+
+        /* Content Styles */
+        .content-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid #e94560;
+        }
+        .content-box h4 { color: #e94560; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .content-box ul { list-style: none; }
+        .content-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .data-table thead { background: #16213e; color: white; }
+        .data-table th { padding: 14px 16px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background: #f8fafc; }
+        .data-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+        /* Mnemonics */
+        .mnemonic {
+            background: #ecfdf5;
+            border: 2px dashed #10b981;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+        }
+        .mnemonic .emoji { font-size: 2rem; margin-bottom: 8px; }
+        .mnemonic h4 { color: #059669; margin-bottom: 8px; }
+        .mnemonic .acronym {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #1e293b;
+            letter-spacing: 2px;
+        }
+        .mnemonic .meaning { color: #64748b; font-size: 0.9rem; margin-top: 6px; }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .fact-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .fact-card:hover { transform: translateY(-3px); border-color: #e94560; }
+        .fact-card .fact-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .fact-card .fact-term { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .fact-card .fact-def { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
+
+        /* Progress Bar */
+        .progress-track {
+            position: fixed;
+            top: 0; left: 0;
+            height: 4px;
+            background: #e94560;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: #1e293b;
+            color: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        .quiz-container h2 { text-align: center; margin-bottom: 24px; color: #fbbf24; }
+        .quiz-question {
+            background: #334155;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .quiz-question p { font-weight: 600; margin-bottom: 12px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-option {
+            background: #475569;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover { background: #64748b; }
+        .quiz-option.correct { background: #059669; border-color: #34d399; }
+        .quiz-option.wrong { background: #dc2626; border-color: #f87171; }
+
+        .result-msg {
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-weight: 600;
+            display: none;
+        }
+        .result-msg.show { display: block; }
+        .result-msg.correct { background: #059669; }
+        .result-msg.wrong { background: #dc2626; }
+
+        /* Footer Summary */
+        .summary-card {
+            background: #16213e;
+            color: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .summary-card h2 { color: #fbbf24; margin-bottom: 16px; }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .summary-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .summary-item .num { font-size: 2rem; font-weight: 800; color: #e94560; }
+        .summary-item .label { font-size: 0.85rem; color: #94a3b8; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .section-header { padding: 16px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="progress-track" id="progressBar"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📚 Division of Ancient History & Sources</h1>
+            <p class="subtitle">Chapter 1 — Ancient Indian History Ready Reckoner</p>
+            <span class="badge">UPSC Foundation</span>
+        </div>
+
+        <!-- SECTION 1: Three Divisions -->
+        <div class="section-card active" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-history">📖</div>
+                <div class="section-title">
+                    <h3>Three Divisions of History</h3>
+                    <p>History vs Prehistory vs Proto-history</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="quick-facts">
+                    <div class="fact-card">
+                        <div class="fact-icon">📝</div>
+                        <div class="fact-term">History</div>
+                        <div class="fact-def">Written evidence available from Vedic phase till present</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🪨</div>
+                        <div class="fact-term">Prehistory</div>
+                        <div class="fact-def">No written evidence; only archaeological (Stone Age)</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">❓</div>
+                        <div class="fact-term">Proto-history</div>
+                        <div class="fact-def">Written evidence exists but not deciphered (e.g., Harappan)</div>
+                    </div>
+                </div>
+
+                <div class="mnemonic">
+                    <div class="emoji">🧠</div>
+                    <h4>Memory Trick: "HPP"</h4>
+                    <div class="acronym">H = History (Has writing)<br>P = Prehistory (No writing)<br>P = Proto-history (Present but Puzzle)</div>
+                    <div class="meaning">History has readable writing → Prehistory has none → Proto-history has it but we can't read it!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Sources -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-source">🔍</div>
+                <div class="section-title">
+                    <h3>Sources of Ancient Indian History</h3>
+                    <p>5 Major categories of evidence</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🔬 Archaeological Evidence (Artefacts)</h4>
+                    <ul>
+                        <li>Physical materials used by ancient people found at sites</li>
+                        <li>Crucial for understanding the <strong>Pre-historic Period</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📜 Inscriptions (Epigraphy)</h4>
+                    <ul>
+                        <li>Engravings on stone or metal objects</li>
+                        <li>Study of inscriptions = <strong>Epigraphy</strong></li>
+                        <li>Types: Rock edicts (Major & Minor), Pillar edicts</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🪙 Coins (Numismatics)</h4>
+                    <ul>
+                        <li>Study of coins = <strong>Numismatics</strong></li>
+                        <li>Reveals economic conditions, trade, and rulers</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📚 Literature</h4>
+                    <ul>
+                        <li>Indian Literature: Vedas, Puranas, Epics, Sangam texts</li>
+                        <li>Foreign Literature: Accounts by Greek, Chinese travelers</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌍 Accounts of Foreigners</h4>
+                    <ul>
+                        <li>Greek, Chinese, and other foreign travelers' records</li>
+                        <li>Provide external perspective on Indian conditions</li>
+                    </ul>
+                </div>
+
+                <div class="mnemonic">
+                    <div class="emoji">💡</div>
+                    <h4>Memory Trick: "ALICF"</h4>
+                    <div class="acronym">A = Archaeology<br>L = Literature<br>I = Inscriptions<br>C = Coins<br>F = Foreigners</div>
+                    <div class="meaning">"<strong>A LICF</strong>ense to know the past" — All five sources give you permission to understand history!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Indian Literature -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-lit">📖</div>
+                <div class="section-title">
+                    <h3>Indian Literature Sources</h3>
+                    <p>Vedic, Puranic, Epic & Sangam texts</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="highlight-box">
+                    <span class="label">Must Remember</span>
+                    <p><strong>Vedic Literature:</strong> Vedas, Brahmanas, Aranyakas, Upanishads, Vedangas, Upvedas</p>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Category</th><th>Key Details</th><th>Importance</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Vedas</strong></td>
+                            <td>Rig, Yajur, Sama, Atharva</td>
+                            <td>Oldest religious texts; Rigveda = first world literature</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Brahmanas</strong></td>
+                            <td>Prose commentaries on Vedas</td>
+                            <td>Explain rituals and ceremonies</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aranyakas</strong></td>
+                            <td>"Forest texts" for hermits</td>
+                            <td>Bridge between Brahmanas & Upanishads</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Upanishads</strong></td>
+                            <td>108 in number; Vedantas</td>
+                            <td>Deal with metaphysics & philosophy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vedangas</strong></td>
+                            <td>6 limbs: Shiksha, Kalpa, Vyakarana, Nirukta, Chandas, Jyotisha</td>
+                            <td>Ancillary sciences to understand Vedas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Upvedas</strong></td>
+                            <td>Dhanurveda, Gandharvaveda, Sthapatyaveda, Ayurveda</td>
+                            <td>Applied knowledge: warfare, music, architecture, medicine</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="content-box">
+                    <h4>📜 Puranas</h4>
+                    <ul>
+                        <li>Stories of kings & genealogies of dynasties</li>
+                        <li>Important source for <strong>political history</strong> of Ancient India</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Epics</h4>
+                    <ul>
+                        <li>Ramayana & Mahabharata</li>
+                        <li>Reflect social, political & moral values of the time</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌴 Sangam Literature</h4>
+                    <ul>
+                        <li>Tolkappiyam (Tamil grammar)</li>
+                        <li>Ettutogai (8 anthologies)</li>
+                        <li>Pattupattu (10 poems)</li>
+                        <li>Pathinenkilkanakku (18 minor works)</li>
+                        <li>Silappadikaram & Manimekkalai (two epics)</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🎭 Plays & Drama</h4>
+                    <ul>
+                        <li>Kalidasa's works (Navaratna of Gupta court)</li>
+                        <li>Visakha Datta's <em>Mudra Rakshas</em> (Gupta period, Chanakya-Chandragupta story)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Foreign Literature -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-foreign">🌏</div>
+                <div class="section-title">
+                    <h3>Foreign Literature Sources</h3>
+                    <p>Greek & Chinese accounts</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Author</th><th>Book</th><th>Subject / Importance</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Megasthenes</strong> (Greek)</td>
+                            <td><em>Indica</em></td>
+                            <td>Administration & socio-economic conditions of <strong>Mauryas</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ptolemy</strong> (Greek)</td>
+                            <td><em>Geography of India</em></td>
+                            <td>Geographical treatise on India (2nd Century AD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pliny</strong> (Greek)</td>
+                            <td><em>Naturalis Historia</em></td>
+                            <td>Trade relations between <strong>Rome & India</strong> (1st Century AD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anonymous</strong> (Greek)</td>
+                            <td><em>Periplus of the Erythrean Sea</em></td>
+                            <td>Personal voyage of Indian coasts (80 AD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fa-Hien</strong> (Chinese)</td>
+                            <td><em>Fo-Kuo-Ki</em> (Record of Buddhist Countries)</td>
+                            <td><strong>Gupta Empire</strong> in 5th Century AD</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hiuen Tsang</strong> (Chinese)</td>
+                            <td><em>Si-Yu-Ki</em> (Buddhist Records of Western World)</td>
+                            <td>Social, economic, religious conditions (5th & 7th Century AD; <strong>Harshvardhan</strong>)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>I-tsing</strong> (Chinese)</td>
+                            <td>Record of Buddhism in India & Malay Archipelago</td>
+                            <td><strong>Gupta period</strong> under Sri Gupta (7th Century AD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hwuili</strong> (Chinese)</td>
+                            <td><em>Life of Hiuen Tsang</em></td>
+                            <td>Accounts of Hiuen Tsang's travels in India</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="mnemonic">
+                    <div class="emoji">🧭</div>
+                    <h4>Memory Trick: "MPPFHHI"</h4>
+                    <div class="acronym">M = Megasthenes (Mauryas)<br>P = Ptolemy (Geography)<br>P = Pliny (Rome trade)<br>F = Fa-Hien (Gupta)<br>H = Hiuen Tsang (Harsha)<br>H = Hwuili (Hiuen's life)<br>I = I-tsing (Sri Gupta)</div>
+                    <div class="meaning">"<strong>My Pal Pliny Found Harsha Happily In</strong> India" — Remember the order of foreign travelers!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Archaeological -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-arch">🏺</div>
+                <div class="section-title">
+                    <h3>Archaeological Evidences</h3>
+                    <p>Artefacts, tools, pottery & burials</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🔨 Tools</h4>
+                    <ul>
+                        <li>Stone & bone tools</li>
+                        <li>Metal tools: Bronze & Iron</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏺 Pottery Types</h4>
+                    <ul>
+                        <li><strong>Black & Red Ware</strong></li>
+                        <li><strong>Northern Black Polished Ware (NBPW)</strong> — Important for Mahajanapada & Mauryan period</li>
+                        <li><strong>Polished Grey Ware (PGW)</strong></li>
+                        <li><strong>Ochre Coloured Pottery (OCP)</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌸 Pollen Analysis</h4>
+                    <ul>
+                        <li>Analysis of floral remains to understand ancient climate & vegetation</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚰️ Burials</h4>
+                    <ul>
+                        <li>Burial sites with tools found nearby</li>
+                        <li>Reveals belief systems & social status</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏛️ Settlements & Architecture</h4>
+                    <ul>
+                        <li>Structural remains of houses, forts, public buildings</li>
+                        <li>Reveals town planning & social organization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Important Prehistoric Sites -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-arch">🗺️</div>
+                <div class="section-title">
+                    <h3>Important Prehistoric Sites</h3>
+                    <p>Key findings & their significance</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Site</th><th>Location</th><th>Key Finding / Significance</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Bhimbetka</strong></td>
+                            <td>Madhya Pradesh</td>
+                            <td>500+ painted rock shelters; Homo Sapiens' caves; <strong>Prominently Mesolithic</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mirzapur</strong></td>
+                            <td>Uttar Pradesh</td>
+                            <td>Goats & sheep exploited during <strong>Palaeolithic phase</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Atranjikhera</strong></td>
+                            <td>Uttar Pradesh</td>
+                            <td>Evidence of <strong>textile printing</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hastinapur</strong></td>
+                            <td>Uttar Pradesh</td>
+                            <td>Evidence of <strong>wild sugarcane</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inamgaon</strong></td>
+                            <td>Maharashtra</td>
+                            <td>Statue of <strong>Mother Goddess</strong>; largest Chalcolithic site</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mehrgarh</strong></td>
+                            <td>Baluchistan (Pakistan)</td>
+                            <td><strong>Earliest evidence of agriculture & settled life</strong>; evidence of dentistry (Neolithic)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Koldihawa</strong></td>
+                            <td>Belan Valley, UP</td>
+                            <td><strong>Earliest evidence of rice</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bagor & Adamgarh</strong></td>
+                            <td>Rajasthan</td>
+                            <td><strong>Earliest evidence of domestication of animals</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chirand</strong></td>
+                            <td>Bihar</td>
+                            <td><strong>Serpent cult</strong> evidence</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Burzahom</strong></td>
+                            <td>Jammu & Kashmir</td>
+                            <td><strong>Pit-dwelling</strong>; domestic dog buried with masters</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gufkral</strong></td>
+                            <td>Jammu & Kashmir</td>
+                            <td><strong>Pit-dwelling</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Neolithic Sites of South India</strong></td>
+                            <td>Karnataka, AP, etc.</td>
+                            <td>Unique feature: <strong>Ash mounds</strong> at Piklihal, Maski, Hallur, etc.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="mnemonic">
+                    <div class="emoji">🗺️</div>
+                    <h4>Memory Trick for "Firsts"</h4>
+                    <div class="acronym">Mehrgarh = Agriculture<br>Koldihawa = Rice<br>Bagor/Adamgarh = Animals<br>Burzahom = Pit-dwelling + Dog burial</div>
+                    <div class="meaning">"<strong>Make Rice, Bake Animals, Bury Dogs in Pits</strong>" — M-R-B-B for the four key "firsts"!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: Inscriptions -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-insc">🪨</div>
+                <div class="section-title">
+                    <h3>Inscriptions</h3>
+                    <p>Types & key examples</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>📝 Definition</h4>
+                    <ul>
+                        <li>Engravings on <strong>stone or metal objects</strong></li>
+                        <li>Study of inscriptions = <strong>Epigraphy</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📍 Types of Edicts</h4>
+                    <ul>
+                        <li><strong>Rock Edicts:</strong> Major and Minor — engraved on rocks</li>
+                        <li><strong>Pillar Edicts:</strong> Engraved on pillars (e.g., Ashokan pillars)</li>
+                        <li><strong>Cave Inscriptions:</strong> Found in caves (e.g., Barabar caves)</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Important Example</span>
+                    <p><strong>Allahabad Pillar Inscription</strong> — Famous for Samudragupta's prashasti (eulogy) by Harisena</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        <div class="quiz-container">
+            <h2>🎯 Quick Self-Test</h2>
+
+            <div class="quiz-question" data-answer="b">
+                <p>1. Which of the following is a Proto-historic civilization?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Vedic Civilization</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Harappan Civilization</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Mauryan Empire</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Gupta Empire</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+
+            <div class="quiz-question" data-answer="c">
+                <p>2. The study of coins is known as:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Epigraphy</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Archaeology</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Numismatics</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Paleography</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+
+            <div class="quiz-question" data-answer="a">
+                <p>3. Who wrote 'Indica' describing Mauryan administration?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Megasthenes</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Fa-Hien</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Hiuen Tsang</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Pliny</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+
+            <div class="quiz-question" data-answer="d">
+                <p>4. Which site provides the earliest evidence of agriculture and settled life?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Bhimbetka</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Inamgaon</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Koldihawa</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Mehrgarh</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+
+            <div class="quiz-question" data-answer="b">
+                <p>5. The term 'Puranas' is an important source for:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">a) Economic history</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">b) Political history</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">c) Scientific history</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">d) Foreign relations</div>
+                </div>
+                <div class="result-msg"></div>
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary-card">
+            <h2>📋 Chapter Summary</h2>
+            <p>Master these key points for your UPSC preparation</p>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="num">3</div>
+                    <div class="label">Divisions of History</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">5</div>
+                    <div class="label">Source Categories</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">4</div>
+                    <div class="label">Vedas</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">8</div>
+                    <div class="label">Foreign Authors</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">12</div>
+                    <div class="label">Key Prehistoric Sites</div>
+                </div>
+                <div class="summary-item">
+                    <div class="num">6</div>
+                    <div class="label">Vedangas</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sections
+        function toggleSection(card) {
+            card.classList.toggle('active');
+        }
+
+        // Quiz functionality
+        function checkAnswer(option, selected) {
+            const question = option.closest('.quiz-question');
+            const correctAnswer = question.dataset.answer;
+            const resultMsg = question.querySelector('.result-msg');
+            const options = question.querySelectorAll('.quiz-option');
+
+            // Reset all options
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'wrong');
+                opt.style.pointerEvents = 'none';
+            });
+
+            // Mark selected
+            if (selected === correctAnswer) {
+                option.classList.add('correct');
+                resultMsg.textContent = '✅ Correct! Well done!';
+                resultMsg.className = 'result-msg show correct';
+            } else {
+                option.classList.add('wrong');
+                // Highlight correct answer
+                options.forEach(opt => {
+                    if (opt.textContent.trim().startsWith(correctAnswer + ')')) {
+                        opt.classList.add('correct');
+                    }
+                });
+                resultMsg.textContent = '❌ Incorrect. The correct answer is ' + correctAnswer.toUpperCase() + '.';
+                resultMsg.className = 'result-msg show wrong';
+            }
+        }
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
 </body>
 </html>
