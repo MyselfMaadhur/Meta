@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ji<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -2358,6 +2358,1212 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(card) {
+            card.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Chapter 4: Religious Movements</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        .header {
+            background: #16213e;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header .subtitle { color: #a0aec0; font-size: 1.1rem; }
+        .header .badge {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .section-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .section-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .section-header:hover { background: #f8fafc; }
+        .section-card.active .section-header { border-left-color: #e94560; background: #fff5f5; }
+
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .icon-causes { background: #dbeafe; }
+        .icon-sources { background: #d1fae5; }
+        .icon-buddha { background: #ede9fe; }
+        .icon-doctrine { background: #cffafe; }
+        .icon-councils { background: #fef3c7; }
+        .icon-sangha { background: #fce7f3; }
+        .icon-mahayana { background: #ffedd5; }
+        .icon-vajrayana { background: #f3e8ff; }
+        .icon-decline-b { background: #fee2e2; }
+        .icon-terms-b { background: #ecfdf5; }
+        .icon-mahavira { background: #e0e7ff; }
+        .icon-jain-doctrine { background: #dbeafe; }
+        .icon-jain-councils { background: #d1fae5; }
+        .icon-jain-terms { background: #ede9fe; }
+        .icon-compare { background: #cffafe; }
+        .icon-state { background: #fef3c7; }
+
+        .section-title { flex: 1; }
+        .section-title h3 { font-size: 1.15rem; color: #1e293b; }
+        .section-title p { font-size: 0.9rem; color: #64748b; margin-top: 2px; }
+
+        .toggle-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); background: #e94560; color: white; }
+
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .section-card.active .section-body {
+            max-height: 4000px;
+            padding: 0 24px 24px 24px;
+        }
+
+        .content-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid #e94560;
+        }
+        .content-box h4 { color: #e94560; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .content-box ul { list-style: none; }
+        .content-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-weight: bold;
+        }
+        .content-box li.sub-item {
+            padding-left: 40px;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+        .content-box li.sub-item::before {
+            content: "•";
+            left: 24px;
+            color: #94a3b8;
+        }
+
+        .highlight-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .data-table thead { background: #16213e; color: white; }
+        .data-table th { padding: 14px 16px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
+        .data-table tbody tr:hover { background: #f8fafc; }
+        .data-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .fact-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .fact-card:hover { transform: translateY(-3px); border-color: #e94560; }
+        .fact-card .fact-icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .fact-card .fact-term { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .fact-card .fact-def { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
+
+        .progress-track {
+            position: fixed;
+            top: 0; left: 0;
+            height: 4px;
+            background: #e94560;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .section-header { padding: 16px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-track" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🪷 Religious Movements</h1>
+            <p class="subtitle">Chapter 4 — Ancient Indian History Ready Reckoner</p>
+            <span class="badge">UPSC Foundation</span>
+        </div>
+
+        <!-- SECTION 1: Causes -->
+        <div class="section-card active" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-causes">🔥</div>
+                <div class="section-title">
+                    <h3>1. Causes of Origin of Religious Movements</h3>
+                    <p>Why new religions emerged in 6th century BC</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>⚔️ Religious Unrest & Brahmana Dominance</h4>
+                    <ul>
+                        <li>Religious unrest in India in the <strong>6th century BC</strong></li>
+                        <li>Increased dominance of <strong>Brahmanas</strong> which was not acceptable to <strong>Kshatriyas</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🙅 Complex Rituals</h4>
+                    <ul>
+                        <li>The complex rituals and sacrifices advocated in the Later Vedic period were <strong>not acceptable to the common people</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>😵 Superstitious Beliefs</h4>
+                    <ul>
+                        <li>The <strong>superstitious beliefs and mantras</strong> confused the people</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌾 New Agricultural Economy</h4>
+                    <ul>
+                        <li>Spread of new agricultural economy in <strong>north-eastern India</strong></li>
+                        <li>Called for <strong>preservation of cattle wealth</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💰 Vaishyas' Desire</h4>
+                    <ul>
+                        <li>Desire of <strong>Vaishyas</strong> to improve their social position</li>
+                        <li>Due to growth of trade their <strong>economic status got a boost</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Sources of Buddhism -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-sources">📚</div>
+                <div class="section-title">
+                    <h3>2. Sources of Buddhism</h3>
+                    <p>Ceylonese, Chinese, and Tibetan chronicles</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🇱🇰 Ceylonese Chronicles</h4>
+                    <ul>
+                        <li><strong>Mahavamsa</strong> by Mahanama</li>
+                        <li><strong>Depavamsa</strong></li>
+                        <li><strong>Attakatha</strong> by Wattagamani</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🇨🇳 Chinese Chronicles</h4>
+                    <ul>
+                        <li>Chinese Chronicles (general reference)</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🇹🇧 Tibetan Chronicles</h4>
+                    <ul>
+                        <li><strong>Divyavandana</strong></li>
+                        <li><strong>Kalachakra Buddhism</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Gautama Buddha -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-buddha">☸️</div>
+                <div class="section-title">
+                    <h3>3. Gautama Buddha (563 BC – 483 BC)</h3>
+                    <p>Life, events, and symbols</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="quick-facts">
+                    <div class="fact-card">
+                        <div class="fact-icon">👑</div>
+                        <div class="fact-term">Clan</div>
+                        <div class="fact-def"><strong>Sakya Clan</strong></div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">👨</div>
+                        <div class="fact-term">Father</div>
+                        <div class="fact-def"><strong>Siddhodana</strong></div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">👩</div>
+                        <div class="fact-term">Mother</div>
+                        <div class="fact-def"><strong>Mayadevi</strong></div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🏠</div>
+                        <div class="fact-term">Birth Place</div>
+                        <div class="fact-def"><strong>Lumbini</strong> on full moon day of Visakha</div>
+                    </div>
+                </div>
+                <div class="content-box">
+                    <h4>🚪 4 Sights Towards Renunciation</h4>
+                    <ul>
+                        <li>(i) Man suffering from <strong>old age</strong></li>
+                        <li>(ii) Man suffering from <strong>disease</strong></li>
+                        <li>(iii) A <strong>dead body</strong></li>
+                        <li>(iv) A <strong>saint</strong> with face brimming with happiness</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👨‍🏫 Teachers</h4>
+                    <ul>
+                        <li><strong>Alarakama</strong></li>
+                        <li><strong>Udraka Ramputra</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>✨ Enlightenment</h4>
+                    <ul>
+                        <li>At age of <strong>33</strong></li>
+                        <li>Under <strong>Pipal tree</strong> at <strong>Uruvella (Bodhgaya)</strong></li>
+                        <li>On banks of river <strong>Niranjana (Falgu)</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗣️ First Sermon</h4>
+                    <ul>
+                        <li>At <strong>Sarnath</strong> (Deer park)</li>
+                        <li>On <strong>Dharma Chakra Parivarthana</strong></li>
+                        <li>To <strong>5 disciples</strong> including <strong>Mahakasyapa</strong> (first)</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚰️ Mahaparinirvana</h4>
+                    <ul>
+                        <li>At <strong>Kushinagar</strong></li>
+                        <li>At age of <strong>80</strong></li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Great Events & Symbols</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Event</th><th>Symbol</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Avakranti</strong> (conception or descent)</td>
+                            <td>White Elephant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jati</strong> (birth)</td>
+                            <td>Lotus and Bull</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mahabhinishkramana</strong> (leaving home)</td>
+                            <td>Horse</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nirvana / Sambodhi</strong> (enlightenment)</td>
+                            <td>Bodhi tree</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dharmachakra Parivarthana</strong> (first sermon)</td>
+                            <td>Wheel</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mahaparinirvana</strong> (passing away)</td>
+                            <td>Stupa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Doctrines of Buddhism -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-doctrine">📿</div>
+                <div class="section-title">
+                    <h3>4. Doctrines of Buddhism</h3>
+                    <p>4 Noble Truths & Eight-Fold Path</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="highlight-box">
+                    <span class="label">4 Noble Truths — Arya Satyas</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>World is full of misery</strong> (Sabbam Dukkam)</li>
+                        <li><strong>Cause of misery is excess of desire</strong> — Pratitya Samputpada</li>
+                        <li><strong>Desire can be surmounted</strong> (Dukha Nirodha)</li>
+                        <li><strong>Zeal can be conquered by Astangika Marga</strong> (Eight-Fold Path)</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Eight-Fold Path (Astangika Marga)</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>1. Right view</strong></li>
+                        <li><strong>2. Right resolve</strong></li>
+                        <li><strong>3. Right speech</strong></li>
+                        <li><strong>4. Right conduct</strong></li>
+                        <li><strong>5. Right livelihood</strong></li>
+                        <li><strong>6. Right effort</strong></li>
+                        <li><strong>7. Right mindfulness</strong></li>
+                        <li><strong>8. Right concentration</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Buddhist Councils -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-councils">🏛️</div>
+                <div class="section-title">
+                    <h3>5. Buddhist Councils</h3>
+                    <p>Four councils — venue, chairman, patron, and results</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Council</th><th>Venue</th><th>Chairman & Patron</th><th>Result</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>First — 483 BC</strong></td>
+                            <td>Saptaparni cave, <strong>Rajgir</strong></td>
+                            <td><strong>Mahakasyapa</strong>; <strong>Ajatasatru</strong></td>
+                            <td>Compilation of <strong>Suttapitaka</strong> by Ananda and <strong>Vinaya Pitaka</strong> by Upali</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Second — 383 BC</strong></td>
+                            <td>Chullavana, <strong>Vaishali</strong></td>
+                            <td><strong>Sabbakami</strong>; <strong>Kalashoka</strong></td>
+                            <td>Divide into <strong>Sthaviradins</strong> and <strong>Mahasangikas</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Third — 250 BC</strong></td>
+                            <td>Ashokarama Vihar, <strong>Pataliputra</strong></td>
+                            <td><strong>Mogaliputta Tissa</strong>; <strong>Ashoka</strong></td>
+                            <td>Compilation of <strong>Abhidamapittaka</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fourth — 98 AD</strong></td>
+                            <td>Kundalavana, <strong>Kashmir</strong></td>
+                            <td><strong>Vasumitra</strong>; Vice: <strong>Ashvaghosa</strong>; <strong>Kanishka</strong></td>
+                            <td>Compilation of <strong>Mahavibhasha shastra</strong>; Division into <strong>Hinayana and Mahayana</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Buddhist Sangha -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-sangha">🛕</div>
+                <div class="section-title">
+                    <h3>6. Buddhist Sangha</h3>
+                    <p>Rules, Boddhisattvas, and sects</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>💎 Three Jewels of Buddhism</h4>
+                    <ul>
+                        <li><strong>Buddha</strong></li>
+                        <li><strong>Dhamma</strong></li>
+                        <li><strong>Sangha</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏛️ Oldest Church</h4>
+                    <ul>
+                        <li><strong>Oldest church in world history</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🚫 Exclusions</h4>
+                    <ul>
+                        <li><strong>Slaves, Insolvents, and diseased</strong> not allowed</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📜 Rules for Monks</h4>
+                    <ul>
+                        <li>Meals only <strong>once a day</strong></li>
+                        <li>Monks rested only in <strong>rainy season</strong></li>
+                        <li>They not to commit <strong>64 types of crimes</strong> called <strong>Pathimokshas</strong></li>
+                        <li>Monks had: <strong>yellow robe, needle, a piece of string, and begging bowl</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🙏 Boddhisattvas</h4>
+                    <ul>
+                        <li>A person who is on the <strong>path towards Buddhahood</strong></li>
+                        <li>Similar to concept of <strong>Incarnations</strong> in Hinduism</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Important Boddhisattvas</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Boddhisattva</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Vajrapani</strong></td>
+                            <td>Like Indra; holds thunder bolt</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Avlokitesvara (Padmapani)</strong></td>
+                            <td>Kind hearted</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Manjushri</strong></td>
+                            <td>Stimulator of understanding; holds book describing 10 paramitas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maitreya</strong></td>
+                            <td>Future Buddha</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kshitigriha</strong></td>
+                            <td>Guardian of purgatories</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Amitabha / Amitayusha</strong></td>
+                            <td>Buddha of Heaven</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 7: Mahayana vs Hinayana -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-mahayana">⚖️</div>
+                <div class="section-title">
+                    <h3>7. Mahayana vs Hinayana Buddhism</h3>
+                    <p>Key differences between the two sects</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Mahayana</th><th>Hinayana</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Believed that <strong>Buddha will be born again</strong></td>
+                            <td>Buddha <strong>will never be reborn</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Language — <strong>Sanskrit</strong></td>
+                            <td>Language — <strong>Pali</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Worship Buddha in <strong>idol form</strong></td>
+                            <td>Buddha was an <strong>intellectual not god</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Considered <strong>Great Vehicle</strong></td>
+                            <td>Considered <strong>Lesser Vehicle</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Important schools: <strong>Chittmatra, Madhyamaka</strong></td>
+                            <td>Encompasses <strong>eighteen schools</strong>; most important: <strong>Sarvastivada and Theravada</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 8: Vajrayana -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-vajrayana">⚡</div>
+                <div class="section-title">
+                    <h3>8. Vajrayana</h3>
+                    <p>Magical power and female deities</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>⚡ Core Belief</h4>
+                    <ul>
+                        <li>Followers believed that salvation could be best attained by acquiring the <strong>magical power i.e. Vajra</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📍 Development</h4>
+                    <ul>
+                        <li>The sect developed in <strong>Tibet</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👩 Female Deities</h4>
+                    <ul>
+                        <li>The sect believes in <strong>worship of female deities</strong></li>
+                        <li>The chief divinities of this new sect were the <strong>Taras</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗺️ Popularity</h4>
+                    <ul>
+                        <li>Became popular in <strong>Eastern India</strong>, particularly <strong>Bengal and Bihar</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 9: Causes for Decline of Buddhism -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-decline-b">📉</div>
+                <div class="section-title">
+                    <h3>9. Causes for Decline of Buddhism</h3>
+                    <p>Factors leading to Buddhism's decline</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🕉️ Concept of Incarnation</h4>
+                    <ul>
+                        <li>Concept of Incarnation in Hinduism</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚔️ Advent of Islam</h4>
+                    <ul>
+                        <li><strong>Bakhtiyar Khilji</strong> destroyed stupas and <strong>Nalanda University</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏔️ Lack of Security</h4>
+                    <ul>
+                        <li>Lack of security made Buddhism move to <strong>Nepal</strong></li>
+                        <li><strong>Tantrik Buddhism</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗣️ Language Shift</h4>
+                    <ul>
+                        <li>Adopted <strong>Sanskrit</strong> as the language of preaching</li>
+                        <li>Aloofed the common masses</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🙏 Brahmanical Practices</h4>
+                    <ul>
+                        <li>Adopted many <strong>Brahmanical practices</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>😔 Unethical Practices</h4>
+                    <ul>
+                        <li><strong>Unethical practices in Sangha</strong> further tarnished the image</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 10: Terms Related to Buddhism -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-terms-b">📖</div>
+                <div class="section-title">
+                    <h3>10. Other Important Terms Related to Buddhism</h3>
+                    <p>Key Buddhist terminology</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Term</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Arhats</strong></td>
+                            <td>Liberated beings</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nirvana</strong></td>
+                            <td>State of Supreme Bliss</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sheel</strong></td>
+                            <td>Good Conduct</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pravrajya</strong></td>
+                            <td>Means "to go forth" — refers to when a layperson leaves home to live the life of a Buddhist renunciate among a community of bhikkhus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sramana</strong></td>
+                            <td>One who labors, toils, or exerts themselves for some higher or religious purpose; "seeker, one who performs acts of austerity, ascetic"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Upasampada</strong></td>
+                            <td>Literally denotes "approaching or nearing the ascetic tradition"; specifically refers to the rite and ritual of ascetic vetting (ordination) by which a candidate enters the community as Upasampada (ordained) and authorised to undertake ascetic life</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vassa</strong></td>
+                            <td>The three-month annual retreat observed by Theravada practitioners; taking place during the wet season, lasts for three lunar months, usually from July to October</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Uposatha</strong></td>
+                            <td>A Buddhist day of observance; the Buddha taught that the Uposatha day is for "the cleansing of the defiled mind," resulting in inner calm and joy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pavarana</strong></td>
+                            <td>Assembly at the end of Vassa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Posadha</strong></td>
+                            <td>Restoration of vows</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 11: Jainism -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-mahavira">🪷</div>
+                <div class="section-title">
+                    <h3>11. Jainism — Founder & Tirthankaras</h3>
+                    <p>Mahavira and the 24 Tirthankaras</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🙏 Founder Belief</h4>
+                    <ul>
+                        <li>Generally believed that the founder of Jainism was <strong>Mahavira</strong></li>
+                        <li>Now recognized that Mahavira was the <strong>24th Tirthankara</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📜 First Tirthankara</h4>
+                    <ul>
+                        <li>The sacred books of Jainism tell us that their first Tirthankara was <strong>Rishabh</strong>, the founder of Jainism</li>
+                        <li>Rishabh was followed by <strong>23 Tirthankaras</strong></li>
+                        <li>The <strong>Vishnu Purana</strong> and <strong>Bhagavat Purana</strong> describe Rishabh as an incarnation of Vishnu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 12: Mahavira -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-mahavira">☸️</div>
+                <div class="section-title">
+                    <h3>12. Mahavira (540 BC – 468 BC)</h3>
+                    <p>Life, enlightenment, and death</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="quick-facts">
+                    <div class="fact-card">
+                        <div class="fact-icon">👑</div>
+                        <div class="fact-term">Clan</div>
+                        <div class="fact-def"><strong>Gnatrika Clan</strong></div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">👨</div>
+                        <div class="fact-term">Father</div>
+                        <div class="fact-def"><strong>Siddhartha</strong></div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">👩</div>
+                        <div class="fact-term">Mother</div>
+                        <div class="fact-def"><strong>Trishala</strong></div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🏠</div>
+                        <div class="fact-term">Birth Place</div>
+                        <div class="fact-def"><strong>Kundagrama</strong> near Vaishali</div>
+                    </div>
+                </div>
+                <div class="content-box">
+                    <h4>👨‍🏫 Teachers</h4>
+                    <ul>
+                        <li><strong>Alarakama</strong></li>
+                        <li><strong>Udraka Ramputra</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>✨ Kaivalya (Enlightenment)</h4>
+                    <ul>
+                        <li>At age of <strong>43</strong></li>
+                        <li>Under <strong>Sal tree</strong> at <strong>Jambhikagrama</strong></li>
+                        <li>On banks of river <strong>Rijupalika</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗣️ First Sermon</h4>
+                    <ul>
+                        <li>At <strong>Pava</strong></li>
+                        <li>To his <strong>11 disciples</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🗺️ Places Associated</h4>
+                    <ul>
+                        <li><strong>Champa</strong></li>
+                        <li><strong>Vaishali</strong></li>
+                        <li><strong>Koshala</strong></li>
+                        <li><strong>Mithila</strong></li>
+                        <li><strong>Magadha</strong></li>
+                        <li><strong>Pavapuri</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚰️ Death</h4>
+                    <ul>
+                        <li>At age of <strong>72</strong></li>
+                        <li>Near <strong>Pavapuri</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 13: Doctrines of Jainism -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-jain-doctrine">📿</div>
+                <div class="section-title">
+                    <h3>13. Doctrines of Jainism / Mahavira</h3>
+                    <p>5 Vows, 3 Ratnas, and 2 Theories</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="highlight-box">
+                    <span class="label">5 Principles / Vows</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Vow</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ahimsa</strong></td>
+                            <td>Non-Injury</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Satya</strong></td>
+                            <td>Non-Lying</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asteya</strong></td>
+                            <td>Non-Stealing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aparigraha</strong></td>
+                            <td>Non-Possession</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Brahmacharya</strong></td>
+                            <td>Chastity</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <span class="label">Three Ratnas (Jewels of Jainism)</span>
+                </div>
+                <div class="content-box">
+                    <ul>
+                        <li><strong>1. Right Faith / Samyak Shraddha</strong> — belief in Tirthankaras</li>
+                        <li><strong>2. Right Knowledge / Samyak Jnan</strong> — knowledge of Jain creed</li>
+                        <li><strong>3. Right Conduct / Samyak Karma</strong> — practice of 5 vows</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <span class="label">Two Theories</span>
+                </div>
+                <div class="content-box">
+                    <h4>1. Syadvada / Theory of May-Be</h4>
+                    <ul>
+                        <li>All our judgements are <strong>relative, conditional and limited</strong></li>
+                        <li><strong>Seven modes of prediction</strong> (Saptabhangi Nayavada)</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>2. Anekantavada / Theory of Plurality</h4>
+                    <ul>
+                        <li>Knowledge <strong>cannot be perceived in absolutes</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 14: Jain Councils -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-jain-councils">🏛️</div>
+                <div class="section-title">
+                    <h3>14. Jain Councils</h3>
+                    <p>Two councils — venue, chairman, patron, and results</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Council</th><th>Venue</th><th>Chairman & Patron</th><th>Result</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>First — 300 BC</strong></td>
+                            <td><strong>Pataliputra</strong></td>
+                            <td><strong>Sthulabhadra</strong>; <strong>Chandragupta Maurya</strong></td>
+                            <td>Compilation of <strong>12 Angas</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Second — 512 AD</strong></td>
+                            <td><strong>Vallabhi</strong></td>
+                            <td><strong>Devardhi Kshmasramana</strong></td>
+                            <td>Final compilation of <strong>12 Angas and 12 Upangas</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 15: Terms Related to Jainism -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-jain-terms">📖</div>
+                <div class="section-title">
+                    <h3>15. Important Terms Related to Jainism</h3>
+                    <p>Key Jain philosophical concepts</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Term</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Asrav</strong></td>
+                            <td>Means inflow; defined as the inflow of karmas to the soul. The influx of karmas occurs at every second in life. It is this process that keeps our souls wandering in this universe and prevents it from being free.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Samvara</strong></td>
+                            <td>Means stoppage — the stoppage of the influx of the material karmas into the soul consciousness.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nirjara</strong></td>
+                            <td>One of the seven fundamental principles (Tattva) in Jain philosophy; refers to the shedding or removal of accumulated karmas from the atma (soul), essential for breaking free from samsara, the cycle of birth-death and rebirth, by achieving moksha (liberation).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kaivalya (Kevala Jnana)</strong></td>
+                            <td>Means omniscience in Jainism; roughly translated as complete understanding or supreme wisdom.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sallekhana (Santhara)</strong></td>
+                            <td>The religious practice of voluntarily fasting to death by gradually reducing the intake of food and liquids.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 16: Jainism vs Buddhism -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-compare">⚖️</div>
+                <div class="section-title">
+                    <h3>16. Jainism and Buddhism Comparison</h3>
+                    <p>Key differences between the two religions</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Jainism</th><th>Buddhism</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Non-violence</td>
+                            <td>Violence is inevitable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gnana Marga</strong> for Salvation</td>
+                            <td><strong>Karma Marga</strong> for Salvation</td>
+                        </tr>
+                        <tr>
+                            <td>Accepted God but was considered lower than Jina</td>
+                            <td>Remained silent on God</td>
+                        </tr>
+                        <tr>
+                            <td>Accepted idea of soul</td>
+                            <td>Does not accept the idea of soul</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 17: State & Varna Society during Buddha -->
+        <div class="section-card" onclick="toggleSection(this)">
+            <div class="section-header">
+                <div class="icon-box icon-state">🏛️</div>
+                <div class="section-title">
+                    <h3>17. State and Varna Society during Buddha</h3>
+                    <p>Economy, administration, and guilds</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="section-body">
+                <div class="content-box">
+                    <h4>🏙️ Urbanization</h4>
+                    <ul>
+                        <li>Period marked <strong>second stage of urbanization</strong></li>
+                        <li>First stage was urbanization during Harappa</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏭 Guild System</h4>
+                    <ul>
+                        <li><strong>Guild system</strong> prevailed on large scale</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🪙 Coins</h4>
+                    <ul>
+                        <li><strong>Punched marked coins</strong> were issued for first time</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>💰 Taxation</h4>
+                    <ul>
+                        <li>Taxes were collected <strong>directly by royal agents</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🏺 Pottery</h4>
+                    <ul>
+                        <li><strong>Northern Black Polished ware (NBPW)</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🌾 Economy</h4>
+                    <ul>
+                        <li><strong>Advanced food producing economy</strong> for the first time</li>
+                        <li>With extensive tilling of alluvial plains</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>⚖️ Government</h4>
+                    <ul>
+                        <li><strong>Republican government</strong> was experimented</li>
+                        <li>Power was with the <strong>Tribal oligarchies</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📐 Texts</h4>
+                    <ul>
+                        <li>The period produced texts dealing with sophisticated measurements called <strong>Sulvasutras</strong></li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <span class="label">Important Functionaries</span>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Functionary</th><th>Role</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gahapatis</strong></td>
+                            <td>Rich Peasants</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bhojaka</strong></td>
+                            <td>Village headmen</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Balisadakas</strong></td>
+                            <td>Officers for collecting Bali (voluntary tax)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shaulkika / Shulkadhyaksha</strong></td>
+                            <td>Collector of custom duties</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bhandagarika</strong></td>
+                            <td>Treasurer</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <span class="label">Guilds</span>
+                </div>
+                <div class="content-box">
+                    <h4>📛 Different Names</h4>
+                    <ul>
+                        <li><strong>Shreni</strong>, <strong>Puga</strong>, <strong>Nigama</strong>, <strong>Sangha</strong>, <strong>Gana</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>👤 Head of Guild</h4>
+                    <ul>
+                        <li><strong>Jyastha</strong>, <strong>Shresthi</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>🚚 Mobile Guild</h4>
+                    <ul>
+                        <li>Term for mobile guild: <strong>Sartha</strong></li>
+                        <li>Head of mobile guild: <strong>Sarthavaha</strong></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>📜 Shreni Dharma</h4>
+                    <ul>
+                        <li>Rules and regulations of guilds</li>
+                        <li>Recognised by <strong>Dharmasastra</strong></li>
+                        <li>It had <strong>force of law</strong></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
