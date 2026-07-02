@@ -95,6 +95,7 @@
             transition: all 0.15s;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 5px;
             white-space: nowrap;
             flex-shrink: 0;
@@ -168,8 +169,7 @@
             transition: opacity 0.3s;
         }
 
-        .subject-circle:hover::before, .subject-circle:active::before { opacity: 1; }
-
+        .subject-circle:active::before { opacity: 1; }
         .subject-circle:active {
             border-color: #38bdf8;
             transform: scale(0.95);
@@ -862,6 +862,32 @@
         }
 
         .mini-player-close:active { color: #e2e8f0; }
+
+        /* ===== FAB (Floating Action Button) for adding videos ===== */
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(56, 189, 248, 0.4);
+            z-index: 50;
+            transition: all 0.2s;
+        }
+
+        .fab:active {
+            transform: scale(0.92);
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -934,6 +960,9 @@
         </div>
 
         <div id="videosContainer" class="videos-grid"></div>
+
+        <!-- FAB for adding videos (Edit Mode only) -->
+        <button class="fab" id="addVideoFab" onclick="openVideoModal(currentViewingSubjectId)" style="display:none;">+</button>
     </div>
 
     <!-- ===== EMPTY STATE ===== -->
@@ -974,7 +1003,7 @@
 
     <div class="modal-overlay" id="videoModal" onclick="if(event.target===this)closeVideoModal()">
         <div class="modal">
-            <h2 id="videoModalTitle">Add Video</h2>
+            <h2 id="videoModalTitle">Add YouTube Video</h2>
             <div class="form-group">
                 <label>YouTube Link</label>
                 <input type="text" id="videoUrlInput" placeholder="Paste YouTube URL here...">
@@ -1096,6 +1125,10 @@
             }
 
             document.getElementById('resetPanel').style.display = currentMode === 'edit' ? 'flex' : 'none';
+
+            // Show/hide FAB for adding videos
+            document.getElementById('addVideoFab').style.display = currentMode === 'edit' ? 'flex' : 'none';
+
             renderVideos(subject);
         }
 
@@ -1320,15 +1353,6 @@
                 `;
             }).join('');
 
-            if (currentMode === 'edit') {
-                html += `
-                <div class="video-card add-video-card" onclick="openVideoModal('${subject.id}')">
-                    <span class="plus">+</span>
-                    <span>Add Video</span>
-                </div>
-                `;
-            }
-
             container.innerHTML = html;
         }
 
@@ -1418,7 +1442,7 @@
         // ===== VIDEO CRUD =====
         function openVideoModal(subjectId) {
             currentSubjectForVideo = subjectId;
-            document.getElementById('videoModalTitle').textContent = 'Add Video';
+            document.getElementById('videoModalTitle').textContent = 'Add YouTube Video';
             document.getElementById('videoUrlInput').value = '';
             document.getElementById('videoTitleInput').value = '';
             document.getElementById('videoModal').classList.add('active');
@@ -1602,22 +1626,6 @@
             toast.className = 'toast show ' + type;
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
-
-        // ===== HARDWARE BACK BUTTON (Android) =====
-        document.addEventListener('backbutton', (e) => {
-            e.preventDefault();
-            if (document.getElementById('subjectModal').classList.contains('active')) {
-                closeSubjectModal();
-            } else if (document.getElementById('videoModal').classList.contains('active')) {
-                closeVideoModal();
-            } else if (document.getElementById('renameModal').classList.contains('active')) {
-                closeRenameModal();
-            } else if (document.getElementById('resetModal').classList.contains('active')) {
-                closeResetModal();
-            } else if (currentViewingSubjectId) {
-                goHome();
-            }
-        }, false);
 
         // ===== KEYBOARD SHORTCUTS =====
         document.addEventListener('keydown', (e) => {
